@@ -2,7 +2,7 @@ import React from 'react'
 
 const Header = () => {
   return (
-    <div className="mt-8">
+    <div className="" style={{height: '4rem'}}>
       {/* <img alt="" src={logo} /> */}
     </div>
   )
