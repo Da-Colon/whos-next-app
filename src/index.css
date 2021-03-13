@@ -1,0 +1,60 @@
+/* ./src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  max-height: 100%;
+  width: fit-content;
+  min-width: 100%;
+}
+
+html {
+  overflow: -moz-scrollbars-vertical; 
+  overflow-y: scroll;
+  min-width: 650px;
+}
+
+html::-webkit-scrollbar {
+  background-color: rgb(11,11,11);
+}
+
+h1,
+h2,
+h3,
+p {
+  padding: 0;
+  margin: 0;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  background-color: rgb(11,11,11);
+}
+
+.custom-table tbody tr td{
+  border-bottom: 2px solid #D5A8FC;
+}
+
