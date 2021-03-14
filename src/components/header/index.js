@@ -4,7 +4,7 @@ import Nav from './Nav'
 import PageLogo from './PageLogo'
 
 const Header = () => {
-  const isLoggedIn = false
+  const isLoggedIn = true
   return (
     <div className="flex items-center justify-between" style={{height: '4.5rem'}}>
       <PageLogo />

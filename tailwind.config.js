@@ -26,6 +26,9 @@
       },
     },
     extend: {
+      boxShadow: {
+        hover: '8px 8px 0px 0px #000000'
+      },
       maxWidth: {
         '128': '64rem'
       },
