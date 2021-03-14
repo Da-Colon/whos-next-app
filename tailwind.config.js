@@ -23,18 +23,12 @@
       padding: {
         DEFAULT: '1rem', // 16 px
         sm: '2rem',
-        lg: '4rem',
-        xl: '5rem',
-        '2xl': '6rem',
       },
     },
-    screens: {
-      xs: '280px',
-      sm: '640px',
-      md: '968px',
-      lg: '1024px'
-    },
     extend: {
+      maxWidth: {
+        '128': '64rem'
+      },
       fontFamily: {
         sans: ['Roboto Mono'], // Roboto Mono
       },
