@@ -35,6 +35,11 @@ body {
 html {
   overflow: -moz-scrollbars-vertical; 
   overflow-y: scroll;
+  background: radial-gradient(circle, rgba(22,167,162,1) 0%, rgba(25,61,73,1) 100%);
+}
+
+.background-main {
+  background: radial-gradient(circle, rgba(22,167,162,1) 0%, rgba(25,61,73,1) 100%);
 }
 
 html::-webkit-scrollbar {

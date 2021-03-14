@@ -33,7 +33,8 @@
         hover: '4px 4px 0px 0px #000000'
       },
       maxWidth: {
-        '128': '64rem'
+        '256': '64rem', // 1024px
+        '128': '32rem', // 512px
       },
       fontFamily: {
         sans: ['Roboto Mono'], // Roboto Mono
