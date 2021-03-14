@@ -29,9 +29,10 @@
       },
     },
     screens: {
-      xs: '520px',
-      sm: '780px',
+      xs: '280px',
+      sm: '640px',
       md: '968px',
+      lg: '1024px'
     },
     extend: {
       fontFamily: {

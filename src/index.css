@@ -35,11 +35,10 @@ body {
 html {
   overflow: -moz-scrollbars-vertical; 
   overflow-y: scroll;
-  min-width: 650px;
 }
 
 html::-webkit-scrollbar {
-  background-color: rgb(11,11,11);
+  display: none;
 }
 
 h1,
@@ -51,7 +50,7 @@ p {
 }
 
 .hide-scrollbar::-webkit-scrollbar {
-  background-color: rgb(11,11,11);
+  display: none;
 }
 
 .custom-table tbody tr td{
