@@ -4,9 +4,9 @@ import Nav from './Nav'
 import PageLogo from './PageLogo'
 
 const Header = () => {
-  const isLoggedIn = true
+  const isLoggedIn = false
   return (
-    <div className="flex items-center justify-between" style={{height: '4.5rem'}}>
+    <div className="flex items-center justify-between pt-4 px-6" style={{height: '4.5rem'}}>
       <PageLogo />
       {isLoggedIn && <Nav />}
       {!isLoggedIn && <AccountDisplay /> }

@@ -2,7 +2,7 @@ import React from 'react'
 
 const Body = () => {
   return (
-    <div style={{minHeight: 'calc(100vh - 4rem'}}>
+    <div className="px-6" style={{minHeight: 'calc(100vh - 4rem'}}>
 
     </div>
   )

@@ -20,14 +20,17 @@
     },
     container: {
       center: true,
-      padding: {
-        DEFAULT: '1rem', // 16 px
-        sm: '2rem',
-      },
+      screen: {
+        'xs': '280px',
+        'sm': '320px',
+        'md': '640px',
+        'lg': '1024px',
+        '2xl': '1268px'
+      }
     },
     extend: {
       boxShadow: {
-        hover: '8px 8px 0px 0px #000000'
+        hover: '4px 4px 0px 0px #000000'
       },
       maxWidth: {
         '128': '64rem'
