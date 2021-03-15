@@ -1,5 +1,6 @@
 import classnames from 'classnames'
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 const BACKGROUND_COLOR = 'radial-gradient(circle, rgba(22,167,162,1) 0%, rgba(25,61,73,1) 100%)'
 const BASE_DEFAULT = 'focus:outline-none'
@@ -15,12 +16,14 @@ const WIDTH = {
   default: '5rem'
 }
 
-const Button = ({label, varient, height, width, addClassnames, ...rest}) => {
-  if(varient === 'menu') {
+const Button = ({label, varient, height, width, addClassnames, to, activeClassName, ...rest}) => {
+  if(varient === 'link') {
     return (
-      <button className={classnames(BASE_MENU, BASE_MENU_HOVER, addClassnames)} style={{height: HEIGHT[height], width: WIDTH[width], background: BACKGROUND_COLOR}} {...rest} >
-        { label }
-      </button>
+      <NavLink to={to} activeClassName={activeClassName} >
+        <button className={classnames(BASE_MENU, BASE_MENU_HOVER, addClassnames)} style={{height: HEIGHT[height], width: WIDTH[width], background: BACKGROUND_COLOR}} {...rest} >
+          { label }
+        </button>
+      </NavLink>
     )
   } else if(varient === 'form') {
     return (

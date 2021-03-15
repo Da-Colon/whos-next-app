@@ -47,6 +47,16 @@ html {
   box-shadow: inset 0px 0px 16px 4px #000000; 
 }
 
+.inset-shadow-bottom {
+  -webkit-box-shadow: inset 0px -6px 10px 0px #000000; 
+  box-shadow: inset 0px -6px 10px 0px #000000;
+}
+
+.shadow-card {
+  -webkit-box-shadow: 5px 5px 4px 0px #000000; 
+  box-shadow: 5px 5px 4px 0px #000000;
+}
+
 html::-webkit-scrollbar {
   display: none;
 }

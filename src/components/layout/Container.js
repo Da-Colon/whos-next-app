@@ -1,11 +1,18 @@
 import React from 'react'
+import classnames from 'classnames'
 
-const Container = ({ children }) => {
+const BASE = "flex flex-col mt-8 pt-8 background-main inset-shadow"
+const Container = ({ padTop, position, children }) => {
   return (
-    <div className="flex flex-col mt-8 pt-8 items-center background-main inset-shadow" style={{minHeight: 'calc(100vh - 12rem'}}>
+    <div className={classnames(BASE, position)} style={{minHeight: `calc(100vh - ${padTop}`}}>
       {children}
     </div>
   )
+}
+
+Container.defaultProps = {
+  padTop: '12rem',
+  position: 'items-center'
 }
 
 export default Container
