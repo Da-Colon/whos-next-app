@@ -5,7 +5,7 @@ import Icon from '../layout/Icon'
 import AccountMenuButtons from './AccountMenuButtons'
 
 const AccountDisplay = () => {
-  const { toggle, collapsed } = useCollapse(true, true)
+  const { toggle, collapsed } = useCollapse(false, true)
   return (
     <div className="flex items-center">
       <Icon onClickAction={toggle} icon={menu} varient="small" />

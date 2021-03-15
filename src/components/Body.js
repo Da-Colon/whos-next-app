@@ -1,14 +1,16 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import AppRouter from './router'
 import Landing from '../components/pages/landing'
+import LoginPage from './pages/login'
 
 const Body = () => {
   return (
-      <div className="px-6" style={{minHeight: 'calc(100vh - 4rem'}}>
-        <AppRouter>
+      <div className="px-6" style={{minHeight: 'calc(100vh - 7rem'}}>
           <Route path="/" component={Landing} exact />
-        </AppRouter>
+          <Route path="/login" component={LoginPage} exact />
+          <Route path="/signup" exact />
+          <Route path="/classes" />
+          <Route path="/picker" />
       </div>
   )
 }

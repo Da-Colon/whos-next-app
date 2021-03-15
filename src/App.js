@@ -4,16 +4,19 @@ import AppWrapper from './components/AppWrapper'
 import Header from './components/header'
 import Body from './components/Body'
 import Footer from './components/Footer'
+import AppRouter from './router'
 
 
 function App() {
 
   return (
-    <AppWrapper>
-      <Header />
-      <Body />
-      <Footer />
-    </AppWrapper>
+    <AppRouter>
+      <AppWrapper>
+        <Header />
+        <Body />
+        <Footer />
+      </AppWrapper>
+    </AppRouter>
   )
 }
 

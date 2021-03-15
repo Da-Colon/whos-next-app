@@ -42,6 +42,11 @@ html {
   background: radial-gradient(circle, rgba(22,167,162,1) 0%, rgba(25,61,73,1) 100%);
 }
 
+.inset-shadow {
+  -webkit-box-shadow: inset 0px 0px 16px 4px #000000; 
+  box-shadow: inset 0px 0px 16px 4px #000000; 
+}
+
 html::-webkit-scrollbar {
   display: none;
 }

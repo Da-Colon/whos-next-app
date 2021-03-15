@@ -1,8 +1,8 @@
 import React from 'react'
 import classnames from 'classnames'
 
-const BASE_DEFAULT = 'w-6 h-auto cursor-pointer'
-const BASE_SMALL = 'w-6 h-auto cursor-pointer'
+const BASE_DEFAULT = 'w-6 mr-2 h-auto cursor-pointer'
+const BASE_SMALL = 'w-6 mr-2 h-auto cursor-pointer'
 const HOVER_SMALL = 'transform hover:-translate-x-2 hover:-translate-y-1 hover:shadow-hover'
 
 const Icon = ({ icon, varient, onClickAction }) => {
