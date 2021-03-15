@@ -6,6 +6,7 @@
     colors: {
       black: '#25282b',
       white: '#FFFFFF',
+      ghost_white: '#BFBFBF',
       gray: {
         300: '#9A9A9A',
         400: '#888293',
