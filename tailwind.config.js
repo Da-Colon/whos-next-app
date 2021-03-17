@@ -30,6 +30,9 @@
       }
     },
     extend: {
+      width: {
+        '80': '20rem' // 320px
+      },
       boxShadow: {
         hover: '4px 4px 0px 0px #000000'
       },

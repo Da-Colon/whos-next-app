@@ -9,14 +9,23 @@ const BASE_MENU_HOVER = 'transform hover:-translate-x-3 hover:-translate-y-1 hov
 const BASE_FORM = 'bg-main rounded text-sm font-semibold bg-gold focus:outline-none'
 
 const HEIGHT = {
-  default: '1.5rem'
+  default: '1.5rem',
+  lg: '2.5rem'
 }
 
 const WIDTH = {
-  default: '5rem'
+  default: '5rem',
+  lg: '12rem'
 }
 
 const Button = ({label, varient, height, width, addClassnames, to, activeClassName, ...rest}) => {
+  if(varient === 'lg') {
+    return (
+      <button className={classnames(BASE_MENU, BASE_MENU_HOVER, addClassnames)} style={{height: HEIGHT[height], width: WIDTH[width], background: BACKGROUND_COLOR}} {...rest} >
+        { label }
+      </button>
+    )
+  } 
   if(varient === 'link') {
     return (
       <NavLink to={to} activeClassName={activeClassName} >

@@ -5,7 +5,7 @@ import Label from '../../layout/Label'
 
 const LoginForm = ({values, errors, handleSubmit, handleChange}) => {
   return (
-    <div className="p-4 flex flex-col">
+    <form className="p-4 flex flex-col">
       <Label text="Username" htmlFor="username" />
       <Input name="username" id="username" onChange={handleChange} value={values.username} />
       <Label text="Password" htmlFor="password"  />
@@ -13,7 +13,7 @@ const LoginForm = ({values, errors, handleSubmit, handleChange}) => {
       <div className="text-right mt-4">
         <Button label="Login" varient="form" />
       </div>
-    </div>
+    </form>
   )
 }
 
