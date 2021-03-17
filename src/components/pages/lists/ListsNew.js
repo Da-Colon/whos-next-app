@@ -5,21 +5,23 @@ import Heading from '../../layout/Heading'
 import Input from '../../layout/Input'
 import Label from '../../layout/Label'
 import Button from '../../layout/Button'
-import CreateList from './CreateList'
-import FieldsContainer from './FieldsContainer'
-import FieldContainer from './FieldContainer'
-import ButtonContainer from './ButtonContainer'
+import CreateList from './containers/CreateListContainer'
+import FieldsContainer from './containers/FieldsContainer'
+import FieldContainer from './containers/FieldContainer'
+import ButtonContainer from './containers/ButtonContainer'
+
+const Hero = ({ children }) => <div className="w-full px-8 box-border">{ children }</div>
 
 const ListsNew = () => {
-  const [ listType, setListType ] = useState(false)
+  const [ listType, setType ] = useState(false)
   return (
-    <div className="w-full px-8 box-border">
+    <Hero>
       <Heading varient="heading-one" label="New List" />
       <FormikContainer>
         {({values, errors, handleSubmit, handleChange}) => (
           <React.Fragment>
             <Container varient="noMinHeight" position="items-start">
-              <Heading varient="heading-two" label="General Settings" />
+              <Heading varient="heading-two" label="General settings" />
               <FieldsContainer>
                 <FieldContainer>
                   <Label text="List name:" htmlFor="name" addClassnames="mr-2" />
@@ -39,15 +41,15 @@ const ListsNew = () => {
               </FieldsContainer>
             </Container> 
             <ButtonContainer show={!!listType}>
-              <Button varient="lg" height="lg" width="lg" label="Create" onClick={() => setListType('create')} />
+              <Button varient="lg" height="lg" width="lg" label="Create" onClick={() => setType('create')} />
               <span className="text-white text-lg">or</span>
-              <Button varient="lg" height="lg" width="lg" label="Upload" onClick={() => setListType('create')} />
+              <Button varient="lg" height="lg" width="lg" label="Upload" onClick={() => setType('upload')} />
             </ButtonContainer>
-            <CreateList varient={listType} />
+            <CreateList varient={listType} setType={setType} />
           </React.Fragment>
         )}
       </FormikContainer>
-    </div>
+    </Hero>
   )
 }
 

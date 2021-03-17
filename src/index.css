@@ -73,6 +73,11 @@ p {
   display: none;
 }
 
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
 .custom-table tbody tr td{
   border-bottom: 2px solid #D5A8FC;
 }
