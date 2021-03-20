@@ -7,6 +7,7 @@ const BASE_DEFAULT = 'focus:outline-none'
 const BASE_MENU = 'bg-main rounded text-sm font-semibold text-gold focus:outline-none'
 const BASE_MENU_HOVER = 'transform hover:-translate-x-3 hover:-translate-y-1 hover:shadow-hover'
 const BASE_FORM = 'bg-main rounded text-sm font-semibold bg-gold focus:outline-none'
+const BASE_FORM_DISABLED = 'bg-main rounded text-sm font-semibold bg-gray-400 text-ghost_white focus:outline-none cursor-default'
 
 const HEIGHT = {
   default: '1.5rem',
@@ -15,13 +16,14 @@ const HEIGHT = {
 
 const WIDTH = {
   default: '5rem',
-  lg: '12rem'
+  lg: '12rem',
+  fit: 'fit-content'
 }
 
-const Button = ({label, varient, height, width, addClassnames, to, activeClassName, ...rest}) => {
+const Button = ({label, varient, height, width, addClassnames, to, activeClassName, isDisabled=false, ...rest}) => {
   if(varient === 'lg') {
     return (
-      <button className={classnames(BASE_MENU, BASE_MENU_HOVER, addClassnames)} style={{height: HEIGHT[height], width: WIDTH[width], background: BACKGROUND_COLOR}} {...rest} >
+      <button className={classnames(BASE_MENU, BASE_MENU_HOVER, addClassnames)} disabled={isDisabled} style={{height: HEIGHT[height], width: WIDTH[width], background: BACKGROUND_COLOR}} {...rest} >
         { label }
       </button>
     )
@@ -29,20 +31,20 @@ const Button = ({label, varient, height, width, addClassnames, to, activeClassNa
   if(varient === 'link') {
     return (
       <NavLink to={to} activeClassName={activeClassName} >
-        <button className={classnames(BASE_MENU, BASE_MENU_HOVER, addClassnames)} style={{height: HEIGHT[height], width: WIDTH[width], background: BACKGROUND_COLOR}} {...rest} >
+        <button className={classnames(BASE_MENU, BASE_MENU_HOVER, addClassnames)} disabled={isDisabled} style={{height: HEIGHT[height], width: WIDTH[width], background: BACKGROUND_COLOR}} {...rest} >
           { label }
         </button>
       </NavLink>
     )
   } else if(varient === 'form') {
     return (
-      <button className={classnames(BASE_FORM, addClassnames)} style={{height: HEIGHT[height], width: WIDTH[width]}} {...rest} >
+      <button className={isDisabled ? classnames(BASE_FORM_DISABLED) : classnames(BASE_FORM, addClassnames)} disabled={isDisabled} style={{height: HEIGHT[height], width: WIDTH[width]}} {...rest} >
         { label }
       </button>
     )
   } else {
     return (
-      <button className={classnames(BASE_DEFAULT, addClassnames)} style={{height: HEIGHT[height], width: WIDTH[width]}} {...rest} >
+      <button className={classnames(BASE_DEFAULT, addClassnames)} disabled={isDisabled} style={{height: HEIGHT[height], width: WIDTH[width]}} {...rest} >
         { label }
       </button>
     )

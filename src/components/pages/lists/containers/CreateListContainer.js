@@ -2,15 +2,15 @@ import React from 'react'
 import CreateList from '../CreateList'
 import UploadList from '../UploadList'
 
-const CreateListContainer = ({ varient }) => {
+const CreateListContainer = ({ varient, ...rest }) => {
   if(varient === 'create') {
     return (
-      <CreateList />
+      <CreateList {...rest} />
     )
   }
   if(varient === 'upload') {
     return (
-      <UploadList />
+      <UploadList {...rest} />
     )
   } else return ''
 }

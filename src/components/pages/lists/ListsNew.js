@@ -9,17 +9,19 @@ import CreateList from './containers/CreateListContainer'
 import FieldsContainer from './containers/FieldsContainer'
 import FieldContainer from './containers/FieldContainer'
 import ButtonContainer from './containers/ButtonContainer'
+import { listNewValidationSchema } from '../../../constants/validationSchemas'
+import { listNewInitialValues } from '../../../constants/initialValues'
 
-const Hero = ({ children }) => <div className="w-full px-8 box-border">{ children }</div>
+const Hero = ({ children }) => <div className="w-full px-8 box-border mb-8">{ children }</div>
 
 const ListsNew = () => {
   const [ listType, setType ] = useState(false)
   return (
     <Hero>
       <Heading varient="heading-one" label="New List" />
-      <FormikContainer>
-        {({values, errors, handleSubmit, handleChange}) => (
-          <React.Fragment>
+      <FormikContainer validationSchema={listNewValidationSchema} initialValues={listNewInitialValues}>
+        {({values, errors, handleSubmit, handleChange, setFieldValue}) => (
+          <form onSubmit={handleSubmit}>
             <Container varient="noMinHeight" position="items-start">
               <Heading varient="heading-two" label="General settings" />
               <FieldsContainer>
@@ -45,8 +47,8 @@ const ListsNew = () => {
               <span className="text-white text-lg">or</span>
               <Button varient="lg" height="lg" width="lg" label="Upload" onClick={() => setType('upload')} />
             </ButtonContainer>
-            <CreateList varient={listType} setType={setType} />
-          </React.Fragment>
+            <CreateList varient={listType} setType={setType} values={values} errors={errors} handleChange={handleChange} setFieldValue={setFieldValue} />
+          </form>
         )}
       </FormikContainer>
     </Hero>
