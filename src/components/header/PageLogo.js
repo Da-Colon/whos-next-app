@@ -6,7 +6,7 @@ const PageLogo = () => {
   return (
     <NavLink to="/" className="flex justify-center items-center cursor-pointer">
       <img alt="" src={logo} />
-      <div className="text-white text-lg font-bold ml-2">Who's next?</div>
+      <div className="text-white text-20 font-bold ml-2">Who's next?</div>
     </NavLink>
   )
 }

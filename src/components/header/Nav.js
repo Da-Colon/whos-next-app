@@ -1,11 +1,20 @@
 import React from 'react'
-import Button from '../layout/Button'
+import { useHistory } from 'react-router-dom'
+import { useUserData } from '../../context/UserContext'
+import Button, { ButtonLink } from '../layout/Button'
 
-const Nav = () => {
+const Nav = ({cookieHandler}) => {
+  const history = useHistory()
+  const { userLogout } = useUserData()
+  const logout = () => {
+    userLogout(cookieHandler)
+    history.push('/')
+  }
   return (
     <div className="flex">
-      <Button to="/lists" type="button" varient="link" addClassnames="ml-4" label="Lists" />
-      <Button to="/picker" type="button" varient="link" addClassnames="ml-4" label="Picker" />
+      <ButtonLink to="/lists" type="button" addClasses="ml-4" label="Lists" />
+      <ButtonLink to="/picker" type="button" addClasses="ml-4" label="Picker" />
+      <Button variant="menu" type="button" addClasses="ml-4" label="Logout" onClick={logout}/>
     </div>
   )
 }

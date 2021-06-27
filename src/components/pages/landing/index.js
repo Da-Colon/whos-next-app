@@ -8,15 +8,15 @@ const Landing = () => {
   return (
     <div>
       <Section>
-        <Heading varient="heading-one" label="Create or upload!" />
+        <Heading variant="one" label="Create or upload!" />
         <ContainerImage backgroundImage="" />
       </Section>
       <Section>
-        <Heading varient="heading-one" label="Edit!" />
+        <Heading variant="one" label="Edit!" />
         <ContainerImage backgroundImage="" />
       </Section>
       <Section>
-        <Heading varient="heading-one" label="Spin!" />
+        <Heading variant="one" label="Spin!" />
         <ContainerImage backgroundImage="" />
       </Section>
     </div>

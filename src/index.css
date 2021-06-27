@@ -83,3 +83,8 @@ input::-webkit-outer-spin-button {
   border-bottom: 2px solid #D5A8FC;
 }
 
+
+.bg-button {
+  background: radial-gradient(circle, rgba(22,167,162,1) 0%, rgba(25,61,73,1) 100%);
+}
+

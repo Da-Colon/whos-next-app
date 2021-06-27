@@ -9,7 +9,7 @@ import SignupForm from './SignupForm'
 const SignupPage = () => {
   return (
     <Container>
-      <Heading varient="heading-one" label="Sign up to get started!" />
+      <Heading variant="one" label="Sign up to get started!" />
       <FormikContainer handleSubmit={() => null} initialValues={signupInitialValues} validationSchema={signupValidationSchema} >
         {({values, errors, handleSubmit, handleChange}) => (
           <SignupForm values={values} errors={errors} handleSubmit={handleSubmit} handleChange={handleChange} />

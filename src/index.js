@@ -1,10 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
+import { ListProvider } from './context/ListContext';
+import { UserProvider } from './context/UserContext';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-    <App />,
+  <UserProvider>
+    <ListProvider>
+      <App />
+    </ListProvider>
+  </UserProvider>
+    ,
   document.getElementById('root')
 )
 

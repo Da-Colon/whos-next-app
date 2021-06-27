@@ -2,58 +2,68 @@ import classnames from 'classnames'
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-const BACKGROUND_COLOR = 'radial-gradient(circle, rgba(22,167,162,1) 0%, rgba(25,61,73,1) 100%)'
-const BASE_DEFAULT = 'focus:outline-none'
-const BASE_MENU = 'bg-main rounded text-sm font-semibold text-gold focus:outline-none'
-const BASE_MENU_HOVER = 'transform hover:-translate-x-3 hover:-translate-y-1 hover:shadow-hover'
-const BASE_FORM = 'bg-main rounded text-sm font-semibold bg-gold focus:outline-none'
-const BASE_FORM_DISABLED = 'bg-main rounded text-sm font-semibold bg-gray-400 text-ghost_white focus:outline-none cursor-default'
+const BUTTON_VARIANTS = {
+  menu: 'background-main rounded-lg text-md font-bold text-white tracking-wide focus:outline-none',
+  form: 'rounded-lg text-md font-bold tracking-wide text-white focus:outline-none',
+  none: ''
+}
+
+const HOVER_VARIANTS = {
+  menu: 'transform hover:-translate-x-2 hover:-translate-y-1 hover:shadow-hover',
+  form: 'transform hover:-translate-x-2 hover:-translate-y-1 hover:shadow-hover',
+  none: ''
+}
+
+const DISABLED_VARIANTS = {
+   form: 'rounded-lg text-md font-semibold bg-gray-200 text-ghost_white focus:outline-none cursor-default'
+}
+
 
 const HEIGHT = {
-  default: '1.5rem',
+  default: '2rem',
   lg: '2.5rem'
 }
 
 const WIDTH = {
-  default: '5rem',
+  default: '8rem',
   lg: '12rem',
   fit: 'fit-content'
 }
 
-const Button = ({label, varient, height, width, addClassnames, to, activeClassName, isDisabled=false, ...rest}) => {
-  if(varient === 'lg') {
+const Button = ({label, variant, height, width, addClasses, isDisabled=false, ...rest}) => {
     return (
-      <button className={classnames(BASE_MENU, BASE_MENU_HOVER, addClassnames)} disabled={isDisabled} style={{height: HEIGHT[height], width: WIDTH[width], background: BACKGROUND_COLOR}} {...rest} >
-        { label }
-      </button>
-    )
-  } 
-  if(varient === 'link') {
-    return (
-      <NavLink to={to} activeClassName={activeClassName} >
-        <button className={classnames(BASE_MENU, BASE_MENU_HOVER, addClassnames)} disabled={isDisabled} style={{height: HEIGHT[height], width: WIDTH[width], background: BACKGROUND_COLOR}} {...rest} >
-          { label }
-        </button>
-      </NavLink>
-    )
-  } else if(varient === 'form') {
-    return (
-      <button className={isDisabled ? classnames(BASE_FORM_DISABLED) : classnames(BASE_FORM, addClassnames)} disabled={isDisabled} style={{height: HEIGHT[height], width: WIDTH[width]}} {...rest} >
-        { label }
-      </button>
-    )
-  } else {
-    return (
-      <button className={classnames(BASE_DEFAULT, addClassnames)} disabled={isDisabled} style={{height: HEIGHT[height], width: WIDTH[width]}} {...rest} >
+      <button 
+        className={
+          classnames(BUTTON_VARIANTS[variant], 
+            HOVER_VARIANTS[variant], 
+            {'background-main': !isDisabled},
+            {'bg-gray-300': isDisabled},
+            {[DISABLED_VARIANTS[variant]]: isDisabled},
+            addClasses)} 
+        disabled={isDisabled} 
+        style={{height: HEIGHT[height], width: WIDTH[width]}} {...rest} >
         { label }
       </button>
     )
   }
+
+export const ButtonLink = ({label, variant, height, width, addClasses, to, activeClassName, ...rest}) => {
+  return (
+    <NavLink to={to} activeClassName={activeClassName} >
+        <button className={classnames(BUTTON_VARIANTS[variant], HOVER_VARIANTS[variant], addClasses)} style={{height: HEIGHT[height], width: WIDTH[width]}} {...rest} >
+          { label }
+        </button>
+    </NavLink>
+  )
 }
 
-Button.defaultProps = {
+const defaultProps = {
+  variant: 'menu',
   height: 'default',
-  width: 'default'
+  width: 'default',
 }
+
+ButtonLink.defaultProps = defaultProps
+Button.defaultProps = defaultProps
 
 export default Button

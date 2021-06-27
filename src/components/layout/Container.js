@@ -3,8 +3,8 @@ import classnames from 'classnames'
 
 const BASE = "flex flex-col mt-8 pt-8 background-main inset-shadow mb-8"
 const BASE_NO_MIN_HEIGHT = "flex flex-col p-8 pt-4 background-main inset-shadow"
-const Container = ({ padTop, position, varient, children }) => {
-  if(varient === 'noMinHeight') {
+const Container = ({ padTop, position, variant, children }) => {
+  if(variant === 'noMinHeight') {
     return (
       <div className={classnames(BASE_NO_MIN_HEIGHT, position) }>
         {children}

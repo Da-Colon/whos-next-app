@@ -7,8 +7,8 @@ import AccountMenuButtons from './AccountMenuButtons'
 const AccountDisplay = () => {
   const { toggle, collapsed } = useCollapse(false, true)
   return (
-    <div className="flex items-center">
-      <Icon onClickAction={toggle} icon={menu} varient="small" />
+    <div className="flex items-center gap-4">
+      <Icon onClickAction={toggle} icon={menu} variant="small" />
       {!collapsed && <AccountMenuButtons />}
     </div>
   )

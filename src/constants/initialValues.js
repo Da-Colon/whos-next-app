@@ -1,10 +1,10 @@
 export const loginInitialValues = {
-  username: '',
+  email: '',
   password: ''
 }
 
 export const signupInitialValues = {
-  username: '',
+  email: '',
   password: '',
 }
 

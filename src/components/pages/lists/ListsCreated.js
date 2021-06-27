@@ -5,7 +5,7 @@ const ListsCreated = () => {
   return (
     <div className="flex mt-8">
       <ListCard title="selected" />
-      <ListCard title="Add List" varient="new" />
+      <ListCard title="Add List" variant="new" />
     </div>
   )
 }
