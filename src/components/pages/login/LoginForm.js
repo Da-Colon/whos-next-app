@@ -6,7 +6,7 @@ import Label from '../../layout/Label'
 const LoginForm = ({values, errors, handleSubmit, handleChange}) => {
   const buttonDisabled = () => (!values.email || !values.password || errors.length === 0) === true
   return (
-    <form className="p-4 flex flex-col gap-3" onSubmit={handleSubmit}>
+    <form className="p-4 flex flex-col gap-2" onSubmit={handleSubmit}>
       <Label text="Email" htmlFor="email" />
       <Input variant="text" type="email" name="email" id="email" onChange={handleChange} value={values.email} />
       <Label text="Password" htmlFor="password"  />

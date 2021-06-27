@@ -8,11 +8,11 @@ const createDataRoot = () => {
   const Provider = context.Provider
   
   return ({ children }) => {
-    const { user, loggedIn, error, userSignin, userLogout, clearError } = useAccountManagement(null)
+    const { user, loggedIn, error, userSignin, userSignup, userLogout, clearError } = useAccountManagement()
 
     const dataContext = {
       user, loggedIn, error, 
-      userSignin, userLogout, clearError
+      userSignin, userSignup, userLogout, clearError
     }
 
     return <Provider value={dataContext}>{children}</Provider>
