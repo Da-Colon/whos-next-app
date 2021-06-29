@@ -20,10 +20,10 @@ const LoginPage = ({ cookieHandler }) => {
   }
   return (
     <Container>
-      <Heading variant="one" label="Welcome Back!" />
+      <Heading variant="one" label="Welcome Back!" addClasses="absolute left-12" />
       <FormikContainer handleSubmit={(values) => handleSubmit(values)} initialValues={loginInitialValues} validationSchema={loginValidationSchema} >
-        {({values, errors, handleSubmit, handleChange}) => (
-          <LoginForm values={values} errors={errors} handleSubmit={handleSubmit} handleChange={handleChange} />
+        {({values, errors, handleSubmit, handleChange, touched}) => (
+          <LoginForm values={values} touched={touched} errors={errors} handleSubmit={handleSubmit} handleChange={handleChange} />
         )}
       </FormikContainer>
     </Container>

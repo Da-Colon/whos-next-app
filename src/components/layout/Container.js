@@ -1,7 +1,7 @@
 import React from 'react'
 import classnames from 'classnames'
 
-const BASE = "flex flex-col mt-8 pt-8 background-main inset-shadow mb-8"
+const BASE = "flex flex-col mt-8 pt-8 background-main inset-shadow mb-8 relative"
 const BASE_NO_MIN_HEIGHT = "flex flex-col p-8 pt-4 background-main inset-shadow"
 const Container = ({ padTop, position, variant, children }) => {
   if(variant === 'noMinHeight') {
