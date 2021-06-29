@@ -19,7 +19,7 @@ const SignupPage = () => {
   }
   return (
     <Container>
-      <Heading variant="one" label="Sign up to get started!" />
+      <Heading variant="one" label="Sign up to get started!" addClasses="absolute left-12"/>
       <FormikContainer handleSubmit={(values) => handleSubmit(values)} initialValues={signupInitialValues} validationSchema={signupValidationSchema} >
         {({values, errors, handleSubmit, touched, handleChange}) => (
           <SignupForm values={values} touched={touched} errors={errors} handleSubmit={handleSubmit} handleChange={handleChange} />

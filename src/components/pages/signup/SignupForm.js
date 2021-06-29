@@ -5,11 +5,11 @@ import Label from '../../layout/Label'
 import ErrorUI from '../../layout/ErrorUI'
 
 const SignupForm = ({values, errors, touched, handleSubmit, handleChange}) => {
-  const buttonDisabled = () => (!values.email || !values.password || errors.length === 0) === true
+  const buttonDisabled = () => (!values.email || !values.password) === true
   return (
-    <form className="p-4 flex flex-col gap-2" onSubmit={handleSubmit}>
+    <form className="p-4 mt-16 flex flex-col gap-2 w-1/2" onSubmit={handleSubmit}>
       <Label text="Email" htmlFor="email" />
-      <Input type="email" variant="text" name="email" id="email" onChange={handleChange} value={values.email} />
+      <Input type="text" variant="text" name="email" id="email" onChange={handleChange} value={values.email} />
       <Label text="Password" htmlFor="password"  />
       <Input type="password" variant="text" name="password" id="password" onChange={handleChange} value={values.password}/>
       {!!errors && touched.email &&  touched.password &&
