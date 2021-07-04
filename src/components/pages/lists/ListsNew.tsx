@@ -13,8 +13,10 @@ import TextContainer, { ETextContainer } from "../../layout/TextContainer";
 import { EListsTypes } from "./enums";
 import {
   EButtonHeights,
+  EButtonHoverVariants,
   EButtonVariants,
   EButtonWidths,
+  EDisabledVariants,
 } from "../../layout/Button/enums";
 import { IFormProperties } from "../account/interfaces";
 import { TVoidFunction } from "../../../constants/types";
@@ -48,7 +50,7 @@ const ListsNew = () => {
           setFieldValue: (field: string, value: Array<any> | number) => void;
         }) => (
           <form onSubmit={handleSubmit}>
-            <Container variant={EContainer.flex} addClasses="items-start">
+            <Container variant={EContainer.column} addClasses="items-start my-8">
               <TextContainer
                 variant={ETextContainer.large}
                 label="General settings"
@@ -103,6 +105,8 @@ const ListsNew = () => {
               <Container>
                 <Button
                   variant={EButtonVariants.form}
+                  hoverVariant={EButtonHoverVariants.form}
+                  disabledVariant={EDisabledVariants.form}
                   height={EButtonHeights.lg}
                   width={EButtonWidths.lg}
                   label="Create"
@@ -111,6 +115,8 @@ const ListsNew = () => {
                 <span className="text-white text-20">or</span>
                 <Button
                   variant={EButtonVariants.form}
+                  hoverVariant={EButtonHoverVariants.form}
+                  disabledVariant={EDisabledVariants.form}
                   height={EButtonHeights.lg}
                   width={EButtonWidths.lg}
                   label="Upload"

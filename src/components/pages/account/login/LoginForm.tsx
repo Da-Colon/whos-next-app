@@ -5,7 +5,7 @@ import Label from "../../../layout/Label";
 import ErrorUI from "../../../layout/Errors";
 import { IAccountFormProps } from "../interfaces";
 import Container from "../../../layout/Container";
-import { EButtonVariants } from "../../../layout/Button/enums";
+import { EButtonHoverVariants, EButtonVariants, EDisabledVariants } from "../../../layout/Button/enums";
 import { EInputVariants } from "../../../layout/Input/enums";
 
 const LoginForm: FC<IAccountFormProps> = ({
@@ -50,6 +50,8 @@ const LoginForm: FC<IAccountFormProps> = ({
           type="submit"
           label="Login"
           variant={EButtonVariants.form}
+          hoverVariant={EButtonHoverVariants.form}
+          disabledVariant={EDisabledVariants.form}
           isDisabled={buttonDisabled()}
         />
       </Container>

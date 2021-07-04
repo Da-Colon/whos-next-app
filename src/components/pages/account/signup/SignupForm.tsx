@@ -4,7 +4,7 @@ import Input from "../../../layout/Input";
 import Label from "../../../layout/Label";
 import ErrorUI from "../../../layout/Errors";
 import { IAccountFormProps } from "../interfaces";
-import { EButtonVariants } from "../../../layout/Button/enums";
+import { EButtonVariants, EDisabledVariants } from "../../../layout/Button/enums";
 import { EInputVariants } from "../../../layout/Input/enums";
 
 const SignupForm: FC<IAccountFormProps> = ({
@@ -47,6 +47,7 @@ const SignupForm: FC<IAccountFormProps> = ({
       <div className="text-right mt-4">
         <Button
           variant={EButtonVariants.form}
+          disabledVariant={EDisabledVariants.form}
           type="submit"
           label="Signup"
           isDisabled={buttonDisabled()}

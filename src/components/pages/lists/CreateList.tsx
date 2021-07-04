@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import Button from "../../layout/Button";
-import { EButtonVariants, EButtonWidths } from "../../layout/Button/enums";
+import { EButtonHoverVariants, EButtonVariants, EButtonWidths, EDisabledVariants } from "../../layout/Button/enums";
 import Container, { EContainer } from "../../layout/Container";
 import { EInputVariants } from "../../layout/Input/enums";
 import InputNumber from "../../layout/Input/InputNumber";
@@ -38,6 +38,8 @@ const CreateList: FC<ICreateListContainerProps> = ({ values, handleChange, error
         </Container>
         <Button
           variant={EButtonVariants.form}
+          hoverVariant={EButtonHoverVariants.form}
+          disabledVariant={EDisabledVariants.form}
           label={btnText}
           action={() => setLength(Object.keys(values).length)}
           width={EButtonWidths.fit}
@@ -53,6 +55,8 @@ const CreateList: FC<ICreateListContainerProps> = ({ values, handleChange, error
         <Button
           type="submit"
           variant={EButtonVariants.form}
+          hoverVariant={EButtonHoverVariants.form}
+          disabledVariant={EDisabledVariants.form}
           label="Create list"
           addClasses="bg-light_green"
           isDisabled={false}

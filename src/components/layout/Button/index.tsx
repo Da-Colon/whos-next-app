@@ -26,7 +26,7 @@ const Button: FC<IButtonProps> = ({
       type={type}
       className={classnames(
         variant,
-        hoverVariant,
+        { [hoverVariant || EButtonHoverVariants.form]: !isDisabled },
         { "background-main": !isDisabled },
         { "bg-gray-300": isDisabled },
         { [disabledVariant || EDisabledVariants.form]: isDisabled },

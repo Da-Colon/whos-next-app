@@ -6,7 +6,7 @@ import Button from "../layout/Button";
 import ButtonWithLink from "../layout/Button/ButtonWithLink";
 import { EContainer } from "../layout/Container";
 import { Routes } from "../../router/routes";
-import { EButtonVariants } from "../layout/Button/enums";
+import { EButtonHoverVariants, EButtonVariants } from "../layout/Button/enums";
 
 const Nav: FC<{ cookieHandler: () => void }> = ({ cookieHandler }) => {
   const history = useHistory();
@@ -19,18 +19,21 @@ const Nav: FC<{ cookieHandler: () => void }> = ({ cookieHandler }) => {
     <Container variant={EContainer.flex}>
       <ButtonWithLink
         variant={EButtonVariants.menu}
+        hoverVariant={EButtonHoverVariants.menu}
         to={Routes.lists}
         addClasses="ml-4"
         label="Lists"
       />
       <ButtonWithLink
         variant={EButtonVariants.menu}
+        hoverVariant={EButtonHoverVariants.menu}
         to={Routes.picker}
         addClasses="ml-4"
         label="Picker"
       />
       <Button
         variant={EButtonVariants.menu}
+        hoverVariant={EButtonHoverVariants.menu}
         addClasses="ml-4"
         label="Logout"
         action={logout}
