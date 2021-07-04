@@ -33,6 +33,9 @@
       width: {
         '80': '20rem' // 320px
       },
+      height: {
+        '4.5': '4.5rem'
+      },
       boxShadow: {
         hover: '4px 4px 0px 0px #000000'
       },
