@@ -50,9 +50,9 @@ const ListsNew = () => {
           setFieldValue: (field: string, value: Array<any> | number) => void;
         }) => (
           <form onSubmit={handleSubmit}>
-            <Container variant={EContainer.column} addClasses="items-start my-8">
+            <Container variant={EContainer.column} addClasses="items-start my-8 pl-8">
               <TextContainer
-                variant={ETextContainer.large}
+                variant={ETextContainer.medium}
                 label="General settings"
               />
               <Container variant={EContainer.fields}>
@@ -70,11 +70,11 @@ const ListsNew = () => {
                   role="group"
                   addClasses=""
                 >
-                  <TextContainer addClasses="text-md" label="Private?" />
                   <Container addClasses="flex ml-4">
+                  <Label htmlFor="public" addClasses="mr-2" text="Private?" />
                     <RadioLabel
                       text="Yes"
-                      htmlFor="name"
+                      htmlFor="public"
                       addClasses="flex items-center mx-2"
                     >
                       <Input
