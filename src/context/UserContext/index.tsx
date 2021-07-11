@@ -2,20 +2,20 @@ import { Context, createContext, useContext } from "react";
 import { IFormProperties } from "../../components/pages/account/interfaces";
 import { TVoidFunction } from "../../constants/types";
 import { useAccountManagement } from "./useAccountManagement";
-let context: Context<any>;
+let context: Context<IUserContext>;
 
 export interface IUserContext {
-  user: {},
-  logggedIn: boolean,
-  error: string,
-  userSignin: (values: IFormProperties) => string,
-  userSignup: (values: IFormProperties) => boolean,
+  user: {} | null,
+  loggedIn: boolean,
+  error: null | string,
+  userSignin: (values: IFormProperties) => Promise<string>,
+  userSignup: (values: IFormProperties) => Promise<string>,
   userLogout: (cookieHandler: TVoidFunction) => void,
   clearError: TVoidFunction
 }
 
 const createDataRoot = () => {
-  context = createContext(undefined);
+  context = createContext({} as IUserContext);
   context.displayName = "Data Provider";
   const Provider = context.Provider;
 
@@ -47,7 +47,7 @@ const createDataRoot = () => {
 const UserProvider = createDataRoot();
 
 const useUserData = () => {
-  return useContext<IUserContext>(context);
+  return useContext(context);
 };
 
 export { UserProvider, useUserData };

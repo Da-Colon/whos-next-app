@@ -30,8 +30,10 @@ const useAccountManagement = () => {
       if (userResponse.message === "User has been registered") {
         return "success";
       }
+      return ""
     } catch (e) {
       setError("There was an error with the request");
+      return "fail";
     }
   };
 
