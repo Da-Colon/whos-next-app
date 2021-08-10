@@ -5,6 +5,13 @@ export interface IFormProperties {
   password: string;
 }
 
+export interface IListProperties {
+    listLength: number,
+    name: string,
+    private: boolean,
+    list: any[],
+}
+
 export interface IAccountFormProps {
   values: IFormProperties;
   errors: IFormProperties;

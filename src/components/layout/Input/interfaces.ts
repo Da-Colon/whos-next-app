@@ -5,14 +5,16 @@ export interface IInputProps {
   type?: string;
   name?: string;
   value?: string | number,
-  action?: (() => void) | ((e: any) => void);
   height?: EHeight;
   id?: string;
   placeholder?: string;
   addClasses?: string;
-  onChange?: () => void;
+  maxLength?: number;
+  action?: (() => void) | ((e: any) => void);
+  onChange?: (() => void) | ((e: any) => void);
 }
 
 export interface INumberInputProps extends IInputProps {
-  maxLength: number,
+  min?: number,
+  max?: number,
 }

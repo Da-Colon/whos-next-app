@@ -1,21 +1,32 @@
-import React, { FC, useEffect, useState } from "react";
+import { ChangeEvent, FC, useEffect, useState } from "react";
 import Button from "../../layout/Button";
-import { EButtonHoverVariants, EButtonVariants, EButtonWidths, EDisabledVariants } from "../../layout/Button/enums";
+import {
+  EButtonHoverVariants,
+  EButtonVariants,
+  EButtonWidths,
+  EDisabledVariants,
+} from "../../layout/Button/enums";
 import Container, { EContainer } from "../../layout/Container";
+import Input from "../../layout/Input";
 import { EInputVariants } from "../../layout/Input/enums";
-import InputNumber from "../../layout/Input/InputNumber";
 import Label from "../../layout/Label";
 import TextContainer, { ETextContainer } from "../../layout/TextContainer";
 import { ICreateListContainerProps } from "./enums";
 import ListTable from "./ListTable";
 
-const CreateList: FC<ICreateListContainerProps> = ({ values, handleChange, errors, setFieldValue }) => {
-  const [listLength, setLength] = useState(0);
+const CreateList: FC<ICreateListContainerProps> = ({
+  values,
+  errors,
+  setFieldValue,
+}) => {
+  const [listLength, setLength] = useState<number>(0);
   const [btnText, setText] = useState("Generate List");
 
   useEffect(() => {
-    if (listLength) setText("Change Length");
-  }, [listLength]);
+    if (values.listLength) {
+      setText("Change Length");
+    }
+  }, [values]);
 
   return (
     <Container addClasses="mt-8">
@@ -27,13 +38,18 @@ const CreateList: FC<ICreateListContainerProps> = ({ values, handleChange, error
       >
         <Container variant={EContainer.flex} addClasses="items-center">
           <Label text="Count:" addClasses="mr-2" htmlFor="length" />
-          <InputNumber
+          <Input
             variant={EInputVariants.number}
-            type="number"
-            maxLength={2}
             name="length"
-            value={Object.keys(values).length}
-            action={handleChange}
+            maxLength={2}
+            value={listLength}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+              const value = e.target.value;
+              if(value.charAt(0) === "0" && value.length === 2) {
+                return setLength(Number(value.substr(1)))
+              }
+              return setLength(Number(e.target.value));
+            }}
           />
         </Container>
         <Button
@@ -41,10 +57,10 @@ const CreateList: FC<ICreateListContainerProps> = ({ values, handleChange, error
           hoverVariant={EButtonHoverVariants.form}
           disabledVariant={EDisabledVariants.form}
           label={btnText}
-          action={() => setLength(Object.keys(values).length)}
+          action={() => setFieldValue("listLength", listLength || 0)}
           width={EButtonWidths.fit}
-          addClasses="px-2"
-          isDisabled={listLength === 0}
+          addClasses="px-4"
+          isDisabled={!listLength}
         />
       </Container>
       <Container
@@ -63,7 +79,7 @@ const CreateList: FC<ICreateListContainerProps> = ({ values, handleChange, error
         />
       </Container>
       <ListTable
-        length={listLength}
+        length={values.listLength}
         setFieldValue={setFieldValue}
         values={values}
       />

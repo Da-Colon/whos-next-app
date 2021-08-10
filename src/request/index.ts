@@ -1,6 +1,6 @@
 interface IOptions extends RequestInit {}
 
-const request = (path: string, method: string, body: object) => {
+const request = (path: string, method: string, body?: object): Promise<any> => {
   const headers = new Headers({
     "Content-Type": "application/json",
   });
@@ -35,7 +35,7 @@ const request = (path: string, method: string, body: object) => {
   };
 
   return new Promise((resolve, reject) => {
-    return fetch(`${process.env.REACT_APP_API_URL}/${path}`, options)
+    return fetch(`${process.env.REACT_APP_API_URL}${path}`, options)
       .then((response) => resolve(expectedResponse(response, reject)))
       .catch(unexpected(reject));
   });

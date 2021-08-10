@@ -1,10 +1,10 @@
-import React, { FC, SyntheticEvent, useEffect, useState } from "react";
+import { ChangeEvent, FC, useEffect, useState } from "react";
 import Container, { EContainer } from "../../layout/Container";
 import ListItem from "./ListItem";
 import { IListTableProps } from "./interfaces";
 
 const ListTable: FC<IListTableProps> = ({ length, list, setFieldValue }) => {
-  const [listOfNames, setList] = useState<Array<{name: string}>>([]);
+  const [listOfNames, setList] = useState<Array<{ name: string }>>([]);
 
   useEffect(() => {
     setList(list || new Array(length).fill({ name: "" }) || []);
@@ -12,20 +12,18 @@ const ListTable: FC<IListTableProps> = ({ length, list, setFieldValue }) => {
   }, [list, length, setFieldValue]);
 
   const handleChange = (
-    event: SyntheticEvent,
+    event: ChangeEvent<HTMLInputElement>,
     index: number
   ) => {
-    event.preventDefault()
-    const text = event.currentTarget.nodeValue;
+    event.preventDefault();
+    const text = event?.target?.value;
     const newList = [...listOfNames];
     newList[index] = { name: text || "" };
     setList(newList);
     setFieldValue("list", newList);
   };
 
-  const handleRemove = (
-    index: number
-  ) => {
+  const handleRemove = (index: number) => {
     const newList = [...listOfNames];
     newList.splice(index, 1);
     setList(newList);

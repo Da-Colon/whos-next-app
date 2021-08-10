@@ -9,7 +9,12 @@ export enum EListsTypes {
 export interface ICreateListContainerProps {
   variant?: EListsTypes;
   setType: Dispatch<SetStateAction<EListsTypes>>;
-  values: {};
+  values: {
+    listLength: number,
+    name: string,
+    private: boolean,
+    list: any[],
+  };
   errors: {};
   handleChange: () => void;
   setFieldValue: (field: string, value: Array<any> | number) => void;

@@ -9,7 +9,7 @@ export const signupInitialValues = {
 }
 
 export const listNewInitialValues = {
-  length: '',
+  listLength: 0,
   name: '',
   private: true,
   list: [],

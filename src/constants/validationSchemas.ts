@@ -16,7 +16,7 @@ export const signupValidationSchema = () => {
 
 export const listNewValidationSchema = () => {
   return Yup.object().shape({
-    length: Yup.number(),
+    listlength: Yup.number(),
     name: Yup.string().required('List name is required'),
     private: Yup.bool(),
     list: Yup.array().required('List is required'),

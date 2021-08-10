@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { IFormProperties } from "../../components/pages/account/interfaces";
+import { ServerRoutes } from "../../config/server";
 import { TVoidFunction } from "../../constants/types";
 import request from "../../request";
 
@@ -13,7 +14,7 @@ const useAccountManagement = () => {
 
   const userSignin = async (values: IFormProperties) => {
     try {
-      const userResponse: any = await request("auth", "POST", values);
+      const userResponse: any = await request(ServerRoutes.auth, "POST", values);
       if (userResponse.message === "ok!") {
         setUser(userResponse.user);
         setLoggedIn(true);
@@ -26,7 +27,7 @@ const useAccountManagement = () => {
 
   const userSignup = async (values: IFormProperties) => {
     try {
-      const userResponse: any = await request("users/", "POST", values);
+      const userResponse: any = await request(ServerRoutes.createUser, "POST", values);
       if (userResponse.message === "User has been registered") {
         return "success";
       }

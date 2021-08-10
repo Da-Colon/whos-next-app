@@ -18,8 +18,10 @@ import {
   EButtonWidths,
   EDisabledVariants,
 } from "../../layout/Button/enums";
-import { IFormProperties } from "../account/interfaces";
+import { IListProperties } from "../account/interfaces";
 import { TVoidFunction } from "../../../constants/types";
+import { IListContext, useListData } from "../../../context/ListContext";
+import { useHistory } from "react-router-dom";
 
 const Hero: FC<{ children: JSX.Element[] }> = ({ children }) => (
   <div className="w-full px-8 box-border mb-8">{children}</div>
@@ -27,11 +29,13 @@ const Hero: FC<{ children: JSX.Element[] }> = ({ children }) => (
 
 const ListsNew = () => {
   const [listType, setType] = useState(EListsTypes.none);
+  const listServices: IListContext = useListData();
+  const history = useHistory()
   return (
     <Hero>
       <TextContainer variant={ETextContainer.large} label="New List" />
       <FormikContainer
-        handleSubmit={() => null}
+        handleSubmit={(values: any) => listServices.saveList(values, history)}
         validationSchema={listNewValidationSchema}
         initialValues={listNewInitialValues}
       >
@@ -42,15 +46,18 @@ const ListsNew = () => {
           handleChange,
           setFieldValue,
         }: {
-          values: IFormProperties;
-          errors: IFormProperties;
-          touched: IFormProperties;
+          values: IListProperties;
+          errors: IListProperties;
+          touched: IListProperties;
           handleSubmit: TVoidFunction;
           handleChange: TVoidFunction;
           setFieldValue: (field: string, value: Array<any> | number) => void;
         }) => (
           <form onSubmit={handleSubmit}>
-            <Container variant={EContainer.column} addClasses="items-start my-8 pl-8">
+            <Container
+              variant={EContainer.column}
+              addClasses="items-start my-8 pl-8"
+            >
               <TextContainer
                 variant={ETextContainer.medium}
                 label="General settings"
@@ -60,6 +67,7 @@ const ListsNew = () => {
                   <Label text="List name:" htmlFor="name" addClasses="mr-2" />
                   <Input
                     variant={EInputVariants.text}
+                    onChange={handleChange}
                     name="name"
                     id="name"
                     addClasses="max-w-xs"
@@ -71,7 +79,7 @@ const ListsNew = () => {
                   addClasses=""
                 >
                   <Container addClasses="flex ml-4">
-                  <Label htmlFor="public" addClasses="mr-2" text="Private?" />
+                    <Label htmlFor="public" addClasses="mr-2" text="Private?" />
                     <RadioLabel
                       text="Yes"
                       htmlFor="public"
@@ -101,8 +109,11 @@ const ListsNew = () => {
                 </Container>
               </Container>
             </Container>
-            {listType !== EListsTypes.none && (
-              <Container>
+            {listType === EListsTypes.none && (
+              <Container
+                variant={EContainer.flex}
+                addClasses="justify-center items-center gap-8"
+              >
                 <Button
                   variant={EButtonVariants.form}
                   hoverVariant={EButtonHoverVariants.form}

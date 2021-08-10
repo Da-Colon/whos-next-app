@@ -1,4 +1,5 @@
-import { SyntheticEvent } from "react";
+import { ChangeEvent } from "react";
+
 
 export interface IListTableProps {
   length: number;
@@ -9,7 +10,7 @@ export interface IListTableProps {
 
 export interface IListItemProps {
   handleChange: (
-    event: SyntheticEvent,
+    event: ChangeEvent<HTMLInputElement>,
     index: number
   ) => void;
   handleRemove: (

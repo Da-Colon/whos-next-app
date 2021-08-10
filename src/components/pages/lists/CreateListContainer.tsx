@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import CreateList from './CreateList'
 import { EListsTypes, ICreateListContainerProps } from './enums'
 import UploadList from './UploadList'
