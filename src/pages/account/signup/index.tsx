@@ -1,11 +1,11 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { signupInitialValues } from "../../../../constants/initialValues";
-import { signupValidationSchema } from "../../../../constants/validationSchemas";
-import { useUserData } from "../../../../context/UserContext";
-import FormikContainer from "../../../../services/FormikContainer";
-import Container, { EContainer } from "../../../layout/Container";
-import TextContainer, { ETextContainer } from "../../../layout/TextContainer";
+import { signupInitialValues } from "../../../constants/initialValues";
+import { signupValidationSchema } from "../../../constants/validationSchemas";
+import { useUserData } from "../../../context/UserContext";
+import FormikContainer from "../../../services/FormikContainer";
+import Container, { EContainer } from "../../../components/layout/Container";
+import TextContainer, { ETextContainer } from "../../../components/layout/TextContainer";
 import { IFormProperties } from "../interfaces";
 import SignupForm from "./SignupForm";
 

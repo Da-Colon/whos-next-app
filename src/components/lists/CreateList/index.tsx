@@ -1,16 +1,15 @@
-import React, { FC, useState } from "react";
+import { FC, useState } from "react";
+import { useHistory } from "react-router-dom";
+import CreateListOptions from "./CreateListOptions";
+import { EListsTypes } from "../enums";
 import FormikContainer from "../../../services/FormikContainer";
-import Container, { EContainer } from "../../layout/Container";
 import Input from "../../layout/Input";
 import Label from "../../layout/Label";
-import RadioLabel from "../../layout/Label/RadioLabel";
 import Button from "../../layout/Button";
-import CreateList from "./CreateListContainer";
-import { listNewValidationSchema } from "../../../constants/validationSchemas";
-import { listNewInitialValues } from "../../../constants/initialValues";
 import { EInputVariants } from "../../layout/Input/enums";
+import RadioLabel from "../../layout/Label/RadioLabel";
+import Container, { EContainer } from "../../layout/Container";
 import TextContainer, { ETextContainer } from "../../layout/TextContainer";
-import { EListsTypes } from "./enums";
 import {
   EButtonHeights,
   EButtonHoverVariants,
@@ -18,10 +17,12 @@ import {
   EButtonWidths,
   EDisabledVariants,
 } from "../../layout/Button/enums";
-import { IListProperties } from "../account/interfaces";
+import { listNewValidationSchema } from "../../../constants/validationSchemas";
+import { listNewInitialValues } from "../../../constants/initialValues";
 import { TVoidFunction } from "../../../constants/types";
-import { IListContext, useListData } from "../../../context/ListContext";
-import { useHistory } from "react-router-dom";
+import { IListProperties } from "../../../pages/account/interfaces";
+import { useListData } from "../../../context/ListContext";
+import { IUseLists } from "../../../context/ListContext/useLIsts";
 
 const Hero: FC<{ children: JSX.Element[] }> = ({ children }) => (
   <div className="w-full px-8 box-border mb-8">{children}</div>
@@ -29,7 +30,7 @@ const Hero: FC<{ children: JSX.Element[] }> = ({ children }) => (
 
 const ListsNew = () => {
   const [listType, setType] = useState(EListsTypes.none);
-  const listServices: IListContext = useListData();
+  const listServices: IUseLists = useListData();
   const history = useHistory()
   return (
     <Hero>
@@ -135,7 +136,7 @@ const ListsNew = () => {
                 />
               </Container>
             )}
-            <CreateList
+            <CreateListOptions
               variant={listType}
               setType={setType}
               values={values}

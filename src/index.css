@@ -87,4 +87,36 @@ input::-webkit-outer-spin-button {
 .bg-button {
   background: radial-gradient(circle, rgba(22,167,162,1) 0%, rgba(25,61,73,1) 100%);
 }
+@keyframes fa-blink {
+  0% { opacity: 1; }
+  13% { opacity: 0.75;}
+  26% { opacity: 0.5; }
+  39% { opacity: 0.25;}
+  52% { opacity: 0; }
+  65% { opacity: 0.25;}
+  78% { opacity: 0.5; }
+  91% { opacity: 0.75;}
+  100% { opacity: 1; }
+}
 
+.fa-blink :nth-child(1) {
+  -webkit-animation: fa-blink .90s linear infinite;
+  -moz-animation: fa-blink .90s linear infinite;
+  -ms-animation: fa-blink .90s linear infinite;
+  -o-animation: fa-blink .90s linear infinite;
+  animation: fa-blink 1s linear infinite;
+}
+.fa-blink :nth-child(2) {
+  -webkit-animation: fa-blink .90s linear infinite;
+  -moz-animation: fa-blink .90s linear infinite;
+  -ms-animation: fa-blink .90s linear infinite;
+  -o-animation: fa-blink .90s linear infinite;
+  animation: fa-blink .75s linear infinite;
+}
+.fa-blink :nth-child(3) {
+  -webkit-animation: fa-blink .90s linear infinite;
+  -moz-animation: fa-blink .90s linear infinite;
+  -ms-animation: fa-blink .90s linear infinite;
+  -o-animation: fa-blink .90s linear infinite;
+  animation: fa-blink 1.25s linear infinite;
+}

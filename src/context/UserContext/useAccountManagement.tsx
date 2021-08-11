@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { IFormProperties } from "../../components/pages/account/interfaces";
+import { IFormProperties } from "../../pages/account/interfaces";
 import { ServerRoutes } from "../../config/server";
 import { TVoidFunction } from "../../constants/types";
 import request from "../../request";

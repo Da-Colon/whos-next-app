@@ -1,7 +1,7 @@
 import { ChangeEvent, FC, useEffect, useState } from "react";
+import ListNameInput from "./ListNameInput";
+import { IListTableProps } from "../interfaces";
 import Container, { EContainer } from "../../layout/Container";
-import ListItem from "./ListItem";
-import { IListTableProps } from "./interfaces";
 
 const ListTable: FC<IListTableProps> = ({ length, list, setFieldValue }) => {
   const [listOfNames, setList] = useState<Array<{ name: string }>>([]);
@@ -37,7 +37,7 @@ const ListTable: FC<IListTableProps> = ({ length, list, setFieldValue }) => {
       addClasses="gap-8 justify-center flex-wrap mt-8"
     >
       {listOfNames.map((listItem, index) => (
-        <ListItem
+        <ListNameInput
           key={index}
           listItem={listItem}
           index={index}

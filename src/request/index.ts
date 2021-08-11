@@ -1,3 +1,4 @@
+import { Cookies } from "react-cookie";
 interface IOptions extends RequestInit {}
 
 const request = (path: string, method: string, body?: object): Promise<any> => {
@@ -5,19 +6,25 @@ const request = (path: string, method: string, body?: object): Promise<any> => {
     "Content-Type": "application/json",
   });
 
+  const cookie = new Cookies();
+  const token = cookie.get("token");
+  if (token) headers.set("Authorization", `${token}`);
   const options: IOptions = { method, headers };
 
   if (body) {
     options.body = JSON.stringify(body);
   }
-  const unexpected = (reject: (message:string) => void) => {
+  const unexpected = (reject: (message: string) => void) => {
     return (error: Error) => {
       console.error(error.message);
       return reject("There was an unknown error.");
     };
   };
 
-  const expectedResponse = (response: Response, unexpectedReject: () => void) => {
+  const expectedResponse = (
+    response: Response,
+    unexpectedReject: () => void
+  ) => {
     return new Promise((resolve, reject) => {
       if (!response.ok) {
         response

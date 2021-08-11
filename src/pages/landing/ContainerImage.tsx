@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import Container, { EContainer } from '../../layout/Container'
+import Container, { EContainer } from '../../components/layout/Container'
 const ContainerImage: FC<{backgroundImage: string}> = ({ backgroundImage }) => {
   return (
     <Container addClasses="w-full h-full">

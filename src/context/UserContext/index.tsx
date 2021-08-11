@@ -1,5 +1,5 @@
 import { Context, createContext, useContext } from "react";
-import { IFormProperties } from "../../components/pages/account/interfaces";
+import { IFormProperties } from "../../pages/account/interfaces";
 import { TVoidFunction } from "../../constants/types";
 import { useAccountManagement } from "./useAccountManagement";
 let context: Context<IUserContext>;

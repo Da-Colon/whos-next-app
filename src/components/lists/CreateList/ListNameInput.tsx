@@ -1,7 +1,7 @@
 import { ChangeEvent, FC, useEffect, useState } from "react";
 import Input from "../../layout/Input";
 import removeIcon from "../../assets/images/remove.svg";
-import { IListItemProps } from "./interfaces";
+import { IListItemProps } from "../interfaces";
 import { EInputVariants } from "../../layout/Input/enums";
 
 const ListItem: FC<IListItemProps> = ({

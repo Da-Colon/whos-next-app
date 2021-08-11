@@ -1,7 +1,7 @@
 import React from 'react'
-import Container, { EContainer } from '../../layout/Container'
+import Container, { EContainer } from '../../components/layout/Container'
 import ContainerImage from './ContainerImage'
-import TextContainer, { ETextContainer } from '../../layout/TextContainer'
+import TextContainer, { ETextContainer } from '../../components/layout/TextContainer'
 
 const Landing = () => {
   return (

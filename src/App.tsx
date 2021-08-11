@@ -1,4 +1,3 @@
-import React from "react";
 import "./index.css";
 import AppWrapper from "./components/AppWrapper";
 import Header from "./components/header";
@@ -12,6 +11,7 @@ const App = () => {
   const setAuthTokenCookie = (token: string) =>
     setCookie("token", token, { path: "/" });
   const removeAuthTokenCookie = () => removeCookie("token", { path: "/" });
+  
   return (
     <AppRouter>
       <AppWrapper>
@@ -19,7 +19,7 @@ const App = () => {
           loggedIn={!!cookies.token}
           cookieHandler={removeAuthTokenCookie}
         />
-        <Body cookieHandler={setAuthTokenCookie} />
+        <Body isLoggedIn={!!cookies.token} cookieHandler={setAuthTokenCookie} />
         <Footer />
       </AppWrapper>
     </AppRouter>

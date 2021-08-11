@@ -11,8 +11,8 @@ import Input from "../../layout/Input";
 import { EInputVariants } from "../../layout/Input/enums";
 import Label from "../../layout/Label";
 import TextContainer, { ETextContainer } from "../../layout/TextContainer";
-import { ICreateListContainerProps } from "./enums";
-import ListTable from "./ListTable";
+import { ICreateListContainerProps } from "../enums";
+import ListNameContainer from "./ListNameContainer";
 
 const CreateList: FC<ICreateListContainerProps> = ({
   values,
@@ -78,7 +78,7 @@ const CreateList: FC<ICreateListContainerProps> = ({
           isDisabled={false}
         />
       </Container>
-      <ListTable
+      <ListNameContainer
         length={values.listLength}
         setFieldValue={setFieldValue}
         values={values}

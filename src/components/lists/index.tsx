@@ -1,7 +1,7 @@
-import React from "react";
-import Container from "../../layout/Container";
-import TextContainer, { ETextContainer } from "../../layout/TextContainer";
-import ListsCreated from "./ListsCreated";
+import Container from "../../components/layout/Container";
+import TextContainer, { ETextContainer } from "../../components/layout/TextContainer";
+import UserLists from "./UserLists";
+import PublicLists from "./PublicLists";
 
 const ListMain = () => {
   // TODO map out the rest of created lists
@@ -14,11 +14,12 @@ const ListMain = () => {
   return (
     <Container addClasses="px-8">
       <TextContainer variant={ETextContainer.xlarge} label="Created lists" />
-      <ListsCreated />
+      <UserLists />
       <TextContainer
         variant={ETextContainer.xlarge}
         label="Recently Uploaded (Public)"
       />
+      <PublicLists />
     </Container>
   );
 };

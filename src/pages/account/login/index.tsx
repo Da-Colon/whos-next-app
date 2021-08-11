@@ -1,12 +1,12 @@
 import React, { FC } from "react";
-import { loginInitialValues } from "../../../../constants/initialValues";
-import { loginValidationSchema } from "../../../../constants/validationSchemas";
-import FormikContainer from "../../../../services/FormikContainer";
-import Container, { EContainer } from "../../../layout/Container";
+import { loginInitialValues } from "../../../constants/initialValues";
+import { loginValidationSchema } from "../../../constants/validationSchemas";
+import FormikContainer from "../../../services/FormikContainer";
+import Container, { EContainer } from "../../../components/layout/Container";
 import LoginForm from "./LoginForm";
-import { useUserData } from "../../../../context/UserContext";
+import { useUserData } from "../../../context/UserContext";
 import { useHistory } from "react-router-dom";
-import TextContainer, { ETextContainer } from "../../../layout/TextContainer";
+import TextContainer, { ETextContainer } from "../../../components/layout/TextContainer";
 import { IFormProperties } from "../interfaces";
 
 const LoginPage: FC<{ cookieHandler: any }> = ({ cookieHandler }) => {

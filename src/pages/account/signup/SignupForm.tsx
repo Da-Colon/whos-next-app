@@ -1,11 +1,11 @@
 import React, { FC } from "react";
-import Button from "../../../layout/Button";
-import Input from "../../../layout/Input";
-import Label from "../../../layout/Label";
-import ErrorUI from "../../../layout/Errors";
+import Button from "../../../components/layout/Button";
+import Input from "../../../components/layout/Input";
+import Label from "../../../components/layout/Label";
+import ErrorUI from "../../../components/layout/Errors";
 import { IAccountFormProps } from "../interfaces";
-import { EButtonVariants, EDisabledVariants } from "../../../layout/Button/enums";
-import { EInputVariants } from "../../../layout/Input/enums";
+import { EButtonVariants, EDisabledVariants } from "../../../components/layout/Button/enums";
+import { EInputVariants } from "../../../components/layout/Input/enums";
 
 const SignupForm: FC<IAccountFormProps> = ({
   values,
