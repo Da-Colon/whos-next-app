@@ -2,7 +2,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import './components/pages/pickers/wheel.css';
+@import './pages/pickers/wheel.css';
 
 body {
   margin: 0;
