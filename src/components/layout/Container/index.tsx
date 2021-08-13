@@ -11,6 +11,7 @@ export enum EContainer {
   fields = "flex flex-col w-full md:flex-row md:justify-between md:gap-32 md:px-8",
   column = "flex flex-col",
   margined = "flex flex-col my-8 py-8 background-main inset-shadow relative",
+  inset = "my-8 py-8 background-main inset-shadow relative",
   padded = "flex flex-col p-8 pt-4 background-main inset-shadow",
   button = "flex flex-col sm:flex-row sm:justify-center items-center my-8 gap-4",
   none = "",

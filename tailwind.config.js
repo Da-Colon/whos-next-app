@@ -37,7 +37,8 @@
         '4.5': '4.5rem'
       },
       boxShadow: {
-        hover: '4px 4px 0px 0px #000000'
+        hover: '4px 4px 0px 0px #000000',
+        inset: 'inset 0px 0px 6px 4px #000000',
       },
       maxWidth: {
         '256': '64rem', // 1024px

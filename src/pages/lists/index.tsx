@@ -7,7 +7,7 @@ import CreateListForm from "../../components/lists/CreateList";
 const ListsPage = () => {
   const { url } = useRouteMatch();
   return (
-    <Container variant={EContainer.margined} addMinHeight={true} addClasses="items-start">
+    <Container variant={EContainer.inset} addMinHeight={true} addClasses="">
       <Route path={`${url}`} component={ListsDashboard} exact />
       <Route path={`${url}${Routes.listsNew}`} component={CreateListForm} exact />
       <Route path={`${url}${Routes.listsEdit}`} exact />

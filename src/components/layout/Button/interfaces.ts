@@ -1,7 +1,8 @@
+
 import { EButtonHeights, EButtonHoverVariants, EButtonVariants, EButtonWidths, EDisabledVariants } from "./enums";
 
 export interface IButtonProps {
-  label: string;
+  label: string | JSX.Element;
   variant?: EButtonVariants;
   hoverVariant?: EButtonHoverVariants;
   disabledVariant?: string;

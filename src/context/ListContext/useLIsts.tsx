@@ -4,11 +4,19 @@ import { ServerRoutes } from "../../config/server";
 import request from "../../request";
 import { Routes } from "../../router/routes";
 
-export interface INewList {
-  listLength: number;
+export interface Ilist {
   name: string;
-  list: any[];
+}
+
+export interface INewList {
+  name: string;
+  list: Ilist[];
   private: boolean;
+  listLength?: number;
+  id?: string;
+  createdAt?: string;
+  updatedAt?: string;
+  userId?: string;
 }
 
 export interface IUseLists {
@@ -37,13 +45,14 @@ const useLists = (): IUseLists => {
   // load user lists
   const loadUserLists = async () => {
     const userLists = await request(ServerRoutes.getUserLists, "GET");
+    console.log("🚀 ~ file: useLIsts.tsx ~ line 40 ~ loadUserLists ~ userLists", userLists)
     setUserLists(userLists);
   };
 
   // load public lists
   const loadPublicLists = async () => {
-    const publicList = await request(ServerRoutes.getPublicLists, "GET");
-    setUserLists(publicList);
+    // const publicList = await request(ServerRoutes.getPublicLists, "GET");
+    // setUserLists(publicList);
   };
   // set selected list
   const loadSelectedList = async (list: any) => {

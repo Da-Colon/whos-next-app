@@ -13,7 +13,6 @@ const ListMain = () => {
   // TODO will need page to look through and sort
   return (
     <Container addClasses="px-8">
-      <TextContainer variant={ETextContainer.xlarge} label="Created lists" />
       <UserLists />
       <TextContainer
         variant={ETextContainer.xlarge}

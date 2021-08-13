@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 
 const AppWrapper: FC<{children: JSX.Element[]}> = ({ children }) => {
   return (
