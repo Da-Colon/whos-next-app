@@ -14,10 +14,6 @@ const ListMain = () => {
   return (
     <Container addClasses="px-8">
       <UserLists />
-      <TextContainer
-        variant={ETextContainer.xlarge}
-        label="Recently Uploaded (Public)"
-      />
       <PublicLists />
     </Container>
   );

@@ -45,15 +45,23 @@ const useLists = (): IUseLists => {
   // load user lists
   const loadUserLists = async () => {
     const userLists = await request(ServerRoutes.getUserLists, "GET");
-    console.log("🚀 ~ file: useLIsts.tsx ~ line 40 ~ loadUserLists ~ userLists", userLists)
-    setUserLists(userLists);
+    if(userLists?.message) {
+      console.warn(userLists?.message)
+    } else {
+      setUserLists(userLists);
+    }
   };
 
   // load public lists
   const loadPublicLists = async () => {
-    // const publicList = await request(ServerRoutes.getPublicLists, "GET");
-    // setUserLists(publicList);
+    const publicList = await request(ServerRoutes.getPublicLists, "GET");
+    if(publicList?.message) {
+      console.warn(publicList?.message)
+    } else {
+      setPublicLists(publicList);
+    }
   };
+  
   // set selected list
   const loadSelectedList = async (list: any) => {
     // TODO add userPeference table
