@@ -1,32 +1,43 @@
-import { useListData } from "../../../context/ListContext";
-import { IUseLists } from "../../../context/ListContext/useLIsts";
-import Container from "../../layout/Container";
+import { IListContext, useListData } from "../../../context/ListContext";
+import { IUserContext, useUserData } from "../../../context/UserContext";
+import Container, { EContainer } from "../../layout/Container";
+import ListCard from "../../layout/ListCard";
 import Loader from "../../layout/Loader";
 import TextContainer, { ETextContainer } from "../../layout/TextContainer";
 import Lists from "../shared/Lists";
 
 const UserLists = () => {
-  const listsStore: IUseLists = useListData();
-
+  const listsStore: IListContext = useListData();
+  const userStore: IUserContext = useUserData();
   if (!listsStore.isListsLoaded) {
     return (
       <Container>
-        <TextContainer variant={ETextContainer.xlarge} label="Created lists" />
+        <TextContainer variant={ETextContainer.xlarge} label="Created lists" addClasses="text-center"/>
         <Loader />
       </Container>
     );
   }
-  if(!listsStore.userLists) {
+  if (!listsStore.userLists) {
     return (
-       <Container addClasses="py-4">
-         <TextContainer variant={ETextContainer.xlarge} label="Created lists" />
-       </Container>
-     );
-   }
+      <Container addClasses="py-4">
+        <TextContainer variant={ETextContainer.xlarge} label="Created Lists" addClasses="text-center"/>
+      </Container>
+    );
+  }
+  const selectedList = listsStore.userLists.find(
+    (list) => list.id === userStore.userPreferences?.selectedList
+  );
   return (
     <Container addClasses="my-4">
-      <TextContainer variant={ETextContainer.xlarge} label="Created lists" />
-      <Lists lists={listsStore.userLists} />
+      <TextContainer
+        variant={ETextContainer.xlarge}
+        label="My Lists"
+        addClasses="text-center"
+      />
+      <Container variant={EContainer.flex} addClasses="gap-8">
+        {selectedList ? <ListCard list={selectedList} isSelected /> : null}
+        <Lists lists={listsStore.userLists} />
+      </Container>
     </Container>
   );
 };

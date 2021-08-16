@@ -22,7 +22,6 @@ export interface INewList {
 export interface IUseLists {
   userLists: INewList[] | null;
   publicLists: INewList[] | null;
-  selectedList: INewList | null;
   isListsLoaded: boolean;
   saveList: (properties: IListProperties, history: any) => Promise<void>;
   loadLists: () => void;
@@ -33,20 +32,20 @@ export interface IUseLists {
 const useLists = (): IUseLists => {
   const [userLists, setUserLists] = useState<INewList[] | null>(null);
   const [publicLists, setPublicLists] = useState<INewList[] | null>(null);
-  const [selectedList, setSelectedList] = useState<INewList | null>(null);
   const [isListsLoaded, setLoaded] = useState(false);
+
 
   const loadLists = useCallback(async () => {
     await loadUserLists();
     await loadPublicLists();
     setLoaded(true);
-  }, [])
+  }, []);
 
   // load user lists
   const loadUserLists = async () => {
     const userLists = await request(ServerRoutes.getUserLists, "GET");
-    if(userLists?.message) {
-      console.warn(userLists?.message)
+    if (userLists?.message) {
+      console.warn(userLists?.message);
     } else {
       setUserLists(userLists);
     }
@@ -55,16 +54,11 @@ const useLists = (): IUseLists => {
   // load public lists
   const loadPublicLists = async () => {
     const publicList = await request(ServerRoutes.getPublicLists, "GET");
-    if(publicList?.message) {
-      console.warn(publicList?.message)
+    if (publicList?.message) {
+      console.warn(publicList?.message);
     } else {
       setPublicLists(publicList);
     }
-  };
-  
-  // set selected list
-  const loadSelectedList = async (list: any) => {
-    // TODO add userPeference table
   };
 
   // save new list
@@ -104,7 +98,6 @@ const useLists = (): IUseLists => {
   return {
     userLists,
     publicLists,
-    selectedList,
     isListsLoaded,
     saveList,
     loadLists,

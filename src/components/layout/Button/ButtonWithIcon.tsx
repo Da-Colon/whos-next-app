@@ -1,18 +1,18 @@
-import { FC } from "react"
+import { ButtonHTMLAttributes, FC, MouseEventHandler } from "react"
 import classnames from "classnames"
 
 enum EButtonWithIcon {
   None = ''
 }
 
-interface IButtonWithIcon {
+interface IButtonWithIcon extends ButtonHTMLAttributes<any> {
   variant?: EButtonWithIcon,
-  children: JSX.Element
+  handleClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
-const ButtonWithIcon: FC<IButtonWithIcon> = ({variant, children }) => {
+const ButtonWithIcon: FC<IButtonWithIcon> = ({variant, children, handleClick }) => {
   return (
-    <button className={classnames(variant)}>
+    <button className={classnames(variant)} onClick={handleClick}>
       { children }
     </button>
   )

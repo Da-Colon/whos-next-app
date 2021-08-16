@@ -6,14 +6,13 @@ import ListsPage from "../pages/lists";
 import LoginPage from "../pages/account/login";
 import PickersContainer from "../pages/pickers";
 import SignupPage from "../pages/account/signup";
-import { useListData } from "../context/ListContext";
-import { IUseLists } from "../context/ListContext/useLIsts";
+import { IListContext, useListData } from "../context/ListContext";
 
 const Body: FC<{ cookieHandler: any; isLoggedIn: boolean }> = ({
   cookieHandler,
   isLoggedIn,
 }) => {
-  const { loadLists }: IUseLists = useListData();
+  const { loadLists }: IListContext = useListData();
   useEffect(() => {
     if (isLoggedIn) {
       loadLists();

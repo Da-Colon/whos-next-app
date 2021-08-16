@@ -1,17 +1,10 @@
 import { Context, createContext, useContext } from "react";
-import { IFormProperties } from "../../pages/account/interfaces";
-import { TVoidFunction } from "../../constants/types";
-import { useAccountManagement } from "./useAccountManagement";
+import { IAccountStore, useAccountManagement } from "./useAccountManagement";
+import useUserPreferences, { IUserPreferencesStore } from "./useUserPreferences";
 let context: Context<IUserContext>;
 
-export interface IUserContext {
-  user: {} | null,
-  loggedIn: boolean,
-  error: null | string,
-  userSignin: (values: IFormProperties) => Promise<string>,
-  userSignup: (values: IFormProperties) => Promise<string>,
-  userLogout: (cookieHandler: TVoidFunction) => void,
-  clearError: TVoidFunction
+export interface IUserContext extends IAccountStore, IUserPreferencesStore {
+  
 }
 
 const createDataRoot = () => {
@@ -20,24 +13,12 @@ const createDataRoot = () => {
   const Provider = context.Provider;
 
   return ({ children }: {children: JSX.Element}) => {
-    const {
-      user,
-      loggedIn,
-      error,
-      userSignin,
-      userSignup,
-      userLogout,
-      clearError,
-    } = useAccountManagement();
+    const userStore: IAccountStore = useAccountManagement();
+    const userPreferencesStore: IUserPreferencesStore = useUserPreferences();
 
     const dataContext = {
-      user,
-      loggedIn,
-      error,
-      userSignin,
-      userSignup,
-      userLogout,
-      clearError,
+      ...userStore,
+      ...userPreferencesStore
     };
 
     return <Provider value={dataContext}>{children}</Provider>;

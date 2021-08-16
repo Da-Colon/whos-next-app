@@ -1,6 +1,6 @@
 import Container, { EContainer } from "../Container";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircle, faEllipsisH } from "@fortawesome/free-solid-svg-icons";
+import { faCircle } from "@fortawesome/free-solid-svg-icons";
 
 const Loader = () => {
   return (
