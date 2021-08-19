@@ -1,0 +1,49 @@
+// We're using quoted keys as the dart-sass compiler
+// complains if we use interpolation with css color
+// variable names.
+
+:root {
+  --size-base: 16px;
+  --size-tiny: 0.25em;
+  --size-xxsmall: 0.5em;
+  --size-xsmall: 0.75em;
+  --size-vsmall: 0.875em;
+  --size-small: 1em;
+  --size-medium: 1.25em;
+  --size-large: 1.5em;
+  --size-xlarge: 1.75em;
+  --size-xxlarge: 2em;
+  --size-huge: 3em;
+  --size-h1: 4em;
+  --size-xhuge: 4.5em;
+  --size-xxhuge: 5em;
+}
+
+$colors: (
+  "white": "#fafafa"
+  "off-white": "#c4c4c4",
+  "lighter-gray": "#BFBFBF",
+  "light-gray": "#9A9A9A",
+  "dark-gray": "#29262F",
+  "black": "#25282b",
+  "red": "#ff2f1a",
+  "light-green": "#16A7A2",
+  "dark-green": "#193d49",
+  "gold": "#fada22",
+);
+
+$font-size: (
+  base: var(--size-base),
+  tiny: var(--size-tiny),
+  xxsmall: var(--size-xxsmall),
+  xsmall: var(--size-xsmall),
+  small: var(--size-small),
+  medium: var(--size-medium),
+  large: var(--size-large),
+  xlarge: var(--size-xlarge),
+  xxlarge: var(--size-xxlarge),
+  huge: var(--size-huge),
+  h1: var(--size-h1),
+  xhuge: var(--size-xhuge),
+  xxhuge: var(--size-xxhuge),
+);

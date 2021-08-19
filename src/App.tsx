@@ -1,4 +1,4 @@
-import "./index.css";
+import './styles/_core.scss';
 import AppWrapper from "./components/AppWrapper";
 import Header from "./components/header";
 import Body from "./components/Body";
