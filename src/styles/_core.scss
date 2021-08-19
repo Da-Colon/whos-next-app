@@ -1,7 +1,15 @@
-@import './reset';
+@import "./reset";
 
-@import './vars';
-@import './helpers';
-@import './mixins';
-// @import './components';
+@import "./vars";
+@import "./components/app-wrapper.scss";
 
+html {
+  height: 100%;
+  width: 100%;
+  background-color: map-get($colors, bluegray);
+  background-image: linear-gradient(
+    315deg,
+    map-get($colors, bluegray) 0%,
+    map-get($colors, darkbluegray) 74%
+  );
+}

@@ -1,9 +1,8 @@
 import './styles/_core.scss';
-import AppWrapper from "./components/AppWrapper";
+import { BrowserRouter as Router } from "react-router-dom";
 import Header from "./components/header";
 import Body from "./components/Body";
 import Footer from "./components/Footer";
-import AppRouter from "./router";
 import { useCookies } from "react-cookie";
 import { useEffect } from "react";
 import { useUserData } from "./context/UserContext";
@@ -26,16 +25,16 @@ const App = () => {
   }, [getUserPreferences, user])
 
   return (
-    <AppRouter>
-      <AppWrapper>
+    <Router>
+      <div className="app-wrapper">
         <Header
-          loggedIn={!!cookies.token}
+          isloggedIn={!!cookies.token}
           cookieHandler={removeAuthTokenCookie}
         />
         <Body isLoggedIn={!!cookies.token} cookieHandler={setAuthTokenCookie} />
         <Footer />
-      </AppWrapper>
-    </AppRouter>
+      </div>
+    </Router>
   );
 };
 

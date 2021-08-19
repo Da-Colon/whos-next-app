@@ -1,15 +1,33 @@
-import React from "react";
-import Container, { EContainer } from "../layout/Container";
-import ButtonWithLink from "../layout/Button/ButtonWithLink";
 import { Routes } from "../../router/routes";
-import { EButtonHoverVariants, EButtonVariants } from "../layout/Button/enums";
+import { FC } from "react";
+import { NavLink, useHistory } from "react-router-dom";
+import { useUserData } from "../../context/UserContext";
 
-const AccountMenuButtons = () => {
+const AccountMenuButtons: FC<{
+  isLoggedIn: boolean;
+  cookieHandler: () => void;
+}> = ({ isLoggedIn, cookieHandler }) => {
+
+  const history = useHistory();
+  const { userLogout } = useUserData();
+
+  const logout = () => {
+    userLogout(cookieHandler);
+    history.push("/");
+  };
+  
+  if (isLoggedIn) {
+    return (
+      <div className="account-menu-button">
+        <div onClick={logout}>Logout</div>
+      </div>
+    );
+  }
+  // TODO add web3 login
   return (
-    <Container variant={EContainer.column} addClasses="gap-2 sm:flex-row">
-      <ButtonWithLink variant={EButtonVariants.menu} hoverVariant={EButtonHoverVariants.menu} to={Routes.login} label="Log in" />
-      <ButtonWithLink variant={EButtonVariants.menu} hoverVariant={EButtonHoverVariants.menu} to={Routes.signup} label="Sign up" />
-    </Container>
+    <div className="account-menu-button">
+      <NavLink to={Routes.login}>Login</NavLink>
+    </div>
   );
 };
 

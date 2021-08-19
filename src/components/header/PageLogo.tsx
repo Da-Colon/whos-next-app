@@ -1,18 +1,12 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
-import logo from "../assets/images/logo-white.svg";
+import logo from "../assets/images/logo-black.svg";
 import Image from "../layout/Image";
-import TextContainer, { ETextContainer } from "../layout/TextContainer";
 
 const PageLogo = () => {
   return (
-    <NavLink to="/" className="flex justify-center items-center cursor-pointer">
+    <NavLink to="/" className="page-logo-container">
       <Image imageSrc={logo} />
-      <TextContainer
-        variant={ETextContainer.xlarge}
-        label="Who's next?"
-        addClasses="ml-2"
-      />
+      <div className="page-logo-text">Who's Next?</div>
     </NavLink>
   );
 };

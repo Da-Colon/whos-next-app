@@ -1,21 +1,39 @@
-import React, { FC } from "react";
-import Container, { EContainer } from "../layout/Container";
-import AccountDisplay from "./AccountDisplay";
-import Nav from "./Nav";
+import { FC } from "react";
+import { Routes } from "../../router/routes";
+import Link from "../UI/Link";
+import AccountMenuButtons from "./AccountMenuButtons";
 import PageLogo from "./PageLogo";
+import "./styles.scss";
 
 interface IHeader {
-  loggedIn: boolean;
+  isloggedIn: boolean;
   cookieHandler: () => void;
 }
 
-const Header: FC<IHeader> = ({ loggedIn, cookieHandler }) => {
+const Header: FC<IHeader> = ({ isloggedIn, cookieHandler }) => {
+  // TODO re-add logout
   return (
-    <Container variant={EContainer.header}>
-      <PageLogo />
-      {loggedIn && <Nav cookieHandler={cookieHandler} />}
-      {!loggedIn && <AccountDisplay />}
-    </Container>
+    <div className="header-container">
+      <div className="header-center-nav">
+        <Link
+          isVisible={!!isloggedIn}
+          classNames="header-center-nav-link"
+          to={Routes.lists}
+          text="Lists"
+        />
+        <PageLogo />
+        <Link
+          isVisible={!!isloggedIn}
+          classNames="header-center-nav-link"
+          to={Routes.picker}
+          text="Picker"
+        />
+      </div>
+      <AccountMenuButtons
+        isLoggedIn={!!isloggedIn}
+        cookieHandler={cookieHandler}
+      />
+    </div>
   );
 };
 

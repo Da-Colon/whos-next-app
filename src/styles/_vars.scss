@@ -18,18 +18,37 @@
   --size-xhuge: 4.5em;
   --size-xxhuge: 5em;
 }
+// colors
+:root {
+  --white: #fafafa;
+  --lightest-gray: #c4c4c4;
+  --lighter-gray: #BFBFBF;
+  --light-gray: #9A9A9A;
+  --dark-gray: #29262F;
+  --blue-gray: #485461;
+  --dark-blue-gray: #28313b;
+  --black: #25282b;
+  --black-faded: #16161722;
+  --red: #ff2f1a;
+  --sea-green: #16A7A2;
+  --dark-green: #193d49;
+  --gold: #fada22;
+}
 
 $colors: (
-  "white": "#fafafa"
-  "off-white": "#c4c4c4",
-  "lighter-gray": "#BFBFBF",
-  "light-gray": "#9A9A9A",
-  "dark-gray": "#29262F",
-  "black": "#25282b",
-  "red": "#ff2f1a",
-  "light-green": "#16A7A2",
-  "dark-green": "#193d49",
-  "gold": "#fada22",
+  white: var(--white),
+  off-white: var(--lightest-gray),
+  lightergray: var(--lighter-gray),
+  lightgray: var(--light-gray),
+  darkgray: var(--dark-gray),
+  bluegray: var(--blue-gray),
+  darkbluegray: var(--dark-blue-gray),
+  black: var(--black),
+  blackfaded: var(--black-faded),
+  red: var(--red),
+  lightgreen: var(--sea-green),
+  darkgreen: var(--dark-green),
+  gold: var(--gold),
 );
 
 $font-size: (

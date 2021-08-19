@@ -1,16 +1,16 @@
-import classNames from "classnames";
+import classnames from "classnames";
 import React, { FC } from "react";
 
 // TODO Add in handling image loading errors
 export interface IImageProps {
   imageSrc: string;
   alternativeText?: string;
-  addClasses?: string;
+  classNames?: string;
   variant?: EImageVariant.fill | EImageVariant.none;
 }
 
 export enum EImageVariant {
-  fill = "w-full h-full",
+  fill = "",
   none = "",
 }
 
@@ -18,19 +18,19 @@ const Image: FC<IImageProps> = ({
   imageSrc,
   alternativeText,
   variant,
-  addClasses,
+  classNames,
 }) => {
   return (
     <img
       alt={alternativeText}
       src={imageSrc}
-      className={classNames(variant, addClasses)}
+      className={classnames(variant, classNames)}
     />
   );
 };
 
 Image.defaultProps = {
-  addClasses: "",
+  classNames: "",
   alternativeText: "",
   variant: EImageVariant.none,
 };
