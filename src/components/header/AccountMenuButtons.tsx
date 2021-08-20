@@ -1,7 +1,8 @@
 import { Routes } from "../../router/routes";
 import { FC } from "react";
 import { NavLink, useHistory } from "react-router-dom";
-import { useUserData } from "../../context/UserContext";
+import { IUserContext, useUserData } from "../../context/UserContext";
+import { ELoginState } from "../../context/UserContext/useAccountManagement";
 
 const AccountMenuButtons: FC<{
   isLoggedIn: boolean;
@@ -9,12 +10,16 @@ const AccountMenuButtons: FC<{
 }> = ({ isLoggedIn, cookieHandler }) => {
 
   const history = useHistory();
-  const { userLogout } = useUserData();
+  const userStore: IUserContext = useUserData();
 
   const logout = () => {
-    userLogout(cookieHandler);
+    userStore.userLogout(cookieHandler);
     history.push("/");
   };
+
+  const loginInit = () => {
+    userStore.updateLoginState(ELoginState.Choose)
+  }
   
   if (isLoggedIn) {
     return (
@@ -26,7 +31,7 @@ const AccountMenuButtons: FC<{
   // TODO add web3 login
   return (
     <div className="account-menu-button">
-      <NavLink to={Routes.login}>Login</NavLink>
+      <div onClick={loginInit}>Login</div>
     </div>
   );
 };

@@ -3,9 +3,7 @@ import { IAccountStore, useAccountManagement } from "./useAccountManagement";
 import useUserPreferences, { IUserPreferencesStore } from "./useUserPreferences";
 let context: Context<IUserContext>;
 
-export interface IUserContext extends IAccountStore, IUserPreferencesStore {
-  
-}
+export interface IUserContext extends IAccountStore, IUserPreferencesStore {}
 
 const createDataRoot = () => {
   context = createContext({} as IUserContext);

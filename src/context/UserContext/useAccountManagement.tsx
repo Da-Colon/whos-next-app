@@ -3,34 +3,69 @@ import { IFormProperties } from "../../pages/account/interfaces";
 import { ServerRoutes } from "../../config/server";
 import { TVoidFunction } from "../../constants/types";
 import request from "../../request";
+import { useCookies } from "react-cookie";
+
+export enum ELoginState {
+  Choose,
+  AccountForm,
+  Web3,
+  None,
+}
+
+export enum ESignupState {
+  Choose,
+  AccountForm,
+  Web3,
+  None,
+}
 
 export interface IAccountStore {
   user: null | {};
-  loggedIn: boolean;
+  isLoggedIn: boolean;
   error: null | string;
+  loginState: ELoginState;
+  signupState: ESignupState;
+  cookies: {
+    [name: string]: any;
+  };
+  setCookie: (name: string, value: any, options?: any | undefined) => void;
+  removeCookie: (name: string, options?: any | undefined) => void;
   authLogin: (removeCookie: any) => Promise<void>;
   userSignin: (values: IFormProperties) => Promise<string>;
   userSignup: (values: IFormProperties) => Promise<"success" | "" | "fail">;
   userLogout: (cookieHandler: TVoidFunction) => Promise<void>;
   clearError: () => void;
+  updateLoginState: (state: ELoginState) => void;
+  updateSignupState: (state: ESignupState) => void;
 }
 
 const useAccountManagement = (): IAccountStore => {
+  const [cookies, setCookie, removeCookie] = useCookies(["token"]);
   const [user, setUser] = useState<null | {}>(null);
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [isLoggedIn, setLoggedIn] = useState(false);
+  const [loginState, setLoginState] = useState(ELoginState.None);
+  const [signupState, setSignupState] = useState(ESignupState.None);
   const [error, setError] = useState<null | string>(null);
+
   const clearError = () => {
     setError(null);
   };
 
+  const updateSignupState = (state: ESignupState) => {
+    setSignupState(state);
+  };
+  const updateLoginState = (state: ELoginState) => {
+    setLoginState(state);
+  };
+
   const authLogin = useCallback(async (removeCookie: any) => {
-    const result = await request(ServerRoutes.auth, 'GET')
-    if(result.user?.id) {
-      setUser(result.user)
+    const result = await request(ServerRoutes.auth, "GET");
+    if (result.user?.id) {
+      setUser(result.user);
     } else {
-      removeCookie("token", { path: "/" })
+      removeCookie("token", { path: "/" });
     }
-  }, [])
+  }, []);
 
   const userSignin = async (values: IFormProperties) => {
     try {
@@ -75,13 +110,20 @@ const useAccountManagement = (): IAccountStore => {
 
   return {
     user,
-    loggedIn,
+    isLoggedIn,
     error,
+    loginState,
+    signupState,
+    cookies,
+    setCookie,
+    removeCookie,
     authLogin,
     userSignin,
     userSignup,
     userLogout,
     clearError,
+    updateLoginState,
+    updateSignupState,
   };
 };
 

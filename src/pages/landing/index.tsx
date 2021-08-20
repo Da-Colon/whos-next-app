@@ -22,7 +22,7 @@ const Landing = () => {
   return (
     <div className="landing-page-container">
       {LANDING_SECTIONS.map((section) => (
-        <section className="landing-page-section">
+        <section key={section.heading} className="landing-page-section">
           <div className="landing-page-section-heading">{section.heading}</div>
           <div className="landing-page-section-hero-container">
             <div className="landing-page-section-image">{/* BackgroundImage */}</div>
