@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import { FC, useEffect } from "react";
 import { Route } from "react-router-dom";
 import Landing from "../pages/landing";
 import { Routes } from "../router/routes";
@@ -19,7 +19,7 @@ const Body: FC<{ cookieHandler: any; isLoggedIn: boolean }> = ({
     }
   }, [isLoggedIn, loadLists]);
   return (
-    <div className="px-6" style={{ minHeight: "calc(100vh - 7rem" }}>
+    <div className="body-container">
       <Route path={Routes.home} component={Landing} exact />
       <Route path={Routes.login} exact>
         <LoginPage cookieHandler={cookieHandler} />

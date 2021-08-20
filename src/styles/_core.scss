@@ -2,14 +2,14 @@
 
 @import "./vars";
 @import "./components/app-wrapper.scss";
+@import "./components/body-container.scss";
 
-html {
-  height: 100%;
-  width: 100%;
-  background-color: map-get($colors, bluegray);
+html, #root {
   background-image: linear-gradient(
     315deg,
     map-get($colors, bluegray) 0%,
-    map-get($colors, darkbluegray) 74%
+    map-get($colors, darkbluegray) 100%
   );
+  width: 100%;
+  height: 100%;
 }

@@ -1,0 +1,46 @@
+@import '../../styles/vars.scss';
+
+.landing-page-container {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding: 2rem;
+  .landing-page-section {
+    margin-bottom: 2rem;
+    .landing-page-section-heading {
+      font-size: map-get($font-size, xlarge );
+      font-weight: bold;
+      letter-spacing: 0.3rem;
+    }
+    .landing-page-section-hero-container {
+      align-items: center;
+      display: flex;
+      height: 340px;
+      margin: 2rem;
+      position: relative;
+      width: 100%;
+    }
+    .landing-page-section-image {
+      // todo will need to be updated for images and responsiveness
+      background-color: map-get($colors, lightgray );
+      border-radius: 8px;
+      height: 340px;
+      position: absolute;
+      width: 640px;
+    }
+    .landing-page-section-text {
+      background-color: rgba(0,0,0, 0.3);
+      border-radius: .5rem;
+      font-size: map-get($font-size, medium );
+      font-weight: 300;
+      line-height: 24px;
+      padding: 3rem;
+      position: absolute;
+      right: 0;
+      top: 75px;
+      width: 60%;
+      z-index: 2;
+    }
+  }
+}

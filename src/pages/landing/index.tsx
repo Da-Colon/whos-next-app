@@ -1,25 +1,37 @@
-import React from 'react'
-import Container, { EContainer } from '../../components/layout/Container'
-import ContainerImage from './ContainerImage'
-import TextContainer, { ETextContainer } from '../../components/layout/TextContainer'
+import "./styles.scss";
+
+const LANDING_SECTIONS = [
+  {
+    heading: "Create or upload!",
+    body: "Irure exercitation magna eiusmod esse esse irure nulla laboris ipsum non ut proident commodo. Culpa sint consequat non cillum. Officia in labore commodo dolore ad sint non fugiat quis. Et ullamco eiusmod enim elit adipisicing non. Incididunt incididunt exercitation id quis incididunt cupidatat mollit ea fugiat adipisicing adipisicing ea et duis.",
+    backgroundImageSrc: "",
+  },
+  {
+    heading: "Edit!",
+    body: "Irure exercitation magna eiusmod esse esse irure nulla laboris ipsum non ut proident commodo. Culpa sint consequat non cillum. Officia in labore commodo dolore ad sint non fugiat quis. Et ullamco eiusmod enim elit adipisicing non. Incididunt incididunt exercitation id quis incididunt cupidatat mollit ea fugiat adipisicing adipisicing ea et duis.",
+    backgroundImageSrc: "",
+  },
+  {
+    heading: "Spin!",
+    body: "Irure exercitation magna eiusmod esse esse irure nulla laboris ipsum non ut proident commodo. Culpa sint consequat non cillum. Officia in labore commodo dolore ad sint non fugiat quis. Et ullamco eiusmod enim elit adipisicing non. Incididunt incididunt exercitation id quis incididunt cupidatat mollit ea fugiat adipisicing adipisicing ea et duis.",
+    backgroundImageSrc: "",
+  },
+];
 
 const Landing = () => {
   return (
-    <div>
-      <Container variant={EContainer.section} >
-        <TextContainer variant={ETextContainer.large} label="Create or upload!" />
-        <ContainerImage backgroundImage="" />
-      </Container>
-      <Container variant={EContainer.section} >
-        <TextContainer variant={ETextContainer.large} label="Edit!" />
-        <ContainerImage backgroundImage="" />
-      </Container>
-      <Container variant={EContainer.section} >
-        <TextContainer variant={ETextContainer.large} label="Spin!" />
-        <ContainerImage backgroundImage="" />
-      </Container>
+    <div className="landing-page-container">
+      {LANDING_SECTIONS.map((section) => (
+        <section className="landing-page-section">
+          <div className="landing-page-section-heading">{section.heading}</div>
+          <div className="landing-page-section-hero-container">
+            <div className="landing-page-section-image">{/* BackgroundImage */}</div>
+            <div className="landing-page-section-text">{section.body}</div>
+          </div>
+        </section>
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default Landing
+export default Landing;
