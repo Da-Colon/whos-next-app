@@ -5,14 +5,7 @@ import { TVoidFunction } from "../../constants/types";
 import request from "../../request";
 import { useCookies } from "react-cookie";
 
-export enum ELoginState {
-  Choose,
-  AccountForm,
-  Web3,
-  None,
-}
-
-export enum ESignupState {
+export enum EAccountState {
   Choose,
   AccountForm,
   Web3,
@@ -23,8 +16,8 @@ export interface IAccountStore {
   user: null | {};
   isLoggedIn: boolean;
   error: null | string;
-  loginState: ELoginState;
-  signupState: ESignupState;
+  loginState: EAccountState;
+  signupState: EAccountState;
   cookies: {
     [name: string]: any;
   };
@@ -36,8 +29,8 @@ export interface IAccountStore {
   userSignup: (values: IFormProperties) => Promise<"success" | "" | "fail">;
   userLogout: (cookieHandler: TVoidFunction) => Promise<void>;
   clearError: () => void;
-  updateLoginState: (state: ELoginState) => void;
-  updateSignupState: (state: ESignupState) => void;
+  updateLoginState: (state: EAccountState) => void;
+  updateSignupState: (state: EAccountState) => void;
 }
 
 const useAccountManagement = (): IAccountStore => {
@@ -45,18 +38,18 @@ const useAccountManagement = (): IAccountStore => {
   const [user, setUser] = useState<null | {}>(null);
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [isUserLoaded, setUserLoaded] = useState(false);
-  const [loginState, setLoginState] = useState(ELoginState.None);
-  const [signupState, setSignupState] = useState(ESignupState.None);
+  const [loginState, setLoginState] = useState(EAccountState.None);
+  const [signupState, setSignupState] = useState(EAccountState.None);
   const [error, setError] = useState<null | string>(null);
 
   const clearError = () => {
     setError(null);
   };
 
-  const updateSignupState = (state: ESignupState) => {
+  const updateSignupState = (state: EAccountState) => {
     setSignupState(state);
   };
-  const updateLoginState = (state: ELoginState) => {
+  const updateLoginState = (state: EAccountState) => {
     setLoginState(state);
   };
 

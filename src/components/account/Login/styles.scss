@@ -1,140 +1,139 @@
 @import "../../../styles/vars.scss";
 
 .choices-container {
-  position: relative;
   border-radius: 8px;
+  position: relative;
   .button-with-logo-container {
-    margin: 1rem 0;
     background-color: map-get($colors, bluegray);
+    margin: 1rem 0;
     button.button-with-logo-primary {
-      position: relative;
-      border-bottom: 4px solid map-get($colors, black);
-      width: 100%;
-      height: 100%;
       background-color: unset;
-      padding-top: 1rem;
+      border-bottom: 4px solid map-get($colors, black);
+      height: 100%;
       padding-bottom: 1rem;
+      padding-top: 1rem;
+      position: relative;
+      width: 100%;
       &:hover {
         border: 3px solid map-get($colors, white);
       }
       &:disabled {
-        opacity: 0.25;
         cursor: default;
-        border: none;
-        border: 4px solid map-get($colors, black);
+        opacity: 0.25;
       }
       div.button-with-logo {
+        align-items: center;
         background-image: url("../../assets/images/logo-black.svg");
+        background-position: center;
         background-repeat: no-repeat;
         background-size: contain;
-        background-position: center;
-        width: 200px;
-        height: 125px;
         display: flex;
+        height: 125px;
         justify-content: center;
-        align-items: center;
+        width: 200px;
         .button-with-logo-text {
-          position: absolute;
-          left: 7rem;
+          color: map-get($colors, white);
           font-size: map-get($font-size, xlarge);
           font-weight: bold;
+          left: 7rem;
+          position: absolute;
           white-space: nowrap;
-          color: map-get($colors, white);
         }
       }
     }
     button.button-with-logo-secondary {
-      border-bottom: 3px solid map-get($colors, black);
-      width: 100%;
       background-color: unset;
-      padding-top: 1rem;
-      padding-bottom: 1rem;
+      border-bottom: 3px solid map-get($colors, black);
       letter-spacing: 0.1rem;
+      padding-bottom: 1rem;
+      padding-top: 1rem;
+      width: 100%;
       &:hover {
-        transform: none;
         color: map-get($colors, white);
+        transform: none;
       }
       &:disabled {
-        color: map-get($colors, black );
+        color: map-get($colors, black);
+        cursor: default;
       }
     }
   }
-  button.login-choices-close-button {
+  button.choices-close-button {
     display: block;
-    padding: 0.5rem 4rem; 
-    margin: 0 auto;
+    font-size: map-get($font-size, medium);
     font-weight: 500;
-    font-size: map-get($font-size, medium )
+    margin: 0 auto;
+    padding: 0.5rem 4rem;
   }
 }
 
 .login-steps-close {
-  position: absolute;
   color: map-get($colors, white);
+  cursor: pointer;
+  height: 1rem !important;
+  position: absolute;
   right: 1rem;
   top: 1rem;
   width: 1rem !important;
-  height: 1rem !important;
-  cursor: pointer;
   &:hover {
-    transform: scale(1.15);
     color: map-get($colors, red);
+    transform: scale(1.15);
   }
 }
 
 .login-steps-back {
-  position: absolute;
   color: map-get($colors, white);
+  cursor: pointer;
+  height: 1rem !important;
   left: 1rem;
+  position: absolute;
   top: 1rem;
   width: 1rem !important;
-  height: 1rem !important;
-  cursor: pointer;
   &:hover {
-    transform: scale(1.15);
     color: map-get($colors, red);
+    transform: scale(1.15);
   }
 }
 
 .login-form-container {
-  padding: 2rem;
-  background-color: map-get($colors, darkbluegray );
-  border: 6px solid map-get($colors, bluegray );
+  background-color: map-get($colors, darkbluegray);
+  border: 6px solid map-get($colors, bluegray);
   border-radius: 8px;
+  padding: 2rem;
   position: relative;
   .login-form-heading {
-    color: map-get($colors, white );
-    font-size: map-get($font-size, large );
-    text-align: center;
+    color: map-get($colors, white);
+    font-size: map-get($font-size, large);
     margin-bottom: 1rem;
+    text-align: center;
   }
   form {
     display: flex;
     flex-direction: column;
     input {
-      margin: 0.8rem 0rem;
-      padding: 0.6rem 0rem 0.6rem 0.8rem;
-      width: 100%;
       border-radius: 4px;
+      padding: 0.6rem 0rem 0.6rem 0.8rem;
+      margin: 0.8rem 0rem;
+      width: 100%;
       &::placeholder {
         opacity: 60%;
       }
     }
     button {
-      margin-top: 0.8rem;
       align-self: flex-end;
-      width: 125px;
-      height: 32px;
       border: 2px solid map-get($colors, black);
+      margin-top: 0.8rem;
+      height: 32px;
+      width: 125px;
     }
   }
 }
 
 .form-errors {
-  color: map-get($colors, red);
   background-color: rgba(0, 0, 0, 0.7);
-  margin-bottom: 0.8rem;
-  padding: 0.5rem 1rem;
+  color: map-get($colors, red);
   font-weight: 500;
   letter-spacing: 0.1rem;
+  margin-bottom: 0.8rem;
+  padding: 0.5rem 1rem;
 }

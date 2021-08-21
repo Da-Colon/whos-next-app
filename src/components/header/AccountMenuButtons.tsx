@@ -1,8 +1,7 @@
-import { Routes } from "../../router/routes";
 import { FC } from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { IUserStore, useUserStore } from "../../context/UserContext";
-import { ELoginState } from "../../context/UserContext/useAccountManagement";
+import { EAccountState } from "../../context/UserContext/useAccountManagement";
 
 const AccountMenuButtons: FC<{
   isLoggedIn: boolean;
@@ -18,7 +17,7 @@ const AccountMenuButtons: FC<{
   };
 
   const loginInit = () => {
-    userStore.updateLoginState(ELoginState.Choose)
+    userStore.updateLoginState(EAccountState.Choose)
   }
   
   if (isLoggedIn) {

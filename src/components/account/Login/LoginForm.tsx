@@ -4,7 +4,7 @@ import { useState } from "react";
 import { loginInitialValues } from "../../../constants/initialValues";
 import { loginValidationSchema } from "../../../constants/validationSchemas";
 import { IUserStore, useUserStore } from "../../../context/UserContext";
-import { ELoginState } from "../../../context/UserContext/useAccountManagement";
+import { EAccountState } from "../../../context/UserContext/useAccountManagement";
 import { IFormProperties } from "../../../pages/account/interfaces";
 import FormikContainer from "../../../services/FormikContainer";
 
@@ -23,7 +23,7 @@ const LoginForm = () => {
       return;
     }
     setAuthTokenCookie(token);
-    userStore.updateLoginState(ELoginState.None);
+    userStore.updateLoginState(EAccountState.None);
   };
 
   return (
@@ -54,12 +54,12 @@ const LoginForm = () => {
             <FontAwesomeIcon
               className="login-steps-close"
               icon={faTimes}
-              onClick={() => userStore.updateLoginState(ELoginState.None)}
+              onClick={() => userStore.updateLoginState(EAccountState.None)}
             />
             <FontAwesomeIcon
               className="login-steps-back"
               icon={faChevronLeft}
-              onClick={() => userStore.updateLoginState(ELoginState.Choose)}
+              onClick={() => userStore.updateLoginState(EAccountState.Choose)}
             />
             {/* Break out into components */}
             {serverError && <div className="form-errors">{serverError}</div>}

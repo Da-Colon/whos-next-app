@@ -6,7 +6,7 @@ import Footer from "./components/Footer";
 import { useEffect } from "react";
 import { useUserStore } from "./context/UserContext";
 import Modal from './components/UI/Modal';
-import { ELoginState, ESignupState } from './context/UserContext/useAccountManagement';
+import { EAccountState } from './context/UserContext/useAccountManagement';
 import Login from './components/account/Login';
 
 const App = () => {
@@ -27,10 +27,10 @@ const App = () => {
 
   return (
     <Router>
-      <Modal isVisible={loginState !== ELoginState.None}>
+      <Modal isVisible={loginState !== EAccountState.None}>
         <Login />
       </Modal>
-      <Modal isVisible={signupState !== ESignupState.None}>
+      <Modal isVisible={signupState !== EAccountState.None}>
         <div></div>
       </Modal>
       <div className="app-wrapper">

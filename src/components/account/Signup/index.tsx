@@ -1,22 +1,22 @@
 import { IUserStore, useUserStore } from "../../../context/UserContext"
-import { ESignupState } from "../../../context/UserContext/useAccountManagement";
+import { EAccountState } from "../../../context/UserContext/useAccountManagement";
 
 const LoginSteps = () => {
   const userStore: IUserStore = useUserStore();
   switch(userStore.signupState) {
-    case ESignupState.Choose: 
+    case EAccountState.Choose: 
       return (
         <div></div>
       )
-    case ESignupState.AccountForm: 
+    case EAccountState.AccountForm: 
       return (
         <div></div>
       )
-    case ESignupState.Web3: 
+    case EAccountState.Web3: 
       return (
         <div></div>
       )
-    case ESignupState.None: 
+    case EAccountState.None: 
       return null;
   }
 }

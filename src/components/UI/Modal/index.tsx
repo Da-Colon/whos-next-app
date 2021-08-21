@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { FC } from "react";
 import { ReactNode } from "react";
 import { IUserStore, useUserStore } from "../../../context/UserContext";
-import { ELoginState, ESignupState } from "../../../context/UserContext/useAccountManagement";
+import { EAccountState } from "../../../context/UserContext/useAccountManagement";
 import './styles.scss'
 interface IModal {
   isVisible: boolean;
@@ -16,8 +16,8 @@ const Modal: FC<IModal> = ({isVisible, children}) => {
   const closeModal = (event: {target: ReactNode}) => {
     const target = event.target
     if(target === overlayRef.current) {
-      userStore.updateLoginState(ELoginState.None);
-      userStore.updateSignupState(ESignupState.None);
+      userStore.updateLoginState(EAccountState.None);
+      userStore.updateSignupState(EAccountState.None);
     }
   }
   if(!isVisible) return null
