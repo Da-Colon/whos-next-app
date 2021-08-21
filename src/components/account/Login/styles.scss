@@ -1,0 +1,68 @@
+@import "../../../styles/vars.scss";
+
+.choices-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  button {
+    border-bottom: 4px solid map-get($colors, black );
+    width: 100%;
+    height: 100%;
+    background-color: unset;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    &:hover {
+      border: 4px solid map-get($colors, white );
+      div.button-with-logo {
+        transform: scale(1.15);
+      }
+    }
+    &:disabled {
+      opacity: .25;
+      cursor: default;
+      border: none;
+      border: 4px solid map-get($colors, black );
+      &:hover {
+        div.button-with-logo {
+          transform: scale(1);
+        }
+      }
+    }
+    div.button-with-logo {
+      position: relative;
+      background-image: url("../../assets/images/logo-black.svg");
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      width: 200px;
+      height: 125px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .button-with-logo-text {
+        position: absolute;
+        left: 6rem;
+        font-size: map-get($font-size, xlarge);
+        font-weight: bold;
+        white-space: nowrap;
+        color: map-get($colors, white);
+      }
+    }
+  }
+}
+
+.login-steps-close {
+  position: absolute;
+  color: map-get($colors, white);
+  right: -2rem;
+  top: -2rem;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.15);
+    color: map-get($colors, red )
+  }
+}
