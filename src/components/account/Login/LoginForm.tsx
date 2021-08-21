@@ -1,3 +1,5 @@
+import { faChevronLeft, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { loginInitialValues } from "../../../constants/initialValues";
 import { loginValidationSchema } from "../../../constants/validationSchemas";
@@ -26,6 +28,7 @@ const LoginForm = () => {
 
   return (
     <div className="login-form-container">
+      <div className="login-form-heading">Login</div>
       <FormikContainer
         handleSubmit={(values: IFormProperties) => handleSubmit(values)}
         initialValues={loginInitialValues}
@@ -48,6 +51,16 @@ const LoginForm = () => {
             className="p-4 mt-16 flex flex-col gap-2 w-1/2"
             onSubmit={handleSubmit}
           >
+            <FontAwesomeIcon
+              className="login-steps-close"
+              icon={faTimes}
+              onClick={() => userStore.updateLoginState(ELoginState.None)}
+            />
+            <FontAwesomeIcon
+              className="login-steps-back"
+              icon={faChevronLeft}
+              onClick={() => userStore.updateLoginState(ELoginState.Choose)}
+            />
             {/* Break out into components */}
             {serverError && <div className="form-errors">{serverError}</div>}
             {!!errors &&
