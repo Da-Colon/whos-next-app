@@ -28,6 +28,7 @@ export interface IAccountStore {
   cookies: {
     [name: string]: any;
   };
+  isUserLoaded: boolean;
   setCookie: (name: string, value: any, options?: any | undefined) => void;
   removeCookie: (name: string, options?: any | undefined) => void;
   authLogin: (removeCookie: any) => Promise<void>;
@@ -43,6 +44,7 @@ const useAccountManagement = (): IAccountStore => {
   const [cookies, setCookie, removeCookie] = useCookies(["token"]);
   const [user, setUser] = useState<null | {}>(null);
   const [isLoggedIn, setLoggedIn] = useState(false);
+  const [isUserLoaded, setUserLoaded] = useState(false);
   const [loginState, setLoginState] = useState(ELoginState.None);
   const [signupState, setSignupState] = useState(ESignupState.None);
   const [error, setError] = useState<null | string>(null);
@@ -59,9 +61,11 @@ const useAccountManagement = (): IAccountStore => {
   };
 
   const authLogin = useCallback(async (removeCookie: any) => {
+    setUserLoaded(false)
     const result = await request(ServerRoutes.auth, "GET");
     if (result.user?.id) {
       setUser(result.user);
+      setUserLoaded(true)
     } else {
       removeCookie("token", { path: "/" });
     }
@@ -69,6 +73,7 @@ const useAccountManagement = (): IAccountStore => {
 
   const userSignin = async (values: IFormProperties) => {
     try {
+      setUserLoaded(false);
       const userResponse: any = await request(
         ServerRoutes.auth,
         "POST",
@@ -77,6 +82,7 @@ const useAccountManagement = (): IAccountStore => {
       if (userResponse.message === "ok!") {
         setUser(userResponse.user);
         setLoggedIn(true);
+        setUserLoaded(true);
         return userResponse.token;
       }
     } catch (e) {
@@ -86,12 +92,14 @@ const useAccountManagement = (): IAccountStore => {
 
   const userSignup = async (values: IFormProperties) => {
     try {
+      setUserLoaded(false);
       const userResponse: any = await request(
         ServerRoutes.createUser,
         "POST",
         values
       );
       if (userResponse.message === "User has been registered") {
+        setUserLoaded(true);
         return "success";
       }
       return "";
@@ -115,6 +123,7 @@ const useAccountManagement = (): IAccountStore => {
     loginState,
     signupState,
     cookies,
+    isUserLoaded,
     setCookie,
     removeCookie,
     authLogin,

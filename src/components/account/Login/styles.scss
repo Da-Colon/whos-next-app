@@ -2,28 +2,24 @@
 
 .choices-container {
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   button {
-    border-bottom: 4px solid map-get($colors, black );
+    border-bottom: 4px solid map-get($colors, black);
     width: 100%;
     height: 100%;
     background-color: unset;
     padding-top: 1rem;
     padding-bottom: 1rem;
     &:hover {
-      border: 4px solid map-get($colors, white );
+      border: 4px solid map-get($colors, white);
       div.button-with-logo {
         transform: scale(1.15);
       }
     }
     &:disabled {
-      opacity: .25;
+      opacity: 0.25;
       cursor: default;
       border: none;
-      border: 4px solid map-get($colors, black );
+      border: 4px solid map-get($colors, black);
       &:hover {
         div.button-with-logo {
           transform: scale(1);
@@ -56,13 +52,46 @@
 .login-steps-close {
   position: absolute;
   color: map-get($colors, white);
-  right: -2rem;
-  top: -2rem;
-  width: 2rem;
-  height: 2rem;
+  right: -1.8rem;
+  top: -1.8rem;
+  width: 1.5rem !important;
+  height: 1.5rem !important;
   cursor: pointer;
   &:hover {
     transform: scale(1.15);
-    color: map-get($colors, red )
+    color: map-get($colors, red);
   }
+}
+
+.login-form-container {
+  padding: 4rem;
+  form {
+    display: flex;
+    flex-direction: column;
+    input {
+      margin: 0.8rem 0rem;
+      padding: 0.6rem 0rem 0.6rem 0.8rem;
+      width: 100%;
+      border-radius: 4px;
+      &::placeholder {
+        opacity: 60%;
+      }
+    }
+    button {
+      margin-top: 0.8rem;
+      align-self: flex-end;
+      width: 125px;
+      height: 32px;
+      border: 2px solid map-get($colors, black );
+    }
+  }
+}
+
+.form-errors {
+  color: map-get($colors, red);
+  background-color: rgba(0,0,0,0.7);
+  margin-bottom: 0.8rem;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  letter-spacing: 0.1rem;
 }

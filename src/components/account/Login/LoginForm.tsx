@@ -1,13 +1,14 @@
-import { useHistory } from "react-router-dom";
+import { useState } from "react";
 import { loginInitialValues } from "../../../constants/initialValues";
 import { loginValidationSchema } from "../../../constants/validationSchemas";
 import { IUserContext, useUserData } from "../../../context/UserContext";
+import { ELoginState } from "../../../context/UserContext/useAccountManagement";
 import { IFormProperties } from "../../../pages/account/interfaces";
 import FormikContainer from "../../../services/FormikContainer";
 
 const LoginForm = () => {
   const userStore: IUserContext = useUserData();
-  const history = useHistory();
+  const [serverError, setServerError] = useState<string | null>(null);
 
   const setAuthTokenCookie = (token: string) => {
     userStore.setCookie("token", token, { path: "/" });
@@ -15,15 +16,16 @@ const LoginForm = () => {
 
   const handleSubmit = async (values: IFormProperties) => {
     const token = await userStore.userSignin(values);
-    if (token) {
-      setAuthTokenCookie(token);
-      history.push("/");
+    if (!token) {
+      setServerError("Please check your email and password and try again.");
+      return;
     }
+    setAuthTokenCookie(token);
+    userStore.updateLoginState(ELoginState.None);
   };
 
   return (
     <div className="login-form-container">
-      <div>Welcome Back!</div>
       <FormikContainer
         handleSubmit={(values: IFormProperties) => handleSubmit(values)}
         initialValues={loginInitialValues}
@@ -46,6 +48,15 @@ const LoginForm = () => {
             className="p-4 mt-16 flex flex-col gap-2 w-1/2"
             onSubmit={handleSubmit}
           >
+            {/* Break out into components */}
+            {serverError && <div className="form-errors">{serverError}</div>}
+            {!!errors &&
+              touched.password &&
+              Object.values(errors).map((error) => (
+                <div className="form-errors" key={error}>
+                  {serverError || error}
+                </div>
+              ))}
             <input
               className=""
               type="text"
@@ -53,6 +64,7 @@ const LoginForm = () => {
               id="email"
               onChange={handleChange}
               value={values.email}
+              placeholder="example@example.com"
             />
             <input
               className=""
@@ -61,18 +73,15 @@ const LoginForm = () => {
               id="password"
               onChange={handleChange}
               value={values.password}
+              placeholder="**********"
             />
-            {!!errors &&
-              touched.password &&
-              Object.values(errors).map((error) => (
-                <div key={error}>{error}</div>
-              ))}
-            <div className="">
-              <button
-                type="submit"
-                disabled={(!values.email || !values.password) === true}
-              />
-            </div>
+
+            <button
+              type="submit"
+              disabled={(!values.email || !values.password) === true}
+            >
+              Login
+            </button>
           </form>
         )}
       </FormikContainer>
