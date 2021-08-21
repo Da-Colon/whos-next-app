@@ -1,11 +1,11 @@
-import { IListContext, useListData } from "../../../context/ListContext";
+import { IListStore, useListData } from "../../../context/ListContext";
 import Container from "../../layout/Container";
 import Loader from "../../layout/Loader";
 import TextContainer, { ETextContainer } from "../../layout/TextContainer";
 import Lists from "../shared/Lists";
 
 const PublicLists = () => {
-  const listsStore: IListContext = useListData();
+  const listsStore: IListStore = useListData();
   const publicLists = listsStore.publicLists?.filter((list) => listsStore.userLists?.includes(list))
   if (!listsStore.isListsLoaded) {
     return (

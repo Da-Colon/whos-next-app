@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { loginInitialValues } from "../../../constants/initialValues";
 import { loginValidationSchema } from "../../../constants/validationSchemas";
-import { IUserContext, useUserData } from "../../../context/UserContext";
+import { IUserStore, useUserStore } from "../../../context/UserContext";
 import { ELoginState } from "../../../context/UserContext/useAccountManagement";
 import { IFormProperties } from "../../../pages/account/interfaces";
 import FormikContainer from "../../../services/FormikContainer";
 
 const LoginForm = () => {
-  const userStore: IUserContext = useUserData();
+  const userStore: IUserStore = useUserStore();
   const [serverError, setServerError] = useState<string | null>(null);
 
   const setAuthTokenCookie = (token: string) => {

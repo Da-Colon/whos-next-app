@@ -4,13 +4,13 @@ import { loginValidationSchema } from "../../../constants/validationSchemas";
 import FormikContainer from "../../../services/FormikContainer";
 import Container, { EContainer } from "../../../components/layout/Container";
 import LoginForm from "./LoginForm";
-import { useUserData } from "../../../context/UserContext";
+import { useUserStore } from "../../../context/UserContext";
 import { useHistory } from "react-router-dom";
 import TextContainer, { ETextContainer } from "../../../components/layout/TextContainer";
 import { IFormProperties } from "../interfaces";
 
 const LoginPage: FC<{ cookieHandler: any }> = ({ cookieHandler }) => {
-  const { userSignin } = useUserData();
+  const { userSignin } = useUserStore();
   const history = useHistory();
 
   const handleSubmit = async (values: IFormProperties) => {

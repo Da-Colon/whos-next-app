@@ -1,5 +1,5 @@
-import { IListContext, useListData } from "../../../context/ListContext";
-import { IUserContext, useUserData } from "../../../context/UserContext";
+import { IListStore, useListData } from "../../../context/ListContext";
+import { IUserStore, useUserStore } from "../../../context/UserContext";
 import Container, { EContainer } from "../../layout/Container";
 import ListCard from "../../layout/ListCard";
 import Loader from "../../layout/Loader";
@@ -7,8 +7,8 @@ import TextContainer, { ETextContainer } from "../../layout/TextContainer";
 import Lists from "../shared/Lists";
 
 const UserLists = () => {
-  const listsStore: IListContext = useListData();
-  const userStore: IUserContext = useUserData();
+  const listsStore: IListStore = useListData();
+  const userStore: IUserStore = useUserStore();
   if (!listsStore.isListsLoaded) {
     return (
       <Container>

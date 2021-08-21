@@ -1,10 +1,10 @@
-import { IUserContext, useUserData } from "../../../context/UserContext"
+import { IUserStore, useUserStore } from "../../../context/UserContext"
 import { ELoginState } from "../../../context/UserContext/useAccountManagement";
 import LoginChoices from "./LoginChoices";
 import LoginForm from "./LoginForm";
 import './styles.scss'
 const LoginSteps = () => {
-  const userStore: IUserContext = useUserData();
+  const userStore: IUserStore = useUserStore();
   switch(userStore.loginState) {
     case ELoginState.Choose: 
       return <LoginChoices />

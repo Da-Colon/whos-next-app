@@ -8,7 +8,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC } from "react";
 import { INewList } from "../../../context/ListContext/useLIsts";
-import { IUserContext, useUserData } from "../../../context/UserContext";
+import { IUserStore, useUserStore } from "../../../context/UserContext";
 import ButtonWithIcon from "../Button/ButtonWithIcon";
 import Container, { EContainer } from "../Container";
 
@@ -22,7 +22,7 @@ const ActionButtonContainer: FC<IActionButtonContainer> = ({
   isPublic,
   list,
 }) => {
-  const userStore: IUserContext = useUserData();
+  const userStore: IUserStore = useUserStore();
 
   // TODO add tooltips to each icon
   // TODO load user pref to see if list is liked?

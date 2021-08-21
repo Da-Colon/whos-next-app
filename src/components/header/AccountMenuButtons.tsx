@@ -1,7 +1,7 @@
 import { Routes } from "../../router/routes";
 import { FC } from "react";
 import { NavLink, useHistory } from "react-router-dom";
-import { IUserContext, useUserData } from "../../context/UserContext";
+import { IUserStore, useUserStore } from "../../context/UserContext";
 import { ELoginState } from "../../context/UserContext/useAccountManagement";
 
 const AccountMenuButtons: FC<{
@@ -10,7 +10,7 @@ const AccountMenuButtons: FC<{
 }> = ({ isLoggedIn, cookieHandler }) => {
 
   const history = useHistory();
-  const userStore: IUserContext = useUserData();
+  const userStore: IUserStore = useUserStore();
 
   const logout = () => {
     userStore.userLogout(cookieHandler);

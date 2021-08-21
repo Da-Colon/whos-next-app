@@ -4,13 +4,13 @@ import Header from "./components/header";
 import Body from "./components/Body";
 import Footer from "./components/Footer";
 import { useEffect } from "react";
-import { useUserData } from "./context/UserContext";
+import { useUserStore } from "./context/UserContext";
 import Modal from './components/UI/Modal';
 import { ELoginState, ESignupState } from './context/UserContext/useAccountManagement';
 import Login from './components/account/Login';
 
 const App = () => {
-  const { user, authLogin, getUserPreferences, loginState, signupState, cookies, setCookie, removeCookie }  = useUserData();
+  const { user, authLogin, getUserPreferences, loginState, signupState, cookies, setCookie, removeCookie }  = useUserStore();
   const setAuthTokenCookie = (token: string) =>
     setCookie("token", token, { path: "/" });
   const removeAuthTokenCookie = () => removeCookie("token", { path: "/" });

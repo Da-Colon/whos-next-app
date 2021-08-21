@@ -21,7 +21,7 @@ import { listNewValidationSchema } from "../../../constants/validationSchemas";
 import { listNewInitialValues } from "../../../constants/initialValues";
 import { TVoidFunction } from "../../../constants/types";
 import { IListProperties } from "../../../pages/account/interfaces";
-import { IListContext, useListData } from "../../../context/ListContext";
+import { IListStore, useListData } from "../../../context/ListContext";
 
 const Hero: FC<{ children: JSX.Element[] }> = ({ children }) => (
   <div className="w-full px-8 box-border mb-8">{children}</div>
@@ -29,7 +29,7 @@ const Hero: FC<{ children: JSX.Element[] }> = ({ children }) => (
 
 const ListsNew = () => {
   const [listType, setType] = useState(EListsTypes.none);
-  const listServices: IListContext = useListData();
+  const listServices: IListStore = useListData();
   const history = useHistory()
   return (
     <Hero>

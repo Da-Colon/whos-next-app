@@ -1,12 +1,12 @@
 import { Context, createContext, useContext } from "react";
 import { IAccountStore, useAccountManagement } from "./useAccountManagement";
 import useUserPreferences, { IUserPreferencesStore } from "./useUserPreferences";
-let context: Context<IUserContext>;
+let context: Context<IUserStore>;
 
-export interface IUserContext extends IAccountStore, IUserPreferencesStore {}
+export interface IUserStore extends IAccountStore, IUserPreferencesStore {}
 
 const createDataRoot = () => {
-  context = createContext({} as IUserContext);
+  context = createContext({} as IUserStore);
   context.displayName = "Data Provider";
   const Provider = context.Provider;
 
@@ -25,8 +25,8 @@ const createDataRoot = () => {
 
 const UserProvider = createDataRoot();
 
-const useUserData = () => {
+const useUserStore = () => {
   return useContext(context);
 };
 
-export { UserProvider, useUserData };
+export { UserProvider, useUserStore };

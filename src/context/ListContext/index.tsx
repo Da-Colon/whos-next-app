@@ -3,7 +3,7 @@ import useLists, { IUseLists } from "./useLIsts";
 
 let context: Context<any>;
 
-export interface IListContext extends IUseLists {}
+export interface IListStore extends IUseLists {}
 
 const createDataRoot = () => {
   context = createContext(undefined);
@@ -12,7 +12,7 @@ const createDataRoot = () => {
 
   return ({ children }: { children: JSX.Element }) => {
     const listStore: IUseLists = useLists();
-    const dataContext: IListContext = { ...listStore };
+    const dataContext: IListStore = { ...listStore };
 
     return <Provider value={dataContext}>{children}</Provider>;
   };
