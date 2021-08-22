@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { INewList } from "../../../context/ListContext/useLIsts";
+import { INewList } from "../../../context/ListContext/interfaces";
 import Container from "../Container";
 import TextContainer from "../TextContainer";
 

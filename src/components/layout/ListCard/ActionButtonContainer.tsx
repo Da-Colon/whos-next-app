@@ -7,7 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC } from "react";
-import { INewList } from "../../../context/ListContext/useLIsts";
+import { INewList } from "../../../context/ListContext/interfaces";
 import { IUserStore, useUserStore } from "../../../context/UserContext";
 import ButtonWithIcon from "../Button/ButtonWithIcon";
 import Container, { EContainer } from "../Container";

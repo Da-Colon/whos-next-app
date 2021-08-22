@@ -21,7 +21,7 @@ import { listNewValidationSchema } from "../../../constants/validationSchemas";
 import { listNewInitialValues } from "../../../constants/initialValues";
 import { TVoidFunction } from "../../../constants/types";
 import { IListStore, useListData } from "../../../context/ListContext";
-import { IListProperties } from "../../../context/ListContext/useLIsts";
+import { IListProperties } from "../../../context/ListContext/interfaces";
 
 const Hero: FC<{ children: JSX.Element[] }> = ({ children }) => (
   <div className="w-full px-8 box-border mb-8">{children}</div>

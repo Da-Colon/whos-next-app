@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { INewList } from "../../../context/ListContext/useLIsts";
+import { INewList } from "../../../context/ListContext/interfaces";
 import { IUserStore, useUserStore } from "../../../context/UserContext";
 import Container, { EContainer } from "../../layout/Container";
 import ListCard from "../../layout/ListCard";

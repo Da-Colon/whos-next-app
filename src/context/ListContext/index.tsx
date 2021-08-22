@@ -1,5 +1,6 @@
 import { Context, createContext, useContext } from "react";
-import useLists, { IUseLists } from "./useLIsts";
+import { IUseLists } from "./interfaces";
+import useLists from "./useLIsts";
 
 let context: Context<any>;
 
