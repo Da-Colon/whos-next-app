@@ -1,5 +1,6 @@
 import { IUserStore, useUserStore } from "../../../context/UserContext";
 import { EAccountState } from "../../../context/UserContext/useAccountManagement";
+import './styles.scss'
 
 interface IButtonWithChoices {
   text: string;

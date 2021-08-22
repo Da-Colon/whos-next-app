@@ -1,5 +1,4 @@
 import { useCallback, useState } from "react";
-import { IFormProperties } from "../../pages/account/interfaces";
 import { ServerRoutes } from "../../config/server";
 import { TVoidFunction } from "../../constants/types";
 import request from "../../request";
@@ -12,8 +11,20 @@ export enum EAccountState {
   None,
 }
 
+export interface IFormProperties {
+  email: string;
+  password: string;
+}
+export interface IUserObject {
+  user: {
+    email: string;
+    id: string;
+  };
+  token: string;
+}
+
 export interface IAccountStore {
-  user: null | {};
+  user: null | IUserObject;
   isLoggedIn: boolean;
   error: null | string;
   loginState: EAccountState;
@@ -26,7 +37,7 @@ export interface IAccountStore {
   removeCookie: (name: string, options?: any | undefined) => void;
   authLogin: (removeCookie: any) => Promise<void>;
   userSignin: (values: IFormProperties) => Promise<string>;
-  userSignup: (values: IFormProperties) => Promise<"success" | "" | "fail">;
+  userSignup: (values: IFormProperties) => Promise<IUserObject>;
   userLogout: (cookieHandler: TVoidFunction) => Promise<void>;
   clearError: () => void;
   updateLoginState: (state: EAccountState) => void;
@@ -35,7 +46,7 @@ export interface IAccountStore {
 
 const useAccountManagement = (): IAccountStore => {
   const [cookies, setCookie, removeCookie] = useCookies(["token"]);
-  const [user, setUser] = useState<null | {}>(null);
+  const [user, setUser] = useState<null | IUserObject>(null);
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [isUserLoaded, setUserLoaded] = useState(false);
   const [loginState, setLoginState] = useState(EAccountState.None);
@@ -53,16 +64,16 @@ const useAccountManagement = (): IAccountStore => {
     setLoginState(state);
   };
 
-  const authLogin = useCallback(async (removeCookie: any) => {
-    setUserLoaded(false)
+  const authLogin = useCallback(async () => {
+    setUserLoaded(false);
     const result = await request(ServerRoutes.auth, "GET");
     if (result.user?.id) {
       setUser(result.user);
-      setUserLoaded(true)
+      setUserLoaded(true);
     } else {
       removeCookie("token", { path: "/" });
     }
-  }, []);
+  }, [removeCookie]);
 
   const userSignin = async (values: IFormProperties) => {
     try {
@@ -95,7 +106,7 @@ const useAccountManagement = (): IAccountStore => {
         setUserLoaded(true);
         return "success";
       }
-      return "";
+      return userResponse;
     } catch (e) {
       setError("There was an error with the request");
       return "fail";

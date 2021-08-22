@@ -8,11 +8,10 @@ import { useUserStore } from "./context/UserContext";
 import Modal from './components/UI/Modal';
 import { EAccountState } from './context/UserContext/useAccountManagement';
 import Login from './components/account/Login';
+import SignupSteps from './components/account/Signup';
 
 const App = () => {
-  const { user, authLogin, getUserPreferences, loginState, signupState, cookies, setCookie, removeCookie }  = useUserStore();
-  const setAuthTokenCookie = (token: string) =>
-    setCookie("token", token, { path: "/" });
+  const { user, authLogin, getUserPreferences, loginState, signupState, cookies, removeCookie }  = useUserStore();
   const removeAuthTokenCookie = () => removeCookie("token", { path: "/" });
 
   useEffect(() => {
@@ -31,14 +30,14 @@ const App = () => {
         <Login />
       </Modal>
       <Modal isVisible={signupState !== EAccountState.None}>
-        <div></div>
+        <SignupSteps />
       </Modal>
       <div className="app-wrapper">
         <Header
           isloggedIn={!!cookies.token}
           cookieHandler={removeAuthTokenCookie}
         />
-        <Body isLoggedIn={!!cookies.token} cookieHandler={setAuthTokenCookie} />
+        <Body isLoggedIn={!!cookies.token} />
         <Footer />
       </div>
     </Router>

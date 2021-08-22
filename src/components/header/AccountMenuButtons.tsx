@@ -23,6 +23,7 @@ const AccountMenuButtons: FC<{
   if (isLoggedIn) {
     return (
       <div className="account-menu-button">
+        {/* <div onClick={logout}>{userStore.user?.email}</div> */}
         <div onClick={logout}>Logout</div>
       </div>
     );

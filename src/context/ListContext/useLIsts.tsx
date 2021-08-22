@@ -1,5 +1,4 @@
 import { useCallback, useState } from "react";
-import { IListProperties } from "../../pages/account/interfaces";
 import { ServerRoutes } from "../../config/server";
 import request from "../../request";
 import { Routes } from "../../router/routes";
@@ -27,6 +26,13 @@ export interface IUseLists {
   loadLists: () => void;
   updateList: (id: string) => Promise<void>;
   deleteList: (id: string) => Promise<void>;
+}
+
+export interface IListProperties {
+  listLength: number,
+  name: string,
+  private: boolean,
+  list: any[],
 }
 
 const useLists = (): IUseLists => {

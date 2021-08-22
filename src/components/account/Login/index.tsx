@@ -3,6 +3,7 @@ import { EAccountState } from "../../../context/UserContext/useAccountManagement
 import LoginChoices from "../shared/AccountChoices";
 import LoginForm from "./LoginForm";
 import "./styles.scss";
+
 const LoginSteps = () => {
   const userStore: IUserStore = useUserStore();
 

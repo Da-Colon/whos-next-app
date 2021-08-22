@@ -1,69 +1,16 @@
 @import "../../../styles/vars.scss";
 
-.choices-container {
-  border-radius: 8px;
-  position: relative;
-  .button-with-logo-container {
-    background-color: map-get($colors, bluegray);
-    margin: 1rem 0;
-    button.button-with-logo-primary {
-      background-color: unset;
-      border-bottom: 4px solid map-get($colors, black);
-      height: 100%;
-      padding-bottom: 1rem;
-      padding-top: 1rem;
-      position: relative;
-      width: 100%;
-      &:hover {
-        border: 3px solid map-get($colors, white);
-      }
-      &:disabled {
-        cursor: default;
-        opacity: 0.25;
-      }
-      div.button-with-logo {
-        align-items: center;
-        background-image: url("../../assets/images/logo-black.svg");
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: contain;
-        display: flex;
-        height: 125px;
-        justify-content: center;
-        width: 200px;
-        .button-with-logo-text {
-          color: map-get($colors, white);
-          font-size: map-get($font-size, xlarge);
-          font-weight: bold;
-          left: 7rem;
-          position: absolute;
-          white-space: nowrap;
-        }
-      }
-    }
-    button.button-with-logo-secondary {
-      background-color: unset;
-      border-bottom: 3px solid map-get($colors, black);
-      letter-spacing: 0.1rem;
-      padding-bottom: 1rem;
-      padding-top: 1rem;
-      width: 100%;
-      &:hover {
-        color: map-get($colors, white);
-        transform: none;
-      }
-      &:disabled {
-        color: map-get($colors, black);
-        cursor: default;
-      }
-    }
-  }
-  button.choices-close-button {
-    display: block;
-    font-size: map-get($font-size, medium);
-    font-weight: 500;
-    margin: 0 auto;
-    padding: 0.5rem 4rem;
+.login-steps-back {
+  color: map-get($colors, white);
+  cursor: pointer;
+  height: 1rem !important;
+  left: 1rem;
+  position: absolute;
+  top: 1rem;
+  width: 1rem !important;
+  &:hover {
+    color: map-get($colors, red);
+    transform: scale(1.15);
   }
 }
 
@@ -73,20 +20,6 @@
   height: 1rem !important;
   position: absolute;
   right: 1rem;
-  top: 1rem;
-  width: 1rem !important;
-  &:hover {
-    color: map-get($colors, red);
-    transform: scale(1.15);
-  }
-}
-
-.login-steps-back {
-  color: map-get($colors, white);
-  cursor: pointer;
-  height: 1rem !important;
-  left: 1rem;
-  position: absolute;
   top: 1rem;
   width: 1rem !important;
   &:hover {

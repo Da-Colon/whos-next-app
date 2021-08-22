@@ -1,17 +1,33 @@
 import { IUserStore, useUserStore } from "../../../context/UserContext"
 import { EAccountState } from "../../../context/UserContext/useAccountManagement";
+import SignupForm from "./SignupForm";
+import LoginChoices from "../shared/AccountChoices";
 
-const LoginSteps = () => {
+const SignupSteps = () => {
   const userStore: IUserStore = useUserStore();
+
+  const redirectLogin = (option: EAccountState) => {
+    userStore.updateLoginState(option);
+    userStore.updateSignupState(EAccountState.None);
+  };
   switch(userStore.signupState) {
     case EAccountState.Choose: 
       return (
-        <div></div>
+        <LoginChoices
+          primaryPath="Sign up"
+          secondaryPath="Login"
+          primaryEmailAction={() =>
+            userStore.updateSignupState(EAccountState.AccountForm)
+          }
+          primaryWeb3Action={() =>
+            userStore.updateSignupState(EAccountState.Web3)
+          }
+          secondaryEmailAction={() => redirectLogin(EAccountState.AccountForm)}
+          secondaryWeb3Action={() => redirectLogin(EAccountState.Web3)}
+        />
       )
     case EAccountState.AccountForm: 
-      return (
-        <div></div>
-      )
+      return <SignupForm />
     case EAccountState.Web3: 
       return (
         <div></div>
@@ -21,4 +37,4 @@ const LoginSteps = () => {
   }
 }
 
-export default LoginSteps
+export default SignupSteps

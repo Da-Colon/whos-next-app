@@ -1,13 +1,14 @@
+import { useState } from "react";
 import { faChevronLeft, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
-import { loginInitialValues } from "../../../constants/initialValues";
-import { loginValidationSchema } from "../../../constants/validationSchemas";
-import { IUserStore, useUserStore } from "../../../context/UserContext";
+import { IUserStore, useUserStore } from '../../../context/UserContext'
+import FormikContainer from '../../../services/FormikContainer'
 import { EAccountState, IFormProperties } from "../../../context/UserContext/useAccountManagement";
-import FormikContainer from "../../../services/FormikContainer";
+import { signupInitialValues } from "../../../constants/initialValues";
+import { signupValidationSchema } from "../../../constants/validationSchemas";
+import './styles.scss'
 
-const LoginForm = () => {
+const SignupForm = () => {
   const userStore: IUserStore = useUserStore();
   const [serverError, setServerError] = useState<string | null>(null);
 
@@ -16,22 +17,22 @@ const LoginForm = () => {
   };
 
   const handleSubmit = async (values: IFormProperties) => {
-    const token = await userStore.userSignin(values);
-    if (!token) {
+    const user = await userStore.userSignup(values);
+    if (!user.token) {
       setServerError("Please check your email and password and try again.");
       return;
     }
-    setAuthTokenCookie(token);
-    userStore.updateLoginState(EAccountState.None);
+    setAuthTokenCookie(user.token);
+    userStore.updateSignupState(EAccountState.None);
   };
 
   return (
-    <div className="login-form-container">
-      <div className="login-form-heading">Login</div>
+    <div className="signup-form-container">
+      <div className="signup-form-heading">Sign up</div>
       <FormikContainer
         handleSubmit={(values: IFormProperties) => handleSubmit(values)}
-        initialValues={loginInitialValues}
-        validationSchema={loginValidationSchema}
+        initialValues={signupInitialValues}
+        validationSchema={signupValidationSchema}
       >
         {({
           values,
@@ -51,14 +52,14 @@ const LoginForm = () => {
             onSubmit={handleSubmit}
           >
             <FontAwesomeIcon
-              className="login-steps-close"
+              className="signup-steps-close"
               icon={faTimes}
-              onClick={() => userStore.updateLoginState(EAccountState.None)}
+              onClick={() => userStore.updateSignupState(EAccountState.None)}
             />
             <FontAwesomeIcon
-              className="login-steps-back"
+              className="signup-steps-back"
               icon={faChevronLeft}
-              onClick={() => userStore.updateLoginState(EAccountState.Choose)}
+              onClick={() => userStore.updateSignupState(EAccountState.Choose)}
             />
             {/* Break out into components */}
             {serverError && <div className="form-errors">{serverError}</div>}
@@ -92,7 +93,7 @@ const LoginForm = () => {
               type="submit"
               disabled={(!values.email || !values.password) === true}
             >
-              Login
+              Signup
             </button>
           </form>
         )}
@@ -101,4 +102,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default SignupForm;
