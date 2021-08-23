@@ -1,11 +1,9 @@
 import { Route } from 'react-router-dom';
-import { IListStore, useListData } from '../../context/ListContext';
 import { Routes } from '../../router/routes';
 import Dashboard from './Dashboard';
 import './styles.scss'
 
 const ListMain = () => {
-  const listStore: IListStore = useListData()
   // TODO sort by date created
   // TODO recent two with see all?
   // ! Future update

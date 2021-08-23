@@ -1,6 +1,6 @@
 import { IListDetails } from "../../../context/ListContext/interfaces";
 
-const ListsTableView = ({userLists}: {userLists: IListDetails[]}) => {
+const ListsTableView = ({lists}: {lists: IListDetails[]}) => {
   return (
     <div></div>
   )
