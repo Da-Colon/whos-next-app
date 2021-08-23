@@ -17,10 +17,12 @@ export interface IUseLists {
   userLists: INewList[] | null;
   publicLists: INewList[] | null;
   isListsLoaded: boolean;
+  listViewState: EListViewStates;
   saveList: (properties: IListProperties, history: any) => Promise<void>;
   loadLists: () => void;
   updateList: (id: string) => Promise<void>;
   deleteList: (id: string) => Promise<void>;
+  updateListViewState: (viewState: EListViewStates) => void;
 }
 
 export interface IListProperties {
@@ -28,4 +30,10 @@ export interface IListProperties {
   name: string,
   private: boolean,
   list: any[],
+}
+
+export enum EListViewStates {
+  Table,
+  Card,
+  // Web 3 (Full data + NFT?)
 }

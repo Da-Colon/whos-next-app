@@ -2,13 +2,14 @@ import { useCallback, useState } from "react";
 import { ServerRoutes } from "../../config/server";
 import request from "../../request";
 import { Routes } from "../../router/routes";
-import { INewList, IUseLists } from "./interfaces";
+import { EListViewStates, INewList, IUseLists } from "./interfaces";
+
 
 const useLists = (): IUseLists => {
   const [userLists, setUserLists] = useState<INewList[] | null>(null);
   const [publicLists, setPublicLists] = useState<INewList[] | null>(null);
   const [isListsLoaded, setLoaded] = useState(false);
-
+  const [listViewState, setListViewState] = useState(EListViewStates.Card)
 
   const loadLists = useCallback(async () => {
     await loadUserLists();
@@ -70,14 +71,22 @@ const useLists = (): IUseLists => {
     console.log(response);
   };
 
+  // update UI view
+
+  const updateListViewState = (viewState: EListViewStates) => {
+    setListViewState(viewState)
+  }
+
   return {
     userLists,
     publicLists,
     isListsLoaded,
+    listViewState,
     saveList,
     loadLists,
     updateList,
     deleteList,
+    updateListViewState
   };
 };
 
