@@ -25,10 +25,9 @@ const ListActions = () => {
   );
 };
 
-const List = ({ name, index }: { name: string; index: number }) => {
+const List = ({ name }: { name: string }) => {
   return (
     <div className="list-container">
-      {/* <div>{index}</div> */}
       <div>{name}</div>
     </div>
   );
@@ -43,7 +42,6 @@ const ListCard = ({ list }: { list: IListDetails }) => {
             <List
               key={`${listItem.name}${index}`}
               name={listItem.name}
-              index={index + 1}
             />
           ))}
         </div>
