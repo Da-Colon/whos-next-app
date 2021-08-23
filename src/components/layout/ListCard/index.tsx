@@ -4,10 +4,10 @@ import Container, { EContainer } from "../Container";
 import classnames from "classnames";
 import ActionButtonContainer from "./ActionButtonContainer";
 import List from "./List";
-import { INewList } from "../../../context/ListContext/interfaces";
+import { IListDetails } from "../../../context/ListContext/interfaces";
 
 interface IListCard {
-  list?: INewList;
+  list?: IListDetails;
   isPublic?: boolean;
   isSelected?: boolean;
 }

@@ -1,19 +1,27 @@
 @import "../../../styles/_vars.scss";
 
 .dashboard-header-container {
-  align-items: center;
+  align-items: flex-end;
   color: map-get($colors, white);
   display: flex;
-  gap: 3rem;
+  gap: 1rem;
   justify-content: flex-end;
   padding: 0.4rem 2rem;
+  .dashboard-header-container-lists-new {
+    background-color: map-get($colors, blackfaded );
+    border: 2px solid map-get($colors, black);
+    border-radius: 4px;
+    display: flex;
+    gap: 0.4rem;
+    padding: 0.25rem 0.5rem;
+    margin-right: 1rem;
+  }
   .dashboard-header-icon-wrapper {
     text-align: center;
     p {
       font-size: map-get($font-size, xsmall );
       letter-spacing: 1px;
-      padding: 0.5rem;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.8rem;
     }
     .dashboard-header-icon-container {
       align-items: center;

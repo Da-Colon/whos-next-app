@@ -1,10 +1,10 @@
 import { FC } from "react";
-import { INewList } from "../../../context/ListContext/interfaces";
+import { IListDetails } from "../../../context/ListContext/interfaces";
 import Container from "../Container";
 import TextContainer from "../TextContainer";
 
 interface IListCard {
-  list?: INewList;
+  list?: IListDetails;
   isPublic?: boolean;
   isSelected?: boolean;
 }

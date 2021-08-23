@@ -7,13 +7,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC } from "react";
-import { INewList } from "../../../context/ListContext/interfaces";
+import { IListDetails } from "../../../context/ListContext/interfaces";
 import { IUserStore, useUserStore } from "../../../context/UserContext";
 import ButtonWithIcon from "../Button/ButtonWithIcon";
 import Container, { EContainer } from "../Container";
 
 interface IActionButtonContainer {
-  list?: INewList;
+  list?: IListDetails;
   isPublic?: boolean;
   isSelected?: boolean;
 }

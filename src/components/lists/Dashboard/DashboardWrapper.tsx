@@ -1,5 +1,6 @@
 import {
   faListAlt,
+  faPlus,
   faTable,
   faUnlock,
   faUserLock,
@@ -10,6 +11,10 @@ import { ReactNode } from "react";
 const DashboardWrapper = ({ children }: { children?: ReactNode }) => {
   return (
     <div className="dashboard-header-container">
+      <div className="dashboard-header-container-lists-new">
+        <div className="lists-new">New</div>
+        <FontAwesomeIcon className="dashboard-header-icon" icon={faPlus} />
+      </div>
       <div className="dashboard-header-icon-wrapper">
         <p>Filters</p>
         <div className="dashboard-header-icon-container">
