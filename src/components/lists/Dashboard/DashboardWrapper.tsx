@@ -9,7 +9,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ReactNode } from "react";
 import { NavLink } from "react-router-dom";
 import { IListStore, useListData } from "../../../context/ListContext";
-import { EListFilters } from "../../../context/ListContext/interfaces";
+import {
+  EListFilters,
+  EListViewStates,
+} from "../../../context/ListContext/interfaces";
 import { ClientRoutes } from "../../../router/routes";
 
 const DashboardWrapper = ({ children }: { children?: ReactNode }) => {
@@ -42,10 +45,19 @@ const DashboardWrapper = ({ children }: { children?: ReactNode }) => {
         <div className="dashboard-header-icon-wrapper">
           <p>Views</p>
           <div className="dashboard-header-icon-container">
-            <FontAwesomeIcon className="dashboard-header-icon" icon={faTable} />
+            <FontAwesomeIcon
+              className="dashboard-header-icon"
+              icon={faTable}
+              onClick={() =>
+                listsStore.updateListViewState(EListViewStates.Table)
+              }
+            />
             <FontAwesomeIcon
               className="dashboard-header-icon"
               icon={faListAlt}
+              onClick={() =>
+                listsStore.updateListViewState(EListViewStates.Card)
+              }
             />
           </div>
         </div>

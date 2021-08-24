@@ -5,6 +5,7 @@ export interface Ilist {
 export interface IListDetails {
   name: string;
   list: Ilist[];
+  likes: number;
   private: boolean;
   listLength?: number;
   id?: string;
@@ -32,6 +33,7 @@ export interface IListProperties {
   name: string,
   private: boolean,
   list: any[],
+  likes: number,
 }
 
 export enum EListViewStates {

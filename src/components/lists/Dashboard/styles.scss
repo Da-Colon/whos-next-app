@@ -104,3 +104,61 @@
     } 
   }
 }
+
+.lists-table-view {
+  margin: 3rem auto;
+  padding: 1rem;
+  border-radius: 4px;
+  border-style: groove;
+  border-width: 2px;
+  border-color: map-get($colors, darkbluegray );
+  background-color: map-get($colors, darkbluegray );
+  color: map-get($colors, white );
+  max-width: 1220;
+  .lists-table-none {
+    margin: 2rem auto;
+    width: 100%;
+    text-align: center;
+  }
+  .lists-table-header {
+    border-bottom: 2px groove map-get($colors, offwhite );
+    font-size: map-get($font-size, small);
+  }
+  .lists-table-row {
+    display: flex;
+    padding: 0 1rem;
+    & > div {
+      width: 70%;
+      margin: 1rem 0rem;
+    }
+    & > div:last-child {
+      width: 100%;
+      max-width: 350px;
+    }
+  }
+  .lists-table-body {
+    max-height: 500px;
+    margin-top: 1rem;
+    & > div:nth-child(even) {
+      background-color: map-get($colors, darkgray );
+    }
+    &::-webkit-scrollbar {
+      background: none;
+      width: 6px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 255, 255, 0.4);
+      border-radius: 4px;
+    }
+    .lists-table-actions {
+      display: flex;
+      justify-content: space-between;
+      min-width: 200px;
+      & > svg {
+        cursor: pointer;
+      }
+    }
+  }
+  
+}
