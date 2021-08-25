@@ -31,12 +31,12 @@ const DashboardWrapper = ({ children }: { children?: ReactNode }) => {
           <p>Filters</p>
           <div className="dashboard-header-icon-container">
             <FontAwesomeIcon
-              className="dashboard-header-icon"
+              className="dashboard-header-icon icon-effects__lock"
               icon={faUserLock}
               onClick={() => listsStore.updateFilter(EListFilters.Private)}
             />
             <FontAwesomeIcon
-              className="dashboard-header-icon"
+              className="dashboard-header-icon icon-effects__unlock"
               icon={faUnlock}
               onClick={() => listsStore.updateFilter(EListFilters.Public)}
             />
@@ -46,14 +46,14 @@ const DashboardWrapper = ({ children }: { children?: ReactNode }) => {
           <p>Views</p>
           <div className="dashboard-header-icon-container">
             <FontAwesomeIcon
-              className="dashboard-header-icon"
+              className="dashboard-header-icon icon-effects__table"
               icon={faTable}
               onClick={() =>
                 listsStore.updateListViewState(EListViewStates.Table)
               }
             />
             <FontAwesomeIcon
-              className="dashboard-header-icon"
+              className="dashboard-header-icon icon-effects__list"
               icon={faListAlt}
               onClick={() =>
                 listsStore.updateListViewState(EListViewStates.Card)

@@ -30,6 +30,8 @@
   --black: #25282b;
   --black-faded: #16161722;
   --red: #ff2f1a;
+  --light-pink: #f974f0f0;
+  --light-blue: #65e8fcd7;
   --sea-green: #16A7A2;
   --dark-green: #193d49;
   --gold: #fada22;
@@ -46,6 +48,8 @@ $colors: (
   black: var(--black),
   blackfaded: var(--black-faded),
   red: var(--red),
+  lightpink: var(--light-pink),
+  lightblue: var(--light-blue),
   lightgreen: var(--sea-green),
   darkgreen: var(--dark-green),
   gold: var(--gold),

@@ -1,0 +1,39 @@
+@import "../vars";
+
+.icon-effects {
+  &__point,
+  &__list,
+  &__table {
+    :hover {
+      color: map-get($colors, offwhite);
+      
+    }
+  }
+  &__heart {
+    &:hover {
+      color: map-get($colors, lightpink);
+    }
+  }
+  &__lock,
+  &__unlock {
+    &:hover {
+      color: map-get($colors, lightergray);
+    }
+  }
+  &__pencil {
+    :hover {
+      color: map-get($colors, gold);
+    }
+  }
+  &__trash {
+    :hover {
+      color: map-get($colors, red);
+    }
+  }
+}
+
+[class*="icon-effects"] {
+  &:active {
+    transform: scale(0.75);
+  }
+}

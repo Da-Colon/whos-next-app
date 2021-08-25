@@ -14,13 +14,24 @@ const ListActions = () => {
     <div className="lists-card-view-actions">
       <FontAwesomeIcon
         icon={faHandPointUp}
-        className="lists-card-view-action"
+        className="lists-card-view-action icon-effects__point"
       />
-      <FontAwesomeIcon icon={faHeart} className="lists-card-view-action" />
-      <FontAwesomeIcon icon={faRuler} className="lists-card-view-action" />
-      <FontAwesomeIcon icon={faUserLock} className="lists-card-view-action" />
-      <FontAwesomeIcon icon={faPencilAlt} className="lists-card-view-action" />
-      <FontAwesomeIcon icon={faTrash} className="lists-card-view-action" />
+      <FontAwesomeIcon
+        icon={faHeart}
+        className="lists-card-view-action icon-effects__heart"
+      />
+      <FontAwesomeIcon
+        icon={faUserLock}
+        className="lists-card-view-action icon-effects__lock"
+      />
+      <FontAwesomeIcon
+        icon={faPencilAlt}
+        className="lists-card-view-action icon-effects__pencil"
+      />
+      <FontAwesomeIcon
+        icon={faTrash}
+        className="lists-card-view-action icon-effects__trash"
+      />
     </div>
   );
 };
@@ -39,10 +50,7 @@ const ListCard = ({ list }: { list: IListDetails }) => {
       <div className="lists-card-body">
         <div className="lists-card-container">
           {list.list.map((listItem, index) => (
-            <List
-              key={`${listItem.name}${index}`}
-              name={listItem.name}
-            />
+            <List key={`${listItem.name}${index}`} name={listItem.name} />
           ))}
         </div>
         <ListActions />
