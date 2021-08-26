@@ -79,7 +79,7 @@ const CreateList: FC<ICreateListContainerProps> = ({
         />
       </Container>
       <ListNameContainer
-        length={values.listLength}
+        length={values.listLength || 0}
         setFieldValue={setFieldValue}
         values={values}
       />

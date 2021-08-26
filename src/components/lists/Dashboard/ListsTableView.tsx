@@ -1,30 +1,23 @@
-import { faHeart, faPencilAlt, faRuler, faTrash, faUserLock } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IListDetails } from "../../../context/ListContext/interfaces";
+import ListActionButtons from './ListActionButtons'
 
 const ListsTableRow = ({ list }: { list: IListDetails }) => {
   return (
     <div className="lists-table-row">
       <div>{list.name}</div>
-      <div>{list.private ? 'Yes' : 'No'}</div>
+      <div>{list.private ? "Yes" : "No"}</div>
       <div>{list.likes}</div>
       <div>{list.list.length}</div>
       <div className="lists-table-actions">
-        <FontAwesomeIcon icon={faHeart} className="lists-card-view-action" />
-        <FontAwesomeIcon icon={faRuler} className="lists-card-view-action" />
-        <FontAwesomeIcon icon={faUserLock} className="lists-card-view-action" />
-        <FontAwesomeIcon icon={faPencilAlt} className="lists-card-view-action" />
-        <FontAwesomeIcon icon={faTrash} className="lists-card-view-action" />
+        <ListActionButtons list={list} />
       </div>
     </div>
   );
 };
 
 const ListsTableBody = ({ lists }: { lists: IListDetails[] }) => {
-  if(!lists.length) {
-    return (
-      <div className="lists-table-none">No lists to display...</div>
-    )
+  if (!lists.length) {
+    return <div className="lists-table-none">No lists to display...</div>;
   }
   return (
     <div className="lists-table-body">

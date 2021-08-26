@@ -8,7 +8,7 @@ export interface IListDetails {
   likes: number;
   private: boolean;
   listLength?: number;
-  id?: string;
+  id: string;
   createdAt?: string;
   updatedAt?: string;
   userId?: string;
@@ -22,18 +22,34 @@ export interface IUseLists {
   listFilter: EListFilters;
   saveList: (properties: IListProperties, history: any) => Promise<void>;
   loadLists: () => void;
-  updateList: (id: string) => Promise<void>;
+  updateListProperties: (
+    id: string,
+    properties: {
+      name?: string;
+      private?: boolean;
+      list?: Ilist;
+      likes?: number;
+    }
+  ) => Promise<void>;
   deleteList: (id: string) => Promise<void>;
   updateListViewState: (viewState: EListViewStates) => void;
   updateFilter: (filter: EListFilters) => void;
 }
 
 export interface IListProperties {
-  listLength: number,
-  name: string,
-  private: boolean,
-  list: any[],
-  likes: number,
+  id: string;
+  name: string;
+  private: boolean;
+  list: any[];
+  likes: number;
+}
+
+export interface ISanitizeListProperties {
+  name?: string;
+  private?: boolean;
+  list?: Ilist;
+  likes?: number;
+  id?: string;
 }
 
 export enum EListViewStates {
@@ -45,5 +61,5 @@ export enum EListViewStates {
 export enum EListFilters {
   Private,
   Public,
-  None
+  None,
 }

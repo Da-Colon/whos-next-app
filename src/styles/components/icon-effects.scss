@@ -30,9 +30,13 @@
       color: map-get($colors, red);
     }
   }
+  &__highlight {
+    color: gold;
+  }
 }
 
 [class*="icon-effects"] {
+  outline: none;
   &:active {
     transform: scale(0.75);
   }

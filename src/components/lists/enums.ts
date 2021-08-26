@@ -10,7 +10,7 @@ export interface ICreateListContainerProps {
   variant?: EListsTypes;
   setType: Dispatch<SetStateAction<EListsTypes>>;
   values: {
-    listLength: number,
+    listLength?: number,
     name: string,
     private: boolean,
     list: any[],

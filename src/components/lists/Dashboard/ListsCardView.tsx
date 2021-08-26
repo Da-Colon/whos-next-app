@@ -1,40 +1,5 @@
-import {
-  faHandPointUp,
-  faHeart,
-  faPencilAlt,
-  faRuler,
-  faTrash,
-  faUserLock,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IListDetails } from "../../../context/ListContext/interfaces";
-
-const ListActions = () => {
-  return (
-    <div className="lists-card-view-actions">
-      <FontAwesomeIcon
-        icon={faHandPointUp}
-        className="lists-card-view-action icon-effects__point"
-      />
-      <FontAwesomeIcon
-        icon={faHeart}
-        className="lists-card-view-action icon-effects__heart"
-      />
-      <FontAwesomeIcon
-        icon={faUserLock}
-        className="lists-card-view-action icon-effects__lock"
-      />
-      <FontAwesomeIcon
-        icon={faPencilAlt}
-        className="lists-card-view-action icon-effects__pencil"
-      />
-      <FontAwesomeIcon
-        icon={faTrash}
-        className="lists-card-view-action icon-effects__trash"
-      />
-    </div>
-  );
-};
+import ListActionButtons from "./ListActionButtons";
 
 const List = ({ name }: { name: string }) => {
   return (
@@ -53,7 +18,10 @@ const ListCard = ({ list }: { list: IListDetails }) => {
             <List key={`${listItem.name}${index}`} name={listItem.name} />
           ))}
         </div>
-        <ListActions />
+        <div className="lists-card-view-actions">
+
+        <ListActionButtons list={list} />
+        </div>
       </div>
     </div>
   );

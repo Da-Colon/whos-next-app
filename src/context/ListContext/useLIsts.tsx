@@ -6,8 +6,10 @@ import {
   EListFilters,
   EListViewStates,
   IListDetails,
+  ISanitizeListProperties,
   IUseLists,
 } from "./interfaces";
+import { sanitizeListProperties } from './listContext.utils'
 
 const useLists = (): IUseLists => {
   const [userLists, setUserLists] = useState<IListDetails[] | null>(null);
@@ -59,16 +61,14 @@ const useLists = (): IUseLists => {
     } catch (err) {
       console.error("🚀 ~ request error:", err);
     }
-
-    // // TODO update properties
-    // // TODO error handling
+    
   };
-
-  // update current list
-  const updateList = async (id: string) => {
-    const response = await request(ServerRoutes.updateList(id), "PUT");
+  // update properties
+  const updateListProperties = async (id: string, properties: ISanitizeListProperties) => {
+    const sanitizedProperties = sanitizeListProperties
+    const response = await request(ServerRoutes.updateList(id), "PUT", sanitizedProperties);
     console.log(response);
-  };
+  }
 
   // delete a list
   const deleteList = async (id: string) => {
@@ -94,7 +94,7 @@ const useLists = (): IUseLists => {
     listFilter,
     saveList,
     loadLists,
-    updateList,
+    updateListProperties,
     updateFilter,
     deleteList,
     updateListViewState,

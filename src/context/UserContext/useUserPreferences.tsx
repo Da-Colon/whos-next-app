@@ -5,6 +5,8 @@ import { useCallback } from "react";
 
 interface IUserPreferences {
   selectedList: string;
+  likedLists: string[];
+  userId: string;
 }
 
 export interface IUserPreferencesStore {
@@ -26,6 +28,7 @@ const useUserPreferences = (): IUserPreferencesStore => {
     await request(ServerRoutes.putSelectedList(listId), "PUT");
     getUserPreferences();
   };
+
   return { userPreferences, getUserPreferences, updateSelectedList };
 };
 
