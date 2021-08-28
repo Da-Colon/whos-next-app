@@ -2,8 +2,8 @@ export enum Routes {
   home = "/",
   picker = "/picker/:mode/:listId",
   lists = "/lists",
-  listsNew = "/lists/new",
-  listsEdit = `/lists/edit/:listId`,
+  listsNew = "/new",
+  listsEdit = `/edit/:listId`,
 }
 
 export const ClientRoutes = {

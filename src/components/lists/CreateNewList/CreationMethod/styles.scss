@@ -1,0 +1,31 @@
+@import "../../../../styles/vars";
+
+.creation-method-container {
+  line-height: 22px;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  gap: 1rem;
+  .flex-with-gap {
+    justify-content: flex-end;
+    input {
+      width: 56px;
+    }
+    button.next-step-button {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+  label.heading-label {
+    font-size: map-get($font-size, medium );
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    span {
+      font-size: map-get($font-size, xxsmall );
+      color: map-get($colors, offwhite );
+    }
+  }
+  label.heading-label {
+    border-bottom: 1px solid;
+  }
+}

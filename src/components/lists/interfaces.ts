@@ -1,4 +1,5 @@
 import { ChangeEvent } from "react";
+import { IListProperties, IListPropertiesError } from "../../context/ListContext/interfaces";
 
 
 export interface IListTableProps {
@@ -18,4 +19,18 @@ export interface IListItemProps {
   ) => void;
   listItem: { name: string };
   index: number;
+}
+
+export interface ICreateListProperties {
+  name: string,
+  private: boolean,
+  list: {name: string}[]
+}
+
+export interface IListSteps {
+  values: IListProperties,
+  errors: IListPropertiesError,
+  handleChange: () => void;
+  handleSubmit?: () => void;
+  setFieldValue: (field: string, value: Array<any> | number | boolean) => void;
 }

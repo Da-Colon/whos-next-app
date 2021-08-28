@@ -28,12 +28,7 @@
   }
 }
 
-.login-form-container {
-  background-color: map-get($colors, darkbluegray);
-  border: 6px solid map-get($colors, bluegray);
-  border-radius: 8px;
-  padding: 2rem;
-  position: relative;
+.form-container {
   .login-form-heading {
     color: map-get($colors, white);
     font-size: map-get($font-size, large);
@@ -43,22 +38,6 @@
   form {
     display: flex;
     flex-direction: column;
-    input {
-      border-radius: 4px;
-      padding: 0.6rem 0rem 0.6rem 0.8rem;
-      margin: 0.8rem 0rem;
-      width: 100%;
-      &::placeholder {
-        opacity: 60%;
-      }
-    }
-    button {
-      align-self: flex-end;
-      border: 2px solid map-get($colors, black);
-      margin-top: 0.8rem;
-      height: 32px;
-      width: 125px;
-    }
   }
 }
 

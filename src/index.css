@@ -58,10 +58,6 @@ html {
   box-shadow: 5px 5px 4px 0px #000000;
 }
 
-html::-webkit-scrollbar {
-  display: none;
-}
-
 .remove-scroll-background::-webkit-scrollbar {
   background: none;
   width: 10px;
@@ -84,9 +80,7 @@ p {
   margin: 0;
 }
 
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
-}
+
 
 input::-webkit-inner-spin-button,
 input::-webkit-outer-spin-button {

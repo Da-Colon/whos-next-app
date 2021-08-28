@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import { useRef } from "react";
 import { FC } from "react";
 import { ReactNode } from "react";
@@ -6,10 +7,11 @@ import { EAccountState } from "../../../context/UserContext/useAccountManagement
 import './styles.scss'
 interface IModal {
   isVisible: boolean;
+  addClasses?: string | any;
   children: ReactNode 
 }
 
-const Modal: FC<IModal> = ({isVisible, children}) => {
+const Modal: FC<IModal> = ({isVisible, addClasses, children}) => {
   const userStore: IUserStore = useUserStore();
   const overlayRef = useRef(null);
 
@@ -22,7 +24,7 @@ const Modal: FC<IModal> = ({isVisible, children}) => {
   }
   if(!isVisible) return null
   return (
-    <div className="modal-overlay" ref={overlayRef} onClick={closeModal}>
+    <div className={classNames("modal-overlay", {[addClasses]: !!addClasses})} ref={overlayRef} onClick={closeModal}>
       <div className="modal-container">
         { children }
       </div>

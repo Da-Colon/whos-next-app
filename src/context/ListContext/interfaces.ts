@@ -1,10 +1,10 @@
-export interface Ilist {
+export interface IList {
   name: string;
 }
 
 export interface IListDetails {
   name: string;
-  list: Ilist[];
+  list: IList[];
   likes: number;
   private: boolean;
   listLength?: number;
@@ -20,6 +20,7 @@ export interface IUseLists {
   isListsLoaded: boolean;
   listViewState: EListViewStates;
   listFilter: EListFilters;
+  createListState: ECreateListSteps;
   saveList: (properties: IListProperties, history: any) => Promise<void>;
   loadLists: () => void;
   updateListProperties: (
@@ -27,13 +28,14 @@ export interface IUseLists {
     properties: {
       name?: string;
       private?: boolean;
-      list?: Ilist;
+      list?: IList;
       likes?: number;
     }
   ) => Promise<void>;
   deleteList: (id: string) => Promise<void>;
   updateListViewState: (viewState: EListViewStates) => void;
   updateFilter: (filter: EListFilters) => void;
+  updateCreateListState: (state: ECreateListSteps) => void;
 }
 
 export interface IListProperties {
@@ -47,9 +49,17 @@ export interface IListProperties {
 export interface ISanitizeListProperties {
   name?: string;
   private?: boolean;
-  list?: Ilist;
+  list?: IList;
   likes?: number;
   id?: string;
+}
+
+export interface IListPropertiesError {
+  id: string;
+  name: string;
+  private: string;
+  list: string;
+  likes: string;
 }
 
 export enum EListViewStates {
@@ -62,4 +72,12 @@ export enum EListFilters {
   Private,
   Public,
   None,
+}
+
+export enum ECreateListSteps {
+  CreationMethod,
+  NameAndSettings,
+  Upload,
+  ListCreation,
+  Review,
 }

@@ -1,17 +1,23 @@
 import { Route, useRouteMatch } from "react-router";
 import { Routes } from "../../router/routes";
-import Container, { EContainer } from "../../components/layout/Container";
-import ListsDashboard from "../../components/lists";
-import CreateListForm from "../../components/lists/CreateList";
+import CreateNewList from "../../components/lists/CreateNewList";
+import Dashboard from "../../components/lists/Dashboard";
 
 const ListsPage = () => {
   const { url } = useRouteMatch();
+
+    // TODO sort by date created
+  // TODO recent two with see all?
+  // ! Future update
+  // TODO sort by popularity
+  // TODO will need page to look through and sort
+  // TODO Search lists?
   return (
-    <Container variant={EContainer.inset} addMinHeight={true} addClasses="">
-      <Route path={`${url}`} component={ListsDashboard} exact />
-      <Route path={`${url}${Routes.listsNew}`} component={CreateListForm} exact />
+    <div style={{minHeight: "calc(100vh - 14rem)"}}>
+      <Route path={`${url}`} component={Dashboard} exact />
+      <Route path={`${url}${Routes.listsNew}`} component={CreateNewList} exact />
       <Route path={`${url}${Routes.listsEdit}`} exact />
-    </Container>
+    </div>
   );
 };
 

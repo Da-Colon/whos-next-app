@@ -3,6 +3,7 @@ import { ServerRoutes } from "../../config/server";
 import request from "../../request";
 import { Routes } from "../../router/routes";
 import {
+  ECreateListSteps,
   EListFilters,
   EListViewStates,
   IListDetails,
@@ -12,12 +13,17 @@ import {
 import { sanitizeListProperties } from './listContext.utils'
 
 const useLists = (): IUseLists => {
+  // store lists
   const [userLists, setUserLists] = useState<IListDetails[] | null>(null);
   const [publicLists, setPublicLists] = useState<IListDetails[] | null>(null);
-  const [isListsLoaded, setLoaded] = useState(false);
+  // list screen views and filters
   const [listViewState, setListViewState] = useState(EListViewStates.Card);
   const [listFilter, setListFilter] = useState(EListFilters.None);
-
+  // create list states
+  const [createListState, setCreateListState] = useState(ECreateListSteps.NameAndSettings)
+  // store states
+  const [isListsLoaded, setLoaded] = useState(false);
+  
   const loadLists = useCallback(async () => {
     await loadUserLists();
     await loadPublicLists();
@@ -86,18 +92,24 @@ const useLists = (): IUseLists => {
     setListFilter(filter);
   };
 
+  const updateCreateListState = (step: ECreateListSteps) => {
+    setCreateListState(step)
+  }
+
   return {
     userLists,
     publicLists,
     isListsLoaded,
     listViewState,
     listFilter,
+    createListState,
     saveList,
     loadLists,
     updateListProperties,
     updateFilter,
     deleteList,
     updateListViewState,
+    updateCreateListState,
   };
 };
 

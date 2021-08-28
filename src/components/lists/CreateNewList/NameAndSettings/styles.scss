@@ -1,0 +1,25 @@
+@import "../../../../styles/vars";
+.name-and-settings-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 575px;
+  margin: 0 auto;
+  gap: 1rem;
+  div.name-and-settings-privacy {
+    margin-bottom: 1rem;
+    label.heading-label {
+      border-bottom: 1px solid;
+    }
+    &-button-container {
+      display: flex;
+      gap: 2rem;
+    }
+    button {
+      background-color: map-get($colors, white );
+      flex-grow: 1;
+      &.button-highlight {
+        background-color: map-get($colors, gold);
+      }
+    }
+  }
+}

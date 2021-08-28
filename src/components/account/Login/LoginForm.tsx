@@ -26,7 +26,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="login-form-container">
+    <div className="form-container">
       <div className="login-form-heading">Login</div>
       <FormikContainer
         handleSubmit={(values: IFormProperties) => handleSubmit(values)}

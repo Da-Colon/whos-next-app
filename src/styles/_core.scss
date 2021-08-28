@@ -1,11 +1,10 @@
 @import "./reset";
-
+@import "./helpers";
 @import "./vars";
-@import "./components/app-wrapper.scss";
-@import "./components/body-container.scss";
-@import "./components/icon-effects.scss";
+@import "./components/_root.scss";
 
 html, #root {
+  overflow: auto;
   background-image: linear-gradient(
     315deg,
     map-get($colors, bluegray) 0%,

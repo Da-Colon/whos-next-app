@@ -1,0 +1,54 @@
+@import "../../../../styles/vars";
+
+.list-creation-container {
+  max-height: 100%;
+  width: 500px;
+  max-width: 1000px;
+  margin: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  .list-create-inputs-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+    padding: 0 1rem;
+    .list-create-input {
+      display: flex;
+      max-width: 200px;
+      flex: 1 0 250px;
+      position: relative;
+      input {
+        padding-right: 22px;
+      }
+      button {
+        background-color: map-get($colors, offwhite);
+        min-width: 20px;
+        height: 100%;
+        box-shadow: none;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        padding: 0;
+        position: absolute;
+        right: 0;
+        margin-top: 0;
+      }
+    }
+  }
+  button.next-step-button {
+    position: absolute;
+    top: -4.5rem;
+    right: 0rem;
+  }
+
+  &::-webkit-scrollbar {
+    background: none;
+    width: 6px;
+    margin-right: -6rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 4px;
+  }
+}
