@@ -1,9 +1,9 @@
 @import '../../../../styles/vars';
 .review-list-container {
+  color: map-get($colors, white );
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  color: map-get($colors, white );
   width: 420px;
   .review-list-heading {
     border-bottom: 1px solid;
@@ -13,21 +13,21 @@
     padding-left: 1rem;
   }
   .review-list-container {
+    border: 1px solid map-get($colors, offwhite );
+    border-radius: 4px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
     padding: 0.5rem 1rem;
     margin: 0.5rem auto;
-    border-radius: 4px;
     max-height: 200px;
     overflow-y: auto;
-    border: 1px solid map-get($colors, offwhite );
 
     & span { 
+      flex-grow: 1;
       white-space: nowrap;
       width: 100px;
-      flex-grow: 1;
     }
   }
 }

@@ -20,7 +20,7 @@
       transform: scale(0.75);
     }
     &:hover {
-      border: 2px solid map-get($colors, white );
+      border: 2px solid map-get($colors, white);
     }
   }
   .dashboard-header-icon-wrapper {
@@ -45,40 +45,38 @@
         margin: 0.5rem 1rem;
       }
       &:hover {
-        border: 2px solid map-get($colors, white );
-        
+        border: 2px solid map-get($colors, white);
       }
     }
   }
 }
 
 .lists-card-view {
+  color: map-get($colors, white);
   display: flex;
   gap: 2rem;
-  color: map-get($colors, white);
   margin: 1rem;
   .lists-card {
-    width: 250px;
-    height: 280px;
     border: 2px solid map-get($colors, black);
     border-radius: 4px;
+    height: 280px;
+    width: 250px;
     .lists-card-name {
       background-color: map-get($colors, black);
-      margin-bottom: 0.2rem;
-      font-weight: 700;
+      box-shadow: 0px 1px rgba(255, 255, 255, 0.4),
+        0px 3px rgba(255, 255, 255, 0.2), 0px 5px rgba(37, 17, 17, 0.1);
       letter-spacing: 0.2rem;
       font-size: map-get($font-size, large);
+      font-weight: 700;
       padding: 0.5rem;
-      box-shadow: 0px 1px rgba(255,255,255, 0.4),
-        0px 3px rgba(255,255,255, 0.2),
-        0px 5px rgba(37, 17, 17, 0.1);
+      margin-bottom: 0.2rem;
       text-align: center;
     }
     .lists-card-body {
-      display: flex;
-      max-height: calc(100% - 3.25rem);
-      height: 100%;
       color: map-get($colors, offwhite);
+      display: flex;
+      height: 100%;
+      max-height: calc(100% - 3.25rem);
       .lists-card-container {
         background-color: map-get($colors, darkbluegray);
         flex-grow: 1;
@@ -90,77 +88,77 @@
           background: none;
           width: 6px;
         }
-        
+
         &::-webkit-scrollbar-thumb {
           background-color: rgba(255, 255, 255, 0.4);
           border-radius: 4px;
         }
         .list-container {
           display: flex;
+          font-size: map-get($font-size, small);
           gap: 8px;
           white-space: nowrap;
-          font-size: map-get($font-size, small);
         }
       }
     }
     .lists-card-view-actions {
-      width: 48px;
+      align-items: center;
       background-color: map-get($colors, blackfaded);
-      color: map-get($colors, white );
-      border-left: 1px solid map-get($colors, offwhite );
+      border-left: 1px solid map-get($colors, offwhite);
+      color: map-get($colors, white);
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: space-around;
+      width: 48px;
       .lists-card-view-action {
         cursor: pointer;
       }
-    } 
+    }
   }
 }
 
 .lists-table-view {
-  margin: 3rem auto;
-  padding: 1rem;
+  background-color: map-get($colors, darkbluegray);
+  border-color: map-get($colors, darkbluegray);
   border-radius: 4px;
   border-style: groove;
   border-width: 2px;
-  border-color: map-get($colors, darkbluegray );
-  background-color: map-get($colors, darkbluegray );
-  color: map-get($colors, white );
+  color: map-get($colors, white);
+  padding: 1rem;
+  margin: 3rem auto;
   max-width: 1220;
   .lists-table-none {
     margin: 2rem auto;
-    width: 100%;
     text-align: center;
+    width: 100%;
   }
   .lists-table-header {
-    border-bottom: 2px groove map-get($colors, offwhite );
+    border-bottom: 2px groove map-get($colors, offwhite);
     font-size: map-get($font-size, small);
   }
   .lists-table-row {
     display: flex;
     padding: 0 1rem;
     & > div {
-      width: 70%;
       margin: 1rem 0rem;
+      width: 70%;
     }
     & > div:last-child {
-      width: 100%;
       max-width: 350px;
+      width: 100%;
     }
   }
   .lists-table-body {
-    max-height: 500px;
     margin-top: 1rem;
+    max-height: 500px;
     & > div:nth-child(even) {
-      background-color: map-get($colors, darkgray );
+      background-color: map-get($colors, darkgray);
     }
     &::-webkit-scrollbar {
       background: none;
       width: 6px;
     }
-    
+
     &::-webkit-scrollbar-thumb {
       background-color: rgba(255, 255, 255, 0.4);
       border-radius: 4px;
@@ -174,5 +172,4 @@
       }
     }
   }
-  
 }

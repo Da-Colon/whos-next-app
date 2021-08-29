@@ -1,12 +1,12 @@
 @import "../../../../styles/vars";
 
 .list-creation-container {
-  max-height: 100%;
-  width: 500px;
-  max-width: 1000px;
-  margin: 0 1rem;
-  display: flex;
   flex-direction: column;
+  display: flex;
+  margin: 0 1rem;
+  max-height: 100%;
+  max-width: 1000px;
+  width: 500px;
   .list-create-inputs-container {
     display: flex;
     flex-wrap: wrap;
@@ -15,36 +15,36 @@
     padding: 0 1rem;
     .list-create-input {
       display: flex;
-      max-width: 200px;
       flex: 1 0 250px;
+      max-width: 200px;
       position: relative;
       input {
         padding-right: 22px;
       }
       button {
         background-color: map-get($colors, offwhite);
-        min-width: 20px;
-        height: 100%;
-        box-shadow: none;
-        border-top-left-radius: 0;
         border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+        box-shadow: none;
+        height: 100%;
+        margin-top: 0;
+        min-width: 20px;
         padding: 0;
         position: absolute;
         right: 0;
-        margin-top: 0;
       }
     }
   }
   button.next-step-button {
     position: absolute;
-    top: -4.5rem;
     right: 0rem;
+    top: -4.5rem;
   }
 
   &::-webkit-scrollbar {
     background: none;
-    width: 6px;
     margin-right: -6rem;
+    width: 6px;
   }
 
   &::-webkit-scrollbar-thumb {

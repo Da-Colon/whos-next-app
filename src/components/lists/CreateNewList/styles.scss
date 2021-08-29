@@ -1,8 +1,8 @@
 @import "../../../styles/vars";
 
 .list-form-container {
-  max-width:  1680px;
   margin-top: 8rem;
+  max-width:  1680px;
   .form-container {
     margin: 0 auto;
     width: fit-content;
@@ -11,17 +11,17 @@
 .list-form-heading {
   color: map-get($colors, white);
   font-size: map-get($font-size, medium);
+  left: 0;
   position: absolute;
   top: -3.5rem;
-  left: 0;
 }
 .form-container {
   label {
     color: map-get($colors, white);
   }
   button.next-step-button {
-    display: flex;
     align-items: center;
+    display: flex;
     gap: 8px;
   }
 }
