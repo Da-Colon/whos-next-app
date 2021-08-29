@@ -2,8 +2,14 @@ import { faArrowCircleRight, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC, useState } from "react";
 import { IListStore, useListData } from "../../../../context/ListContext";
-import { ECreateListSteps, IList } from "../../../../context/ListContext/interfaces";
+import {
+  ECreateListSteps,
+  IList,
+} from "../../../../context/ListContext/interfaces";
 import { IListSteps } from "../../interfaces";
+import TitleAndNavigation, {
+  ENavigationType,
+} from "../../shared/TitleAndNavigation";
 import "./styles.scss";
 
 interface IListCreation extends IListSteps {
@@ -44,11 +50,12 @@ const ListInputs = ({
 const ListCreation: FC<IListCreation> = ({
   errors,
   listLength,
+  values,
   setFieldValue,
 }) => {
   const listsStore: IListStore = useListData();
   const [newList, setNewList] = useState<IList[]>(
-    new Array(listLength).fill({ name: "" })
+    values.list.length ? values.list : new Array(listLength).fill({ name: "" })
   );
 
   const isListComplete = newList.reduce(
@@ -59,9 +66,9 @@ const ListCreation: FC<IListCreation> = ({
     : true;
 
   const updateStateAndLoadReview = () => {
-    setFieldValue('list', newList);
-    listsStore.updateCreateListState(ECreateListSteps.Review)
-  }
+    setFieldValue("list", newList);
+    listsStore.updateCreateListState(ECreateListSteps.Review);
+  };
 
   const updateIndexOnChange = (name: string, index: number) => {
     const currentList: IList[] = [...newList];
@@ -76,8 +83,19 @@ const ListCreation: FC<IListCreation> = ({
   };
   return (
     <div className="list-creation-container">
-      <div className="list-form-heading">Edit New List</div>
-      <button className="next-step-button" onClick={updateStateAndLoadReview} disabled={!isListComplete}>
+      <TitleAndNavigation
+        pageTitle="Edit New List"
+        backAction={() =>
+          listsStore.updateCreateListState(ECreateListSteps.CreationMethod)
+        }
+        variant={ENavigationType.State}
+      />
+      <button
+        type="button"
+        className="next-step-button"
+        onClick={updateStateAndLoadReview}
+        disabled={!isListComplete}
+      >
         <FontAwesomeIcon icon={faArrowCircleRight} />
         Review
       </button>

@@ -4,8 +4,11 @@ import { IListStore, useListData } from "../../../../context/ListContext";
 import { IListSteps } from "../../interfaces";
 import { ECreateListSteps } from "../../../../context/ListContext/interfaces";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowCircleRight } from "@fortawesome/free-solid-svg-icons";
-import './styles.scss'
+import {
+  faArrowCircleRight,
+} from "@fortawesome/free-solid-svg-icons";
+import "./styles.scss";
+import TitleAndNavigation, { ENavigationType } from "../../shared/TitleAndNavigation";
 const NameAndSettings: FC<IListSteps> = ({
   values,
   errors,
@@ -17,12 +20,18 @@ const NameAndSettings: FC<IListSteps> = ({
   const setPrivacy = (isPrivate: boolean) => {
     setFieldValue("private", isPrivate);
   };
-  
+
   return (
     <div className="name-and-settings-container">
-      <div className="list-form-heading">New List Settings</div>
+      <TitleAndNavigation pageTitle="New List Settings" variant={ENavigationType.Nav} />
       {/* name */}
-      <input type="text" name="name" placeholder="List Name..." onChange={handleChange} />
+      <input
+        type="text"
+        name="name"
+        placeholder="List Name..."
+        onChange={handleChange}
+        value={values.name}
+      />
       {/* Privacy Buttons */}
       <div role="group" className="name-and-settings-privacy">
         <label htmlFor="private" className="heading-label">
@@ -51,17 +60,19 @@ const NameAndSettings: FC<IListSteps> = ({
           </button>
         </div>
       </div>
-      <button
-        type="button"
-        className="next-step-button"
-        onClick={() =>
-          listsStore.updateCreateListState(ECreateListSteps.CreationMethod)
-        }
-        disabled={!values.name}
-      >
-        <FontAwesomeIcon icon={faArrowCircleRight} />
-        Creation method
-      </button>
+      <div className="name-and-settings-actions-container">
+        <button
+          type="button"
+          className="next-step-button"
+          onClick={() =>
+            listsStore.updateCreateListState(ECreateListSteps.CreationMethod)
+          }
+          disabled={!values.name}
+        >
+          Creation method
+          <FontAwesomeIcon icon={faArrowCircleRight} />
+        </button>
+      </div>
     </div>
   );
 };

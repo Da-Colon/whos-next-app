@@ -16,9 +16,11 @@ export const signupValidationSchema = () => {
 
 export const listNewValidationSchema = () => {
   return Yup.object().shape({
-    listlength: Yup.number(),
     name: Yup.string().required('List name is required'),
     private: Yup.bool(),
-    list: Yup.array().required('List is required'),
+    list: Yup.array().test({
+      message: 'The error message if length === 1',
+      test: arr => arr?.length ? arr.length >= 1 : false,
+    }).required('List is required'),
   })
 }

@@ -22,4 +22,9 @@
       }
     }
   }
+  .name-and-settings-actions-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
 }

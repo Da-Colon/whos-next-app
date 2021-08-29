@@ -8,12 +8,29 @@
     width: fit-content;
   }
 }
-.list-form-heading {
-  color: map-get($colors, white);
-  font-size: map-get($font-size, medium);
+
+.list-form-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   left: 0;
   position: absolute;
+  color: map-get($colors, white);
   top: -3.5rem;
+  a, button {
+    color: map-get($colors, white);
+    gap: 8px;
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background-color: unset;
+    box-shadow: unset;
+    height: fit-content;
+  }
+  .list-form-heading {
+    font-size: map-get($font-size, medium);
+  }
 }
 .form-container {
   label {
@@ -22,6 +39,12 @@
   button.next-step-button {
     align-items: center;
     display: flex;
-    gap: 8px;
+    gap: 0.5rem;
+  }
+  button.cancel-button {
+    align-items: center;
+    display: flex;
+    gap: 0.5rem;
+    background-color: map-get($colors, white);
   }
 }

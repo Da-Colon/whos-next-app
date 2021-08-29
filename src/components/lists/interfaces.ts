@@ -33,4 +33,5 @@ export interface IListSteps {
   handleChange: () => void;
   handleSubmit?: () => void;
   setFieldValue: (field: string, value: Array<any> | number | boolean) => void;
+  resetForm:() => void;
 }

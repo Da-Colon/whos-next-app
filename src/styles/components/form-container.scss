@@ -37,10 +37,14 @@
     &:active {
       transform: scale(0.85);
     }
+    &:hover {
+      transform: scale(1.025);
+    }
     &:disabled {
       background-color: map-get($colors, lightgray );
       box-shadow: none;
       color: map-get($colors, lightestgray );
+      transform: none;
     }
   }
 }

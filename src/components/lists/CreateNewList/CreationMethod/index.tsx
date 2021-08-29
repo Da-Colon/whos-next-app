@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC } from "react";
 import { IListStore, useListData } from "../../../../context/ListContext";
 import { ECreateListSteps } from "../../../../context/ListContext/interfaces";
+import TitleAndNavigation, { ENavigationType } from "../../shared/TitleAndNavigation";
 import "./styles.scss";
 
 interface ICreationMethodProps {
@@ -17,7 +18,13 @@ const CreationMethod: FC<ICreationMethodProps> = ({
   const listsStore: IListStore = useListData();
   return (
     <div className="creation-method-container">
-      <div className="list-form-heading">Creation Method</div>
+      <TitleAndNavigation
+        pageTitle="Creation Method"
+        backAction={() =>
+          listsStore.updateCreateListState(ECreateListSteps.NameAndSettings)
+        }
+        variant={ENavigationType.State}
+      />
       <label htmlFor="creation-method-manual" className="heading-label">
         Manually Create List
       </label>
@@ -52,7 +59,7 @@ const CreationMethod: FC<ICreationMethodProps> = ({
         Upload List <span>Supported Types: csv, xls</span>
       </label>
       <div>Coming soon...</div>
-      <button className="next-step-button" disabled={true}>
+      <button type="button" className="next-step-button" disabled={true}>
         <FontAwesomeIcon icon={faArrowCircleRight} />
         Upload
       </button>
