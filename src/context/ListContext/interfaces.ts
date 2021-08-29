@@ -21,7 +21,7 @@ export interface IUseLists {
   listViewState: EListViewStates;
   listFilter: EListFilters;
   createListState: ECreateListSteps;
-  saveList: (properties: IListProperties, history: any) => Promise<void>;
+  saveList: (properties: IListProperties) => Promise<string>;
   loadLists: () => void;
   updateListProperties: (
     id: string,

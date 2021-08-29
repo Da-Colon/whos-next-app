@@ -1,7 +1,6 @@
 import { useCallback, useState } from "react";
 import { ServerRoutes } from "../../config/server";
 import request from "../../request";
-import { Routes } from "../../router/routes";
 import {
   ECreateListSteps,
   EListFilters,
@@ -51,7 +50,7 @@ const useLists = (): IUseLists => {
   };
 
   // save new list
-  const saveList = async (properties: IListDetails, history: any) => {
+  const saveList = async (properties: IListDetails) => {
     try {
       const body = {
         name: properties.name,
@@ -61,11 +60,13 @@ const useLists = (): IUseLists => {
       const response = await request(ServerRoutes.saveList, "POST", body);
       if (response.message === "success") {
         loadUserLists();
-        history.replace(Routes.lists);
+        return response.message
       }
+      else return 'failed'
       // TODO error handle
     } catch (err) {
       console.error("🚀 ~ request error:", err);
+      return 'failed'
     }
     
   };

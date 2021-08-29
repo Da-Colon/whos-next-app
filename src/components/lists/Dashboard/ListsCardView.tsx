@@ -8,7 +8,7 @@ const List = ({ name }: { name: string }) => {
     </div>
   );
 };
-const ListCard = ({ list }: { list: IListDetails }) => {
+export const ListCard = ({ list }: { list: IListDetails }) => {
   return (
     <div className="lists-card">
       <div className="lists-card-name">{list.name}</div>

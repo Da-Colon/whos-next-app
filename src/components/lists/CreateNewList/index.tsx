@@ -6,14 +6,38 @@ import { listNewInitialValues } from "../../../constants/initialValues";
 import "./styles.scss";
 import CreateListSteps from "./CreateListSteps";
 import { IListSteps } from "../interfaces";
+import { ECreateListSteps } from "../../../context/ListContext/interfaces";
+import { Routes } from "../../../router/routes";
+import { useState } from "react";
 
 const CreateNewList = () => {
   const listsStore: IListStore = useListData();
+  const [loading, setLoading] = useState(false)
   const history = useHistory();
+
+  const submitNewListForm = async (values: any, actions: any) => {
+    setLoading(true)
+    const result = await listsStore.saveList(values)
+    if(result === 'failed') {
+      // show error then return
+      console.warn('failed to save list')
+      return;
+    } 
+    actions.resetForm();
+    listsStore.updateCreateListState(ECreateListSteps.NameAndSettings)
+    history.replace(Routes.lists);
+  }
+
+  if(loading) {
+    // ! update with logo loading component
+    return (
+      <div>Loading...</div>
+    )
+  }
   return (
     <div>
       <FormikContainer
-        handleSubmit={(values: any) => listsStore.saveList(values, history)}
+        handleSubmit={submitNewListForm}
         validationSchema={listNewValidationSchema}
         initialValues={listNewInitialValues}
       >
