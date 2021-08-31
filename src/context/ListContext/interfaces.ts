@@ -14,6 +14,7 @@ export interface IListDetails {
   userId?: string;
 }
 
+
 export interface IUseLists {
   userLists: IListDetails[] | null;
   publicLists: IListDetails[] | null;
@@ -21,6 +22,7 @@ export interface IUseLists {
   listViewState: EListViewStates;
   listFilter: EListFilters;
   createListState: ECreateListSteps;
+  deleteListId: null | string;
   saveList: (properties: IListProperties) => Promise<string>;
   loadLists: () => void;
   updateListProperties: (
@@ -32,10 +34,11 @@ export interface IUseLists {
       likes?: number;
     }
   ) => Promise<void>;
-  deleteList: (id: string) => Promise<void>;
+  deleteList: (id: string) => Promise<{error?: string, message?: string}>;
   updateListViewState: (viewState: EListViewStates) => void;
   updateFilter: (filter: EListFilters) => void;
   updateCreateListState: (state: ECreateListSteps) => void;
+  updateShowListDeleteModal: (id: string | null) => void;
 }
 
 export interface IListProperties {

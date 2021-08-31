@@ -68,7 +68,7 @@ const ListActionButtons = ({ list }: { list: IListDetails }) => {
       <FontAwesomeIcon
         icon={faTrash}
         className="lists-card-view-action icon-effects__trash"
-        onClick={() => listsStore.deleteList(list.id)}
+        onClick={() => listsStore.updateShowListDeleteModal(list.id)}
         data-tip="Delete list"
         data-for="action-delete"
       />

@@ -1,0 +1,41 @@
+@import "../../../../styles/vars";
+
+.delete-list-modal {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  min-height: map-get($height, main);
+  width: 100%;
+  z-index: 9999;
+  .delete-list-modal-container {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,0.9);
+    border: 1px solid map-get($colors, offwhite );
+    color: map-get($colors, white );
+    padding: 1.5rem;
+    height: max-content;
+    .delete-list-modal-heading {
+      font-size: map-get($font-size, medium );
+      span {
+        font-weight: 700;
+      }
+    }
+    .delete-list-modal-actions {
+      margin: 1rem 0 0;
+      display: flex;
+      justify-content: flex-end;
+      button {
+        margin-left: 1rem;
+        padding: 0.25rem 1rem;
+        &.delete-list-modal-cancel {
+          background-color: map-get($colors, white );
+          border: 1px solid map-get($colors, offwhite );
+        }
+        &.delete-list-modal-delete {
+          background-color: map-get($colors, red );
+          color: map-get($colors, white );
+        }
+      }
+    }
+  }
+}

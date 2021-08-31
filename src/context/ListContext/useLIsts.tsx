@@ -9,7 +9,7 @@ import {
   ISanitizeListProperties,
   IUseLists,
 } from "./interfaces";
-import { sanitizeListProperties } from './listContext.utils'
+import { sanitizeListProperties } from "./listContext.utils";
 
 const useLists = (): IUseLists => {
   // store lists
@@ -18,11 +18,14 @@ const useLists = (): IUseLists => {
   // list screen views and filters
   const [listViewState, setListViewState] = useState(EListViewStates.Card);
   const [listFilter, setListFilter] = useState(EListFilters.None);
+  const [deleteListId, setDeleteListId] = useState<null | string>(null);
   // create list states
-  const [createListState, setCreateListState] = useState(ECreateListSteps.NameAndSettings)
-  // store states
+  const [createListState, setCreateListState] = useState(
+    ECreateListSteps.NameAndSettings
+  );
+  // store state vairables
   const [isListsLoaded, setLoaded] = useState(false);
-  
+
   const loadLists = useCallback(async () => {
     await loadUserLists();
     await loadPublicLists();
@@ -60,27 +63,36 @@ const useLists = (): IUseLists => {
       const response = await request(ServerRoutes.saveList, "POST", body);
       if (response.message === "success") {
         loadUserLists();
-        return response.message
-      }
-      else return 'failed'
+        return response.message;
+      } else return "failed";
       // TODO error handle
     } catch (err) {
       console.error("🚀 ~ request error:", err);
-      return 'failed'
+      return "failed";
     }
-    
   };
   // update properties
-  const updateListProperties = async (id: string, properties: ISanitizeListProperties) => {
-    const sanitizedProperties = sanitizeListProperties
-    const response = await request(ServerRoutes.updateList(id), "PUT", sanitizedProperties);
+  const updateListProperties = async (
+    id: string,
+    properties: ISanitizeListProperties
+  ) => {
+    const sanitizedProperties = sanitizeListProperties;
+    const response = await request(
+      ServerRoutes.updateList(id),
+      "PUT",
+      sanitizedProperties
+    );
     console.log(response);
-  }
+  };
 
   // delete a list
+
+  const updateShowListDeleteModal = (id: string | null) => {
+    setDeleteListId(id);
+  };
   const deleteList = async (id: string) => {
     const response = await request(ServerRoutes.deleteList(id), "DELETE");
-    console.log(response);
+    return response
   };
 
   // update UI view
@@ -94,8 +106,8 @@ const useLists = (): IUseLists => {
   };
 
   const updateCreateListState = (step: ECreateListSteps) => {
-    setCreateListState(step)
-  }
+    setCreateListState(step);
+  };
 
   return {
     userLists,
@@ -104,6 +116,7 @@ const useLists = (): IUseLists => {
     listViewState,
     listFilter,
     createListState,
+    deleteListId,
     saveList,
     loadLists,
     updateListProperties,
@@ -111,6 +124,7 @@ const useLists = (): IUseLists => {
     deleteList,
     updateListViewState,
     updateCreateListState,
+    updateShowListDeleteModal,
   };
 };
 

@@ -17,11 +17,13 @@ import {
 import { ClientRoutes } from "../../../router/routes";
 import { Tooltip } from "../../UI/Tooltip";
 import classnames from "classnames";
+import DeleteListModal from "./DeleteListModal";
 
 const DashboardWrapper = ({ children }: { children?: ReactNode }) => {
   const listsStore: IListStore = useListData();
   return (
     <div>
+      
       <div className="dashboard-header-container">
         <NavLink
           to={ClientRoutes.listsNew}
@@ -112,6 +114,7 @@ const DashboardWrapper = ({ children }: { children?: ReactNode }) => {
           </div>
         </div>
       </div>
+      <DeleteListModal />
       {children}
     </div>
   );

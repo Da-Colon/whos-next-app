@@ -22,9 +22,9 @@
 :root {
   --white: #fafafa;
   --lightest-gray: #c4c4c4;
-  --lighter-gray: #BFBFBF;
-  --light-gray: #9A9A9A;
-  --dark-gray: #29262F;
+  --lighter-gray: #bfbfbf;
+  --light-gray: #9a9a9a;
+  --dark-gray: #29262f;
   --blue-gray: #485461;
   --dark-blue-gray: #28313b;
   --black: #25282b;
@@ -32,7 +32,7 @@
   --red: #ff2f1a;
   --light-pink: #f974f0f0;
   --light-blue: #65e8fcd7;
-  --sea-green: #16A7A2;
+  --sea-green: #16a7a2;
   --dark-green: #193d49;
   --gold: #fada22;
 }
@@ -69,4 +69,8 @@ $font-size: (
   h1: var(--size-h1),
   xhuge: var(--size-xhuge),
   xxhuge: var(--size-xxhuge),
+);
+
+$height: (
+  main: calc(100vh - 16 rem),
 );

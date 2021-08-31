@@ -19,8 +19,7 @@ export const ListCard = ({ list }: { list: IListDetails }) => {
           ))}
         </div>
         <div className="lists-card-view-actions">
-
-        <ListActionButtons list={list} />
+          <ListActionButtons list={list} />
         </div>
       </div>
     </div>
