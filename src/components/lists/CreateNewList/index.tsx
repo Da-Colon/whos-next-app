@@ -4,10 +4,10 @@ import { IListStore, useListData } from "../../../context/ListContext";
 import FormikContainer from "../../../services/FormikContainer";
 import { listNewValidationSchema } from "../../../constants/validationSchemas";
 import { listNewInitialValues } from "../../../constants/initialValues";
-import "./styles.scss";
 import CreateListSteps from "./CreateListSteps";
-import { IListSteps } from "../interfaces";
+import { IFormikProps } from "../interfaces";
 import { Routes } from "../../../router/routes";
+import "./styles.scss";
 
 const CreateNewList = () => {
   const listsStore: IListStore = useListData();
@@ -32,13 +32,12 @@ const CreateNewList = () => {
     )
   }
   return (
-    <div>
       <FormikContainer
         handleSubmit={submitNewListForm}
         validationSchema={listNewValidationSchema}
         initialValues={listNewInitialValues}
       >
-        {({ handleSubmit, ...rest }: IListSteps) => (
+        {({ handleSubmit, ...rest }: IFormikProps) => (
           <div className="list-form-container">
             <form onSubmit={handleSubmit} className="form-container">
               <CreateListSteps {...rest} />
@@ -46,7 +45,6 @@ const CreateNewList = () => {
           </div>
         )}
       </FormikContainer>
-    </div>
   );
 };
 

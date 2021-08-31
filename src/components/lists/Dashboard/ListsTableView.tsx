@@ -5,7 +5,7 @@ const ListsTableRow = ({ list }: { list: IListDetails }) => {
   return (
     <div className="lists-table-row">
       <div>{list.name}</div>
-      <div>{list.private ? "Yes" : "No"}</div>
+      <div>{list.isPrivate ? "Yes" : "No"}</div>
       <div>{list.likes}</div>
       <div>{list.list.length}</div>
       <div className="lists-table-actions">

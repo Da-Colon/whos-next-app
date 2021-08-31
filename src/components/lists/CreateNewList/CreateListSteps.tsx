@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FC } from "react";
 import { IListStore, useListData } from "../../../context/ListContext";
 import { ECreateListSteps } from "../../../context/ListContext/interfaces";
-import { IListSteps } from "../interfaces";
+import { IFormikProps } from "../interfaces";
 import CreationMethod from "./CreationMethod";
 import ListCreation from "./ListCreation";
 import NameAndSettings from "./NameAndSettings";
@@ -11,7 +11,7 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { ClientRoutes } from "../../../router/routes";
 
-const CreateListSteps: FC<IListSteps> = (props) => {
+const CreateListSteps: FC<IFormikProps> = (props) => {
   const listsStore: IListStore = useListData();
   const location = useLocation();
   const [manualListLength, setManualListLength] = useState<number>(0);

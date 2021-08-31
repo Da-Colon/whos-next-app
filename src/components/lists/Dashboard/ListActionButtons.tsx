@@ -21,7 +21,7 @@ const ListActionButtons = ({ list }: { list: IListDetails }) => {
     if (!userStore.userPreferences?.likedLists.includes(list.id)) {
       listsStore.updateListProperties(
         list.id,
-        Object.create({ private: !list.private })
+        Object.create({ isPrivate: !list.isPrivate })
       );
       // TODO update user preferences
     }
@@ -49,7 +49,7 @@ const ListActionButtons = ({ list }: { list: IListDetails }) => {
         onClick={() =>
           listsStore.updateListProperties(
             list.id,
-            Object.create({ private: !list.private })
+            Object.create({ isPrivate: !list.isPrivate })
           )
         }
         data-tip="Update list privacy"

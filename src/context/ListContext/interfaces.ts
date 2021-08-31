@@ -6,7 +6,7 @@ export interface IListDetails {
   name: string;
   list: IList[];
   likes: number;
-  private: boolean;
+  isPrivate: boolean;
   listLength?: number;
   id: string;
   createdAt?: string;
@@ -27,12 +27,7 @@ export interface IUseLists {
   loadLists: () => void;
   updateListProperties: (
     id: string,
-    properties: {
-      name?: string;
-      private?: boolean;
-      list?: IList;
-      likes?: number;
-    }
+    properties: ISanitizeListProperties
   ) => Promise<void>;
   deleteList: (id: string) => Promise<{error?: string, message?: string}>;
   updateListViewState: (viewState: EListViewStates) => void;
@@ -44,15 +39,15 @@ export interface IUseLists {
 export interface IListProperties {
   id: string;
   name: string;
-  private: boolean;
+  isPrivate: boolean;
   list: any[];
   likes: number;
 }
 
 export interface ISanitizeListProperties {
   name?: string;
-  private?: boolean;
-  list?: IList;
+  isPrivate?: boolean;
+  list?: IList[];
   likes?: number;
   id?: string;
 }
@@ -60,7 +55,7 @@ export interface ISanitizeListProperties {
 export interface IListPropertiesError {
   id: string;
   name: string;
-  private: string;
+  isPrivate: string;
   list: string;
   likes: string;
 }

@@ -1,7 +1,7 @@
 import { FC } from "react";
 import classnames from "classnames";
 import { IListStore, useListData } from "../../../../context/ListContext";
-import { IListSteps } from "../../interfaces";
+import { IFormikProps } from "../../interfaces";
 import { ECreateListSteps } from "../../../../context/ListContext/interfaces";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,7 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "./styles.scss";
 import TitleAndNavigation, { ENavigationType } from "../../shared/TitleAndNavigation";
-const NameAndSettings: FC<IListSteps> = ({
+const NameAndSettings: FC<IFormikProps> = ({
   values,
   errors,
   handleChange,
@@ -18,7 +18,7 @@ const NameAndSettings: FC<IListSteps> = ({
   const listsStore: IListStore = useListData();
 
   const setPrivacy = (isPrivate: boolean) => {
-    setFieldValue("private", isPrivate);
+    setFieldValue("isPrivate", isPrivate);
   };
 
   return (
@@ -34,15 +34,15 @@ const NameAndSettings: FC<IListSteps> = ({
       />
       {/* Privacy Buttons */}
       <div role="group" className="name-and-settings-privacy">
-        <label htmlFor="private" className="heading-label">
+        <label htmlFor="isPrivate" className="heading-label">
           List Privacy
         </label>
         <div className="name-and-settings-privacy-button-container">
           <button
             type="button"
-            name="private"
+            name="isPrivate"
             className={classnames({
-              "button-highlight": values.private,
+              "button-highlight": values.isPrivate,
             })}
             onClick={() => setPrivacy(true)}
           >
@@ -50,9 +50,9 @@ const NameAndSettings: FC<IListSteps> = ({
           </button>
           <button
             type="button"
-            name="private"
+            name="isPrivate"
             className={classnames({
-              "button-highlight": !values.private,
+              "button-highlight": !values.isPrivate,
             })}
             onClick={() => setPrivacy(false)}
           >

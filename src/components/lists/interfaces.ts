@@ -23,11 +23,11 @@ export interface IListItemProps {
 
 export interface ICreateListProperties {
   name: string,
-  private: boolean,
+  isPrivate: boolean,
   list: {name: string}[]
 }
 
-export interface IListSteps {
+export interface IFormikProps {
   values: IListProperties,
   errors: IListPropertiesError,
   handleChange: () => void;

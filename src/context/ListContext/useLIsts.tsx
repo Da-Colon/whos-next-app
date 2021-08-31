@@ -57,7 +57,7 @@ const useLists = (): IUseLists => {
     try {
       const body = {
         name: properties.name,
-        private: properties.private,
+        isPrivate: properties.isPrivate,
         list: properties.list,
       };
       const response = await request(ServerRoutes.saveList, "POST", body);
@@ -76,7 +76,7 @@ const useLists = (): IUseLists => {
     id: string,
     properties: ISanitizeListProperties
   ) => {
-    const sanitizedProperties = sanitizeListProperties;
+    const sanitizedProperties = sanitizeListProperties(properties);
     const response = await request(
       ServerRoutes.updateList(id),
       "PUT",

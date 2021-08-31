@@ -6,13 +6,13 @@ import {
   ECreateListSteps,
   IList,
 } from "../../../../context/ListContext/interfaces";
-import { IListSteps } from "../../interfaces";
+import { IFormikProps } from "../../interfaces";
 import TitleAndNavigation, {
   ENavigationType,
 } from "../../shared/TitleAndNavigation";
 import "./styles.scss";
 
-interface IListCreation extends IListSteps {
+interface IListCreation extends IFormikProps {
   listLength: number;
 }
 

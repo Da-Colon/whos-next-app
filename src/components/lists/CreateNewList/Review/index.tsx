@@ -1,11 +1,11 @@
 import { FC } from "react";
 import { IListStore, useListData } from "../../../../context/ListContext";
 import { ECreateListSteps } from "../../../../context/ListContext/interfaces";
-import { IListSteps } from "../../interfaces";
+import { IFormikProps } from "../../interfaces";
 import TitleAndNavigation, { ENavigationType } from "../../shared/TitleAndNavigation";
 import "./styles.scss";
 
-const Review: FC<IListSteps> = ({ values }) => {
+const Review: FC<IFormikProps> = ({ values }) => {
   const listsStore: IListStore = useListData();
   return (
     <div className="review-list-container">
@@ -16,7 +16,7 @@ const Review: FC<IListSteps> = ({ values }) => {
       <div className="review-list-heading">Privacy:</div>
       <div className="review-list-value">
         {" "}
-        {values.private ? "Private" : "Public"}
+        {values.isPrivate ? "Private" : "Public"}
       </div>
       <div className="review-list-heading">List: </div>
       <div className="review-list-container">

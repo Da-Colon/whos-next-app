@@ -12,7 +12,7 @@ export interface ICreateListContainerProps {
   values: {
     listLength?: number,
     name: string,
-    private: boolean,
+    isPrivate: boolean,
     list: any[],
   };
   errors: {};

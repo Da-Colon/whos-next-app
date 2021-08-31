@@ -11,6 +11,6 @@ export const signupInitialValues = {
 export const listNewInitialValues = {
   listLength: 0,
   name: '',
-  private: true,
+  isPrivate: true,
   list: [],
 }

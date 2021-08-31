@@ -10,8 +10,8 @@ import ListsCardView from "./ListsCardView";
 import ListsTableView from "./ListsTableView";
 import "./styles.scss";
 
-const publicFilter = (list: IListDetails) => !list.private;
-const privateFilter = (list: IListDetails) => list.private;
+const publicFilter = (list: IListDetails) => !list.isPrivate;
+const privateFilter = (list: IListDetails) => list.isPrivate;
 
 const listsFiltered = (filter: EListFilters, lists: IListDetails[] | null) => {
   return filter !== EListFilters.None

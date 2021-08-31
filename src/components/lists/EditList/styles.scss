@@ -1,0 +1,78 @@
+@import "../../../styles/vars";
+
+.edit.list-form-container {
+  max-width: 1220px;
+  margin: 8rem auto;
+  position: relative;
+  .list-form-header {
+    position: absolute;
+    width: 100%;
+    color: map-get($colors, white);
+    top: -3.5rem;
+    display: flex;
+    justify-content: center;
+    .list-form-heading {
+      font-size: map-get($font-size, large);
+    }
+  }
+
+  .list-create-inputs-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+    padding: 1rem 0rem;
+    border-top: 2px solid map-get($colors, offwhite);
+    .list-create-input {
+      display: flex;
+      flex: 1 0 250px;
+      max-width: 200px;
+      position: relative;
+      input {
+        padding-right: 22px;
+      }
+      button {
+        background-color: map-get($colors, offwhite);
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+        box-shadow: none;
+        height: 100%;
+        margin-top: 0;
+        min-width: 20px;
+        padding: 0;
+        position: absolute;
+        right: 0;
+      }
+    }
+  }
+
+  div.privacy {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    &-button-container {
+      display: flex;
+      gap: 2rem;
+    }
+    button {
+      background-color: map-get($colors, white);
+      &.button-highlight {
+        background-color: map-get($colors, gold);
+      }
+    }
+  }
+  label.heading-label,
+  div.heading-label {
+    border-bottom: 1px solid;
+    width: fit-content;
+    padding: 0 1rem;
+  }
+  .name-and-settings {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    input {
+      width: 300px;
+    }
+  }
+}
