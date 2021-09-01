@@ -11,7 +11,7 @@ import Login from './components/account/Login';
 import SignupSteps from './components/account/Signup';
 
 const App = () => {
-  const { user, authLogin, getUserPreferences, loginState, signupState, cookies, removeCookie }  = useUserStore();
+  const { user, authLogin, loadUserPreferences, loginState, signupState, cookies, removeCookie }  = useUserStore();
   const removeAuthTokenCookie = () => removeCookie("token", { path: "/" });
 
   useEffect(() => {
@@ -21,8 +21,8 @@ const App = () => {
 
   useEffect(() => {
     if(!user) return
-    getUserPreferences()
-  }, [getUserPreferences, user])
+    loadUserPreferences()
+  }, [loadUserPreferences, user])
 
   return (
     <Router>
