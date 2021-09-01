@@ -114,6 +114,11 @@
       .lists-card-view-action {
         cursor: pointer;
       }
+      .list-action-button-alt {
+        .pointer-icon {
+          color: map-get($colors, gold);
+        }
+      }
     }
   }
 }

@@ -34,13 +34,13 @@ const Dashboard = () => {
     case EListViewStates.Card:
       return (
         <DashboardWrapper>
-          <ListsCardView lists={userLists} />
+          <ListsCardView lists={userLists} isUserLists />
         </DashboardWrapper>
       );
     case EListViewStates.Table:
       return (
         <DashboardWrapper>
-          <ListsTableView lists={userLists} />
+          <ListsTableView lists={userLists} isUserLists />
         </DashboardWrapper>
       );
   }

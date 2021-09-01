@@ -1,7 +1,7 @@
 import { IListDetails } from "../../../context/ListContext/interfaces";
-import ListActionButtons from './ListActionButtons'
+import ListActionButtons from "./ListActionButtons";
 
-const ListsTableRow = ({ list }: { list: IListDetails }) => {
+const ListsTableRow = ({ list, isUserLists }: { list: IListDetails, isUserLists?: boolean }) => {
   return (
     <div className="lists-table-row">
       <div>{list.name}</div>
@@ -9,20 +9,26 @@ const ListsTableRow = ({ list }: { list: IListDetails }) => {
       <div>{list.likes}</div>
       <div>{list.list.length}</div>
       <div className="lists-table-actions">
-        <ListActionButtons list={list} />
+        <ListActionButtons list={list} isUserLists={isUserLists}/>
       </div>
     </div>
   );
 };
 
-const ListsTableBody = ({ lists }: { lists: IListDetails[] }) => {
+const ListsTableBody = ({
+  lists,
+  isUserLists
+}: {
+  lists: IListDetails[];
+  isUserLists?: boolean;
+}) => {
   if (!lists.length) {
     return <div className="lists-table-none">No lists to display...</div>;
   }
   return (
     <div className="lists-table-body">
       {lists.map((list, index) => (
-        <ListsTableRow key={`${list.id},${index}`} list={list} />
+        <ListsTableRow key={`${list.id},${index}`} list={list} isUserLists={isUserLists}/>
       ))}
     </div>
   );
@@ -40,11 +46,17 @@ const ListsTableHeader = () => {
   );
 };
 
-const ListsTableView = ({ lists }: { lists: IListDetails[] }) => {
+const ListsTableView = ({
+  lists,
+  ...rest
+}: {
+  lists: IListDetails[];
+  isUserLists?: boolean;
+}) => {
   return (
     <div className="lists-table-view">
       <ListsTableHeader />
-      <ListsTableBody lists={lists} />
+      <ListsTableBody lists={lists} {...rest} />
     </div>
   );
 };

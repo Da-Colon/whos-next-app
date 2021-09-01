@@ -8,7 +8,8 @@ const List = ({ name }: { name: string }) => {
     </div>
   );
 };
-export const ListCard = ({ list }: { list: IListDetails }) => {
+
+const ListCard = ({ list, isUserLists }: { list: IListDetails, isUserLists?: boolean }) => {
   return (
     <div className="lists-card">
       <div className="lists-card-name">{list.name}</div>
@@ -19,18 +20,18 @@ export const ListCard = ({ list }: { list: IListDetails }) => {
           ))}
         </div>
         <div className="lists-card-view-actions">
-          <ListActionButtons list={list} />
+          <ListActionButtons list={list} isUserLists={isUserLists} />
         </div>
       </div>
     </div>
   );
 };
 
-const ListsCardView = ({ lists }: { lists: IListDetails[] }) => {
+const ListsCardView = ({ lists, ...rest }: { lists: IListDetails[], isUserLists?: boolean }) => {
   return (
     <div className="lists-card-view">
       {lists.map((list) => (
-        <ListCard key={list.id} list={list} />
+        <ListCard key={list.id} list={list} {...rest}/>
       ))}
     </div>
   );
