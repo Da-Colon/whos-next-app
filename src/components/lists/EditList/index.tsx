@@ -7,6 +7,7 @@ import "./styles.scss";
 import ListInputs from "./ListInputs";
 import NameAndPrivacy from "./NameAndPrivacy";
 import { ClientRoutes } from "../../../router/routes";
+import TitleAndNavigation, { ENavigationType } from "../shared/TitleAndNavigation";
 
 const EditList = () => {
   const { listId } = useParams<{ listId: string }>();
@@ -31,9 +32,7 @@ const EditList = () => {
     >
       {({ handleSubmit, ...rest }: IFormikProps) => (
         <div className="edit list-form-container">
-          <div className="list-form-header">
-            <div className="list-form-heading">Edit list</div>
-          </div>
+          <TitleAndNavigation  variant={ENavigationType.Nav} pageTitle="Edit Lists" />
           <form onSubmit={handleSubmit} className="form-container">
             <NameAndPrivacy {...rest} />
             <ListInputs {...rest} />

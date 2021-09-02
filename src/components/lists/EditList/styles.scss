@@ -9,8 +9,10 @@
     width: 100%;
     color: map-get($colors, white);
     top: -3.5rem;
+    left: 8rem;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    padding: 0 1rem;
     .list-form-heading {
       font-size: map-get($font-size, large);
     }
