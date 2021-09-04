@@ -1,7 +1,8 @@
 import { useState } from 'react';
+import { IList } from '../../context/ListContext/interfaces';
 
-const Wheel = ({items, onSelectItem}) => {
-  const [ selectedItem, setItem ] = useState(null)
+const Wheel = ({items, onSelectItem}: {items: IList[], onSelectItem?: (value: number | null) => void}) => {
+  const [ selectedItem, setItem ] = useState<number | null>(null)
 
   const selectItem = () => {
     if(selectedItem === null) {
@@ -14,18 +15,13 @@ const Wheel = ({items, onSelectItem}) => {
       setItem(null)
     }
   }
-  const wheelVars = {
-    '--nb-item': items.length,
-    '--selected-item': selectedItem,
-  };
-
   const spinning = selectedItem !== null ? 'spinning' : '';
 
   return (
     <div className="wheel-container">
-        <div className={`wheel ${spinning}`} style={wheelVars} onClick={selectItem}>
+        <div className={`wheel ${spinning}`} onClick={selectItem}>
           {items.map((item, index) => (
-            <div className="wheel-item" key={index} style={{ '--item-nb': index }}>
+            <div className="wheel-item" key={index}>
               {item.name}
             </div>
           ))}

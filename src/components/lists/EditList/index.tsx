@@ -16,6 +16,8 @@ const EditList = () => {
 
   const list = listsStore.userLists?.find((list) => list.id === listId);
 
+  // todo need to add ability to add another member of list
+
   const submitListUpdates = async (values: any, actions: any) => {
     await listsStore.updateListProperties(listId, values);
     listsStore.loadLists();

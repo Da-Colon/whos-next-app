@@ -1,5 +1,6 @@
 import { FC } from "react";
-import { Routes } from "../../router/routes";
+import { IUserStore, useUserStore } from "../../context/UserContext";
+import { ClientRoutes } from "../../router/routes";
 import Link from "../UI/Link";
 import AccountMenuButtons from "./AccountMenuButtons";
 import PageLogo from "./PageLogo";
@@ -11,6 +12,8 @@ interface IHeader {
 }
 
 const Header: FC<IHeader> = ({ isloggedIn, cookieHandler }) => {
+  const userStore: IUserStore = useUserStore();
+
   // TODO re-add logout
   return (
     <div className="header-container">
@@ -18,14 +21,14 @@ const Header: FC<IHeader> = ({ isloggedIn, cookieHandler }) => {
         <Link
           isVisible={!!isloggedIn}
           classNames="header-center-nav-link"
-          to={Routes.lists}
+          to={ClientRoutes.lists}
           text="Lists"
         />
         <PageLogo />
         <Link
           isVisible={!!isloggedIn}
           classNames="header-center-nav-link"
-          to={Routes.picker}
+          to={ClientRoutes.picker('standard', userStore.userPreferences?.selectedList || "")}
           text="Picker"
         />
       </div>

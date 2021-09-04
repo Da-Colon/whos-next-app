@@ -27,22 +27,22 @@ interface IActionButton {
   altComponent: ReactElement | null;
 }
 
-const ActionButton: FC<IActionButton> = (props) => {
-  if (!props.isVisible) return props.altComponent;
+const ActionButton: FC<IActionButton> = ({isVisible, altComponent, ...rest}) => {
+  if (!isVisible) return altComponent;
   return (
     <>
-      <FontAwesomeIcon {...props} />
-      <Tooltip id={props["data-for"]} />
+      <FontAwesomeIcon {...rest} />
+      <Tooltip id={rest["data-for"]} />
     </>
   );
 };
 
-const AltView: FC<IActionButton> = (props) => {
-  if (!props.isVisible) return props.altComponent;
+const AltView: FC<IActionButton> = ({isVisible, altComponent, ...rest}) => {
+  if (!isVisible) return altComponent;
   return (
     <div className="list-action-button-alt">
-      <FontAwesomeIcon {...props} />
-      <Tooltip id={props["data-for"]} />
+      <FontAwesomeIcon {...rest} />
+      <Tooltip id={rest["data-for"]} />
     </div>
   );
 };
@@ -56,15 +56,17 @@ const ListActionButtons = ({
 }) => {
   const listsStore: IListStore = useListData();
   const userStore: IUserStore = useUserStore();
+
   // todo add heart icon around number of likes, may need to increase size.
   // todo being lazy here and needs to be moved: list added to interface
-  const EditButton: FC<IActionButton> = (props) => {
-    if (!props.isVisible) return props.altComponent;
+
+  const EditButton: FC<IActionButton> = ({isVisible, altComponent, ...rest}) => {
+    if (!isVisible) return altComponent;
     return (
       <NavLink to={ClientRoutes.listsEdit(list.id)}>
         <div className="list-action-button-alt">
-          <FontAwesomeIcon {...props} />
-          <Tooltip id={props["data-for"]} />
+          <FontAwesomeIcon {...rest} />
+          <Tooltip id={rest["data-for"]} />
         </div>
       </NavLink>
     );
@@ -91,6 +93,7 @@ const ListActionButtons = ({
         data-tip="Select list"
         data-for="action-select"
         isVisible={showSelect}
+        onClick={() => userStore.updateSelectedList(list.id)}
         altComponent={
           <AltView
             icon={faCheck}

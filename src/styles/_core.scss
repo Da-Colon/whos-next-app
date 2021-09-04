@@ -3,7 +3,7 @@
 @import "./vars";
 @import "./components/_root.scss";
 
-html, #root {
+html {
   overflow: auto;
   background-image: linear-gradient(
     315deg,

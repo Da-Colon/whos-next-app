@@ -16,8 +16,8 @@ export interface IListDetails {
 
 
 export interface IUseLists {
-  userLists: IListDetails[] | null;
-  publicLists: IListDetails[] | null;
+  userLists: IListDetails[];
+  publicLists: IListDetails[];
   isListsLoaded: boolean;
   listViewState: EListViewStates;
   listFilter: EListFilters;

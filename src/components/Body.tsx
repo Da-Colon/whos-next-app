@@ -7,12 +7,14 @@ import PickersContainer from "../pages/pickers";
 import { IListStore, useListData } from "../context/ListContext";
 
 const Body: FC<{ isLoggedIn: boolean }> = ({ isLoggedIn }) => {
-  const { loadLists }: IListStore = useListData();
+  const { loadLists, isListsLoaded }: IListStore = useListData();
   useEffect(() => {
     if (isLoggedIn) {
       loadLists();
     }
   }, [isLoggedIn, loadLists]);
+
+  if(!isListsLoaded) return null
   return (
     <div className="body-container">
       <Route path={Routes.home} component={Landing} exact />

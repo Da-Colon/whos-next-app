@@ -13,8 +13,8 @@ import { sanitizeListProperties } from "./listContext.utils";
 
 const useLists = (): IUseLists => {
   // store lists
-  const [userLists, setUserLists] = useState<IListDetails[] | null>(null);
-  const [publicLists, setPublicLists] = useState<IListDetails[] | null>(null);
+  const [userLists, setUserLists] = useState<IListDetails[]>([]);
+  const [publicLists, setPublicLists] = useState<IListDetails[]>([]);
   // list screen views and filters
   const [listViewState, setListViewState] = useState(EListViewStates.Card);
   const [listFilter, setListFilter] = useState(EListFilters.None);

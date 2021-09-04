@@ -1,0 +1,20 @@
+@import '../../../styles/vars';
+
+@keyframes rain {
+  0% {
+    transform: translateY(0)
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.rain-container {
+  position: relative;
+  & > div {
+    position: absolute;
+    z-index: 4;
+  }
+  div.rain-text {
+  }
+}
