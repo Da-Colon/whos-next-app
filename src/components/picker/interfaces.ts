@@ -23,5 +23,6 @@ export interface IUseRandomPickerProps {
   updatePickerType: (type: IPickerTypesState) => void;
   updatePickerView: (type: IPickerViewState) => void;
   randomPickerScatterInit: () => void;
-  manuallyRemoveItemFromUnSelected: (removeIndex: number) => void;
+  moveToSelected: (removeIndex: number) => void;
+  moveToUnselected: (removeIndex: number) => void;
 }

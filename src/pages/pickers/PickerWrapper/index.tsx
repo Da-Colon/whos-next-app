@@ -24,8 +24,7 @@ interface IListMenu {
   list: IList[];
   hasLength: boolean;
   isVisible: boolean;
-  canRemove: boolean;
-  manuallyRemoveItemFromUnSelected?: (removeIndex: number) => void;
+  moveToOtherList: (removeIndex: number) => void;
 }
 
 const IconAndTooltip = (props: IIconAndTooltipProps) => {
@@ -43,7 +42,7 @@ const IconAndTooltip = (props: IIconAndTooltipProps) => {
   );
 };
 
-const ListMenu = ({ list, hasLength, isVisible, canRemove, manuallyRemoveItemFromUnSelected }: IListMenu) => {
+const ListMenu = ({ list, hasLength, isVisible, moveToOtherList }: IListMenu) => {
   if (!isVisible) return null;
   if (!hasLength) {
     return (
@@ -55,13 +54,15 @@ const ListMenu = ({ list, hasLength, isVisible, canRemove, manuallyRemoveItemFro
   return (
     <div className="view-list">
       {list.map((listItem, index) => (
-        <div className="view-list-item-container">
-          <div key={`_${index}`} className="view-list-item">
-            {listItem.name}
-          </div>
-          {canRemove && !!manuallyRemoveItemFromUnSelected && (
-            <FontAwesomeIcon className="icon-effects close-icon" icon={faTimes} onClick={() => manuallyRemoveItemFromUnSelected(index)} />
-          )}
+        <div key={`_${index}`} className="view-list-item-container">
+          <div className="view-list-item">{listItem.name}</div>
+          <IconAndTooltip
+            icon={faTimes}
+            iconClassName="icon-effects close-icon"
+            data-tip="Move to selected list"
+            data-for="Select"
+            onClick={() => moveToOtherList(index)}
+          />
         </div>
       ))}
     </div>
@@ -71,10 +72,12 @@ const ListMenu = ({ list, hasLength, isVisible, canRemove, manuallyRemoveItemFro
 const PickerWrapper = ({
   pickerType,
   list,
-  manuallyRemoveItemFromUnSelected,
   currentItems,
   removedItems,
   children,
+  moveToSelected,
+  moveToUnselected,
+  randomPickerScatterInit,
 }: IPickerWrapperProps) => {
   const { isSelectedVisible, isUnselectedVisible, toggleSelected, toggleUnselected }: IUseCollapseState =
     useCollapse();
@@ -90,7 +93,7 @@ const PickerWrapper = ({
             list={removedItems}
             hasLength={!!removedItems.length}
             isVisible={isSelectedVisible}
-            canRemove={false}
+            moveToOtherList={moveToUnselected}
           />
           <div>
             <button type="button" onClick={toggleUnselected}>
@@ -100,12 +103,16 @@ const PickerWrapper = ({
               list={currentItems}
               hasLength={!!currentItems.length}
               isVisible={isUnselectedVisible}
-              canRemove={true}
-              manuallyRemoveItemFromUnSelected={manuallyRemoveItemFromUnSelected}
+              moveToOtherList={moveToSelected}
             />
           </div>
         </div>
-        <div className="picker-header-center">{list.name}</div>
+        <div className="picker-header-center">
+          <div>{list.name}</div>
+          <button type="button" onClick={randomPickerScatterInit}>
+            Pick One
+          </button>
+        </div>
         <div className="picker-header-right">
           <div className="picker-header-options-wrapper">
             <p>Type</p>

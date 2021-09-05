@@ -11,10 +11,16 @@
 
 .rain-container {
   position: relative;
+  height: calc(100vh - 20rem);
+  width: calc(100vw - 2rem);
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
   & > div {
     position: absolute;
     z-index: 4;
   }
   div.rain-text {
+    color: map-get($colors, white );
   }
 }

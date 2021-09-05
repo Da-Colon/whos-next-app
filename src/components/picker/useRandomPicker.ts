@@ -50,11 +50,18 @@ const useRandomPicker = (list: IList[]): IUseRandomPickerProps => {
   };
 
   // manually remove item from current list
-  const manuallyRemoveItemFromUnSelected = (removeIndex: number) => {
-    const selectedItem = currentItems.find((_, index) => index === removeIndex) || {name: ""};
+  const moveToSelected = (removeIndex: number) => {
+    const selectedItem = currentItems.find((_, index) => index === removeIndex) || { name: "" };
     const unPickedItems = currentItems.filter((_, index) => index !== removeIndex);
     setRemovedItems((list) => [...list, selectedItem]);
     setCurrentItems(unPickedItems);
+  };
+  // manually remove item from removed list
+  const moveToUnselected = (removeIndex: number) => {
+    const selectedItem = removedItems.find((_, index) => index === removeIndex) || { name: "" };
+    const unPickedItems = removedItems.filter((_, index) => index !== removeIndex);
+    setCurrentItems((list) => [...list, selectedItem]);
+    setRemovedItems(unPickedItems);
   };
 
   const updatePickerView = (type: IPickerViewState) => {
@@ -82,7 +89,8 @@ const useRandomPicker = (list: IList[]): IUseRandomPickerProps => {
     randomPickerScatterInit,
     updatePickerType,
     updatePickerView,
-    manuallyRemoveItemFromUnSelected,
+    moveToSelected,
+    moveToUnselected,
   };
 };
 
