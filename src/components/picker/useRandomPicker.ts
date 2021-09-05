@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { IList } from "../../context/ListContext/interfaces";
-import { IPickerStateTypes, IUseRandomPickerProps } from "./interfaces";
+import { IPickerTypesState, IPickerViewState, IUseRandomPickerProps } from "./interfaces";
 import { randomNumberPicker } from "./picker.utils";
 
 const useRandomPicker = (list: IList[]): IUseRandomPickerProps => {
@@ -9,8 +9,9 @@ const useRandomPicker = (list: IList[]): IUseRandomPickerProps => {
   const [removedItems, setRemovedItems] = useState<IList[]>([]);
   const [pickedItem, setpickedItem] = useState<IList | null>(null);
 
-  // state for storing version of random picker
-  const [pickerType, setPickerType] = useState(IPickerStateTypes.Scatter)
+  // state for storing versions of random picker
+  const [pickerView, setPickerView] = useState(IPickerViewState.Scatter);
+  const [pickerType, setPickerType] = useState(IPickerTypesState.One);
 
   // picker state for random picker
   const [currentPickerItems, setCurrentPickerItems] = useState<IList[]>([]);
@@ -18,11 +19,8 @@ const useRandomPicker = (list: IList[]): IUseRandomPickerProps => {
   const getRandomItems = (items: IList[]) => {
     const randomlyPickedIndex = randomNumberPicker(items?.length - 1);
     return {
-      selectedItem: items?.find(
-        (_, index) => index === randomlyPickedIndex
-      ) || { name: "" },
-      unPickedItems:
-      items?.filter((_, index) => index !== randomlyPickedIndex),
+      selectedItem: items?.find((_, index) => index === randomlyPickedIndex) || { name: "" },
+      unPickedItems: items?.filter((_, index) => index !== randomlyPickedIndex),
     };
   };
 
@@ -38,25 +36,33 @@ const useRandomPicker = (list: IList[]): IUseRandomPickerProps => {
       // pick, remove item from list
       const intervalRandomItems = getRandomItems(pickerItems);
       // add to picker current items
-      setCurrentPickerItems((list) => [
-        ...list,
-        intervalRandomItems.selectedItem,
-      ]);
-      pickerItems = intervalRandomItems.unPickedItems
+      setCurrentPickerItems((list) => [...list, intervalRandomItems.selectedItem]);
+      pickerItems = intervalRandomItems.unPickedItems;
       // length of pickerItems is 0; end interval; set picked item
       if (!intervalRandomItems.unPickedItems.length) {
         clearInterval(pickerInterval);
         setpickedItem(selectedItem);
         setCurrentItems(unPickedItems);
-        setCurrentPickerItems([])
+        setCurrentPickerItems([]);
         setRemovedItems((list) => [...list, selectedItem]);
       }
     }, 250);
   };
 
-  const updatePickerType = (type: IPickerStateTypes) => {
+  // manually remove item from current list
+  const manuallyRemoveItemFromUnSelected = (removeIndex: number) => {
+    const selectedItem = currentItems.find((_, index) => index === removeIndex) || {name: ""};
+    const unPickedItems = currentItems.filter((_, index) => index !== removeIndex);
+    setRemovedItems((list) => [...list, selectedItem]);
+    setCurrentItems(unPickedItems);
+  };
+
+  const updatePickerView = (type: IPickerViewState) => {
+    setPickerView(type);
+  };
+  const updatePickerType = (type: IPickerTypesState) => {
     setPickerType(type);
-  }
+  };
 
   // @returns:
   // currentItems: stores items currently not selected
@@ -71,9 +77,12 @@ const useRandomPicker = (list: IList[]): IUseRandomPickerProps => {
     removedItems,
     pickedItem,
     currentPickerItems,
+    pickerView,
     pickerType,
     randomPickerScatterInit,
     updatePickerType,
+    updatePickerView,
+    manuallyRemoveItemFromUnSelected,
   };
 };
 

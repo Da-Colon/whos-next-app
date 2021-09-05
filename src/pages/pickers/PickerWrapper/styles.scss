@@ -1,0 +1,91 @@
+@import "../../../styles/vars";
+
+.picker-header {
+  align-items: center;
+  color: map-get($colors, white);
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem 2rem;
+  position: relative;
+  margin-bottom: 1rem;
+  .picker-header-left {
+    display: flex;
+    gap: 2rem;
+    position: relative;
+    white-space: nowrap;
+    button {
+      background-color: map-get($colors, blackfaded);
+      color: map-get($colors, white);
+      padding: 0.25rem 1rem;
+    }
+    .view-list {
+      background-color: map-get($colors, offwhite);
+      border: 2px solid map-get($colors, black);
+      border-radius: 6px;
+      box-shadow: 1px 1px 2px rgba(255, 255, 255, 0.4), 2px 3px rgba(255, 255, 255, 0.2),
+      3px 5px 2px rgba(37, 17, 17, 0.1);
+      padding: 0.75rem;
+      position: absolute;
+      max-height: 200px;
+      top: 1.75rem;
+      overflow-y: auto;
+      width: 200px;
+      z-index: 4;
+      &::-webkit-scrollbar {
+        background: none;
+        width: 6px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.4);
+        border-radius: 4px;
+      }
+      .view-list-item-container {
+        color: map-get($colors, black);
+        display: flex;
+        justify-content: space-between;
+        overflow-x: hidden;
+        margin-bottom: 0.5rem;
+        margin-top: 0.25rem;
+      }
+      .view-list-item {
+        color: map-get($colors, black);
+        font-weight: 400;
+        margin-right: 2rem;
+      }
+    }
+  }
+  .picker-header-center {
+    font-size: map-get($font-size, large);
+  }
+  .picker-header-right {
+    display: flex;
+    gap: 1rem;
+    .picker-header-options-wrapper {
+      text-align: center;
+      p {
+        letter-spacing: 1px;
+        font-size: map-get($font-size, xsmall);
+        margin-bottom: 0.8rem;
+      }
+      .picker-header-options-container {
+        align-items: center;
+        background-color: map-get($colors, blackfaded);
+        border: 2px solid map-get($colors, black);
+        border-radius: 4px;
+        display: flex;
+        gap: 1rem;
+        padding: 0 0.5rem;
+        .picker-header-icon {
+          cursor: pointer;
+          height: 18px;
+          margin: 0.5rem 1rem;
+          width: 18px;
+        }
+        &:hover {
+          border: 2px solid map-get($colors, white);
+        }
+      }
+    }
+  }
+}
