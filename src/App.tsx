@@ -1,17 +1,18 @@
-import './styles/_core.scss';
+import { useEffect } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import Header from "./components/header";
 import Body from "./components/Body";
 import Footer from "./components/Footer";
-import { useEffect } from "react";
 import { useUserStore } from "./context/UserContext";
-import Modal from './components/UI/Modal';
-import { EAccountState } from './context/UserContext/useAccountManagement';
-import Login from './components/account/Login';
-import SignupSteps from './components/account/Signup';
+import Modal from "./components/layout/Modal";
+import { EAccountState } from "./context/UserContext/useAccountManagement";
+import Login from "./components/account/Login";
+import SignupSteps from "./components/account/Signup";
+import "./styles/_core.scss";
 
 const App = () => {
-  const { user, authLogin, loadUserPreferences, loginState, signupState, cookies, removeCookie }  = useUserStore();
+  const { user, authLogin, loadUserPreferences, loginState, signupState, cookies, removeCookie } =
+    useUserStore();
   const removeAuthTokenCookie = () => removeCookie("token", { path: "/" });
 
   useEffect(() => {
@@ -20,9 +21,9 @@ const App = () => {
   }, [cookies, authLogin, removeCookie]);
 
   useEffect(() => {
-    if(!user) return
-    loadUserPreferences()
-  }, [loadUserPreferences, user])
+    if (!user) return;
+    loadUserPreferences();
+  }, [loadUserPreferences, user]);
 
   return (
     <Router>
@@ -33,10 +34,7 @@ const App = () => {
         <SignupSteps />
       </Modal>
       <div className="app-wrapper">
-        <Header
-          isloggedIn={!!cookies.token}
-          cookieHandler={removeAuthTokenCookie}
-        />
+        <Header isloggedIn={!!cookies.token} cookieHandler={removeAuthTokenCookie} />
         <Body isLoggedIn={!!cookies.token} />
         <Footer />
       </div>

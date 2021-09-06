@@ -21,8 +21,8 @@ const createDataRoot = () => {
 
 const ListProvider = createDataRoot();
 
-const useListData = () => {
+const useListStore = () => {
   return useContext(context);
 };
 
-export { ListProvider, useListData };
+export { ListProvider, useListStore };

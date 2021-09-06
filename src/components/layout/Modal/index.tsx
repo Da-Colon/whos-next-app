@@ -1,17 +1,16 @@
+import { FC, useRef, ReactNode } from "react";
 import classNames from "classnames";
-import { useRef } from "react";
-import { FC } from "react";
-import { ReactNode } from "react";
 import { IUserStore, useUserStore } from "../../../context/UserContext";
 import { EAccountState } from "../../../context/UserContext/useAccountManagement";
 import './styles.scss'
-interface IModal {
+
+interface IModalProps {
   isVisible: boolean;
   addClasses?: string | any;
   children: ReactNode 
 }
 
-const Modal: FC<IModal> = ({isVisible, addClasses, children}) => {
+const Modal: FC<IModalProps> = ({isVisible, addClasses, children}) => {
   const userStore: IUserStore = useUserStore();
   const overlayRef = useRef(null);
 

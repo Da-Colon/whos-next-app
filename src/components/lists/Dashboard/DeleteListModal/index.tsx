@@ -1,30 +1,31 @@
-import { IListStore, useListData } from "../../../../context/ListContext";
+import { IListStore, useListStore } from "../../../../context/ListContext";
 import "./styles.scss";
 
 const DeleteListModal = () => {
-  const listsStore: IListStore = useListData();
+  const listsStore: IListStore = useListStore();
 
+
+  // deletes list out of database
+  // closes modal
+  // reloads lists
   const deleteList = async () => {
     if (!listsStore.deleteListId) return;
-    const result: { message?: string; error?: string } =
-      await listsStore.deleteList(listsStore.deleteListId);
+    const result: { message?: string; error?: string } = await listsStore.deleteList(listsStore.deleteListId);
     if (result.error) {
       // show error
-      console.error(result)
+      console.error(result);
     }
-    // update screen
-    listsStore.updateShowListDeleteModal(null)
+    // closes modal
+    listsStore.updateShowListDeleteModal(null);
     // load lists
-    listsStore.loadLists()
+    listsStore.loadLists();
   };
   if (!listsStore.deleteListId) {
     return null;
   }
 
-  const list = listsStore.userLists?.find(
-    (list) => list.id === listsStore.deleteListId
-  ) || { name: "" };
-  
+  const list = listsStore.userLists?.find((list) => list.id === listsStore.deleteListId) || { name: "" };
+
   return (
     <div className="delete-list-modal">
       <div className="delete-list-modal-container">
@@ -39,11 +40,7 @@ const DeleteListModal = () => {
           >
             Cancel
           </button>
-          <button
-            type="button"
-            className="delete-list-modal-delete"
-            onClick={deleteList}
-          >
+          <button type="button" className="delete-list-modal-delete" onClick={deleteList}>
             Delete
           </button>
         </div>

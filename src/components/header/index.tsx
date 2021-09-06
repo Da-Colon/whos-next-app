@@ -1,17 +1,17 @@
-import { FC } from "react";
+import { ClientRoutes } from "../../config/client";
 import { IUserStore, useUserStore } from "../../context/UserContext";
-import { ClientRoutes } from "../../router/routes";
-import Link from "../UI/Link";
+
+import Link from "../layout/UI/Link";
 import AccountMenuButtons from "./AccountMenuButtons";
 import PageLogo from "./PageLogo";
 import "./styles.scss";
 
-interface IHeader {
+interface IHeaderProps {
   isloggedIn: boolean;
   cookieHandler: () => void;
 }
 
-const Header: FC<IHeader> = ({ isloggedIn, cookieHandler }) => {
+const Header = ({ isloggedIn, cookieHandler }: IHeaderProps) => {
   const userStore: IUserStore = useUserStore();
 
   // TODO re-add logout

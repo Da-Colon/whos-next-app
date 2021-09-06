@@ -4,7 +4,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router-dom";
-import { ClientRoutes } from "../../../router/routes";
+import { ClientRoutes } from "../../../config/client";
 
 export enum ENavigationType {
   State,

@@ -1,18 +1,18 @@
 import { useHistory, useParams } from "react-router-dom";
 import { listNewValidationSchema } from "../../../constants/validationSchemas";
-import { IListStore, useListData } from "../../../context/ListContext";
+import { IListStore, useListStore } from "../../../context/ListContext";
 import FormikContainer from "../../../services/FormikContainer";
 import { IFormikProps } from "../interfaces";
 import "./styles.scss";
 import ListInputs from "./ListInputs";
 import NameAndPrivacy from "./NameAndPrivacy";
-import { ClientRoutes } from "../../../router/routes";
 import TitleAndNavigation, { ENavigationType } from "../shared/TitleAndNavigation";
+import { ClientRoutes } from "../../../config/client";
 
 const EditList = () => {
   const { listId } = useParams<{ listId: string }>();
   const history = useHistory();
-  const listsStore: IListStore = useListData();
+  const listsStore: IListStore = useListStore();
 
   const list = listsStore.userLists?.find((list) => list.id === listId);
 

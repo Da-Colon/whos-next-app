@@ -1,22 +1,17 @@
-import { FC } from "react";
 import classnames from "classnames";
-import { IListStore, useListData } from "../../../../context/ListContext";
-import { IFormikProps } from "../../interfaces";
-import { ECreateListSteps } from "../../../../context/ListContext/interfaces";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowCircleRight,
-} from "@fortawesome/free-solid-svg-icons";
-import "./styles.scss";
+import { faArrowCircleRight } from "@fortawesome/free-solid-svg-icons";
+import { IListStore, useListStore } from "../../../../context/ListContext";
 import TitleAndNavigation, { ENavigationType } from "../../shared/TitleAndNavigation";
-const NameAndSettings: FC<IFormikProps> = ({
-  values,
-  errors,
-  handleChange,
-  setFieldValue,
-}) => {
-  const listsStore: IListStore = useListData();
+import { ECreateListSteps } from "../../../../context/ListContext/interfaces";
+import { IFormikProps } from "../../interfaces";
+import "./styles.scss";
 
+const NameAndSettings = ({ values, errors, handleChange, setFieldValue }: IFormikProps) => {
+  const listsStore: IListStore = useListStore();
+
+  // update form state with privacy choice
+  // @param (isPrivate: boolean)
   const setPrivacy = (isPrivate: boolean) => {
     setFieldValue("isPrivate", isPrivate);
   };
@@ -24,15 +19,7 @@ const NameAndSettings: FC<IFormikProps> = ({
   return (
     <div className="name-and-settings-container">
       <TitleAndNavigation pageTitle="New List Settings" variant={ENavigationType.Nav} />
-      {/* name */}
-      <input
-        type="text"
-        name="name"
-        placeholder="List Name..."
-        onChange={handleChange}
-        value={values.name}
-      />
-      {/* Privacy Buttons */}
+      <input type="text" name="name" placeholder="List Name..." onChange={handleChange} value={values.name} />
       <div role="group" className="name-and-settings-privacy">
         <label htmlFor="isPrivate" className="heading-label">
           List Privacy
@@ -41,20 +28,20 @@ const NameAndSettings: FC<IFormikProps> = ({
           <button
             type="button"
             name="isPrivate"
+            onClick={() => setPrivacy(true)}
             className={classnames({
               "button-highlight": values.isPrivate,
             })}
-            onClick={() => setPrivacy(true)}
           >
             Private
           </button>
           <button
             type="button"
             name="isPrivate"
+            onClick={() => setPrivacy(false)}
             className={classnames({
               "button-highlight": !values.isPrivate,
             })}
-            onClick={() => setPrivacy(false)}
           >
             Public
           </button>
@@ -64,9 +51,7 @@ const NameAndSettings: FC<IFormikProps> = ({
         <button
           type="button"
           className="next-step-button"
-          onClick={() =>
-            listsStore.updateCreateListState(ECreateListSteps.CreationMethod)
-          }
+          onClick={() => listsStore.updateCreateListState(ECreateListSteps.CreationMethod)}
           disabled={!values.name}
         >
           Creation method

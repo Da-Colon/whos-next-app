@@ -2,11 +2,12 @@ import { Route, useParams } from "react-router";
 import PickerComponent from "../../components/picker";
 import PickerWrapper from './PickerWrapper'
 import useRandomPicker from "../../components/picker/useRandomPicker";
-import { IListStore, useListData } from "../../context/ListContext";
+import { IListStore, useListStore } from "../../context/ListContext";
+import { Routes } from "../../config/client";
 
 const PickersContainer = () => {
   const { listId } = useParams<{ listId: string }>();
-  const listsStore: IListStore = useListData();
+  const listsStore: IListStore = useListStore();
   const list = listsStore.userLists?.find((list) => listId === list.id);
   const RandomPicker = useRandomPicker(list?.list || []);
   if (!list) {
@@ -18,10 +19,10 @@ const PickersContainer = () => {
   // non-persistant list: default mode; list is reset every
   return (
     <PickerWrapper {...RandomPicker} list={list}>
-      <Route path="/picker/standard">
+      <Route path={Routes.PickerStandard}>
         <PickerComponent list={list} RandomPicker={RandomPicker} />
       </Route>
-      <Route path={`/picker/persistant`} />
+      <Route path={Routes.PickerPersistant} />
     </PickerWrapper>
   );
 };

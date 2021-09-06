@@ -1,25 +1,29 @@
-import { FC, useEffect } from "react";
+import { useEffect } from "react";
 import { Route } from "react-router-dom";
 import Landing from "../pages/landing";
-import { Routes } from "../router/routes";
 import ListsPage from "../pages/lists";
 import PickersContainer from "../pages/pickers";
-import { IListStore, useListData } from "../context/ListContext";
+import { IListStore, useListStore } from "../context/ListContext";
+import { Routes } from "../config/client";
 
-const Body: FC<{ isLoggedIn: boolean }> = ({ isLoggedIn }) => {
-  const { loadLists, isListsLoaded }: IListStore = useListData();
+interface IBodyProps {
+  isLoggedIn: boolean;
+}
+
+const Body = ({ isLoggedIn }: IBodyProps) => {
+  const { loadLists, isListsLoaded }: IListStore = useListStore();
   useEffect(() => {
     if (isLoggedIn) {
       loadLists();
     }
   }, [isLoggedIn, loadLists]);
 
-  if(!isListsLoaded) return null
+  if (!isListsLoaded) return null;
   return (
     <div className="body-container">
-      <Route path={Routes.home} component={Landing} exact />
-      <Route path={Routes.lists} component={ListsPage} />
-      <Route path={Routes.picker} component={PickersContainer} />
+      <Route path={Routes.Home} component={Landing} exact />
+      <Route path={Routes.Lists} component={ListsPage} />
+      <Route path={Routes.Picker} component={PickersContainer} />
     </div>
   );
 };

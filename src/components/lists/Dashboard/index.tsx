@@ -1,34 +1,17 @@
-import { IListStore, useListData } from "../../../context/ListContext";
-import {
-  EListFilters,
-  EListViewStates,
-  IListDetails,
-} from "../../../context/ListContext/interfaces";
-import Loader from "../../layout/Loader";
+import { IListStore, useListStore } from "../../../context/ListContext";
+import { EListViewStates } from "../../../context/ListContext/interfaces";
+import { listsFiltered } from "../lists.utils";
 import DashboardWrapper from "./DashboardWrapper";
 import ListsCardView from "./ListsCardView";
 import ListsTableView from "./ListsTableView";
 import "./styles.scss";
 
-const publicFilter = (list: IListDetails) => !list.isPrivate;
-const privateFilter = (list: IListDetails) => list.isPrivate;
-
-const listsFiltered = (filter: EListFilters, lists: IListDetails[] | null) => {
-  return filter !== EListFilters.None
-    ? lists?.filter((list) =>
-        filter === EListFilters.Private
-          ? privateFilter(list)
-          : publicFilter(list)
-      )
-    : lists;
-};
-
 const Dashboard = () => {
-  const listsStore: IListStore = useListData();
+  const listsStore: IListStore = useListStore();
 
   const userLists = listsFiltered(listsStore.listFilter, listsStore.userLists);
   if (!userLists) {
-    return <Loader />;
+    return <div>...</div>;
   }
   switch (listsStore.listViewState) {
     case EListViewStates.Card:

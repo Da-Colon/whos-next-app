@@ -1,12 +1,13 @@
-import { FC } from "react";
 import { useHistory } from "react-router-dom";
 import { IUserStore, useUserStore } from "../../context/UserContext";
 import { EAccountState } from "../../context/UserContext/useAccountManagement";
 
-const AccountMenuButtons: FC<{
+interface AccountMenuButtonsProps {
   isLoggedIn: boolean;
   cookieHandler: () => void;
-}> = ({ isLoggedIn, cookieHandler }) => {
+}
+
+const AccountMenuButtons = ({ isLoggedIn, cookieHandler }: AccountMenuButtonsProps) => {
 
   const history = useHistory();
   const userStore: IUserStore = useUserStore();

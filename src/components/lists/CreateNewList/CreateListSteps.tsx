@@ -1,18 +1,16 @@
-import { useState } from "react";
-import { FC } from "react";
-import { IListStore, useListData } from "../../../context/ListContext";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { ClientRoutes } from "../../../config/client";
+import { IListStore, useListStore } from "../../../context/ListContext";
 import { ECreateListSteps } from "../../../context/ListContext/interfaces";
 import { IFormikProps } from "../interfaces";
 import CreationMethod from "./CreationMethod";
 import ListCreation from "./ListCreation";
 import NameAndSettings from "./NameAndSettings";
 import Review from "./Review";
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import { ClientRoutes } from "../../../router/routes";
 
-const CreateListSteps: FC<IFormikProps> = (props) => {
-  const listsStore: IListStore = useListData();
+const CreateListSteps = (props: IFormikProps) => {
+  const listsStore: IListStore = useListStore();
   const location = useLocation();
   const [manualListLength, setManualListLength] = useState<number>(0);
   // ! This will be used later for storing uploaded list data
@@ -34,10 +32,7 @@ const CreateListSteps: FC<IFormikProps> = (props) => {
     }
     case ECreateListSteps.CreationMethod: {
       return (
-        <CreationMethod
-          updateManualListLength={updateManualListLength}
-          manualListLength={manualListLength}
-        />
+        <CreationMethod updateManualListLength={updateManualListLength} manualListLength={manualListLength} />
       );
     }
     case ECreateListSteps.ListCreation: {

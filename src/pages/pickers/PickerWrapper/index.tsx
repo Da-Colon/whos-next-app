@@ -2,7 +2,7 @@ import { faBahai, faDiceOne, faTimes, IconDefinition } from "@fortawesome/free-s
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classnames from "classnames";
 import { IPickerTypesState, IUseRandomPickerProps } from "../../../components/picker/interfaces";
-import { Tooltip } from "../../../components/UI/Tooltip";
+import { Tooltip } from "../../../components/layout/UI/Tooltip";
 import { IList, IListDetails } from "../../../context/ListContext/interfaces";
 import "./styles.scss";
 import useCollapse, { IUseCollapseState } from "./useCollapse";

@@ -1,5 +1,5 @@
 import { IListDetails } from "../../../context/ListContext/interfaces";
-import ListActionButtons from "./ListActionButtons";
+import ListActionButtons from "./ListsActionButtons";
 
 const ListsTableRow = ({ list, isUserLists }: { list: IListDetails, isUserLists?: boolean }) => {
   return (

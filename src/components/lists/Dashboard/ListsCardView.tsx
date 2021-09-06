@@ -1,5 +1,5 @@
 import { IListDetails } from "../../../context/ListContext/interfaces";
-import ListActionButtons from "./ListActionButtons";
+import ListActionButtons from "./ListsActionButtons";
 
 const List = ({ name }: { name: string }) => {
   return (

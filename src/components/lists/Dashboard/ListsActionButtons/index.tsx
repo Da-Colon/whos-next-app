@@ -1,23 +1,14 @@
+import { ReactElement } from "react";
 import { NavLink } from "react-router-dom";
-import {
-  faCheck,
-  faHandPointUp,
-  faHeart,
-  faLock,
-  faLockOpen,
-  faPencilAlt,
-  faTrash,
-  IconDefinition,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faHandPointUp, faHeart, faLock, faLockOpen, faPencilAlt, faTrash, IconDefinition } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IListStore, useListData } from "../../../context/ListContext";
-import { IListDetails } from "../../../context/ListContext/interfaces";
-import { IUserStore, useUserStore } from "../../../context/UserContext";
-import { ClientRoutes } from "../../../router/routes";
-import { Tooltip } from "../../UI/Tooltip";
-import { FC, ReactElement } from "react";
+import { IListStore, useListStore } from "../../../../context/ListContext";
+import { IListDetails } from "../../../../context/ListContext/interfaces";
+import { IUserStore, useUserStore } from "../../../../context/UserContext";
+import { Tooltip } from "../../../layout/UI/Tooltip";
+import { ClientRoutes } from "../../../../config/client";
 
-interface IActionButton {
+interface IActionButtonProps {
   icon: IconDefinition;
   className: string;
   "data-tip": string;
@@ -27,7 +18,7 @@ interface IActionButton {
   altComponent: ReactElement | null;
 }
 
-const ActionButton: FC<IActionButton> = ({isVisible, altComponent, ...rest}) => {
+const ActionButton = ({ isVisible, altComponent, ...rest }: IActionButtonProps) => {
   if (!isVisible) return altComponent;
   return (
     <>
@@ -37,7 +28,7 @@ const ActionButton: FC<IActionButton> = ({isVisible, altComponent, ...rest}) => 
   );
 };
 
-const AltView: FC<IActionButton> = ({isVisible, altComponent, ...rest}) => {
+const AltView = ({ isVisible, altComponent, ...rest }: IActionButtonProps) => {
   if (!isVisible) return altComponent;
   return (
     <div className="list-action-button-alt">
@@ -47,43 +38,33 @@ const AltView: FC<IActionButton> = ({isVisible, altComponent, ...rest}) => {
   );
 };
 
-const ListActionButtons = ({
-  list,
-  isUserLists,
-}: {
-  list: IListDetails;
-  isUserLists?: boolean;
-}) => {
-  const listsStore: IListStore = useListData();
+const EditButton = ({ isVisible, altComponent, ...rest }: IActionButtonProps & { id: string }) => {
+  if (!isVisible) return altComponent;
+  return (
+    <NavLink to={ClientRoutes.listsEdit(rest.id)}>
+      <div className="list-action-button-alt">
+        <FontAwesomeIcon {...rest} />
+        <Tooltip id={rest["data-for"]} />
+      </div>
+    </NavLink>
+  );
+};
+
+const ListActionButtons = ({ list, isUserLists }: { list: IListDetails; isUserLists?: boolean }) => {
+  const listsStore: IListStore = useListStore();
   const userStore: IUserStore = useUserStore();
 
   // todo add heart icon around number of likes, may need to increase size.
-  // todo being lazy here and needs to be moved: list added to interface
 
-  const EditButton: FC<IActionButton> = ({isVisible, altComponent, ...rest}) => {
-    if (!isVisible) return altComponent;
-    return (
-      <NavLink to={ClientRoutes.listsEdit(list.id)}>
-        <div className="list-action-button-alt">
-          <FontAwesomeIcon {...rest} />
-          <Tooltip id={rest["data-for"]} />
-        </div>
-      </NavLink>
-    );
-  };
   const updateLikedList = () => {
     if (!userStore.userPreferences?.likedLists.includes(list.id)) {
-      listsStore.updateListProperties(
-        list.id,
-        Object.create({ isPrivate: !list.isPrivate })
-      );
+      listsStore.updateListProperties(list.id, Object.create({ isPrivate: !list.isPrivate }));
       // TODO update user preferences
     }
   };
 
-  // component conditionals
-  const showSelect =
-    userStore.userPreferences?.selectedList !== list.id && isUserLists === true;
+  // returns true when list id matches user's selected list
+  const showSelect = userStore.userPreferences?.selectedList !== list.id && isUserLists === true;
 
   return (
     <>
@@ -131,15 +112,16 @@ const ListActionButtons = ({
           />
         }
       />
-        <EditButton
-          icon={faPencilAlt}
-          className="lists-card-view-action icon-effects__pencil"
-          data-tip="Edit list"
-          data-for="action-edit"
-          altComponent={null}
-          isVisible={isUserLists}
-        />
-      <ActionButton 
+      <EditButton
+        icon={faPencilAlt}
+        className="lists-card-view-action icon-effects__pencil"
+        data-tip="Edit list"
+        data-for="action-edit"
+        altComponent={null}
+        id={list.id}
+        isVisible={isUserLists}
+      />
+      <ActionButton
         icon={faTrash}
         className="lists-card-view-action icon-effects__trash"
         onClick={() => listsStore.updateShowListDeleteModal(list.id)}
