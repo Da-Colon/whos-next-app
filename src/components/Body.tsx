@@ -11,14 +11,13 @@ interface IBodyProps {
 }
 
 const Body = ({ isLoggedIn }: IBodyProps) => {
-  const { loadLists, isListsLoaded }: IListStore = useListStore();
+  const { loadLists }: IListStore = useListStore();
   useEffect(() => {
     if (isLoggedIn) {
       loadLists();
     }
   }, [isLoggedIn, loadLists]);
 
-  if (!isListsLoaded) return null;
   return (
     <div className="body-container">
       <Route path={Routes.Home} component={Landing} exact />
