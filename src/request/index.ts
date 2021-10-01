@@ -9,6 +9,7 @@ const request = (path: string, method: string, body?: object): Promise<any> => {
   const cookie = new Cookies();
   const token = cookie.get("token");
   if (token) headers.set("Authorization", `${token}`);
+  
   const options: IOptions = { method, headers };
 
   if (body) {

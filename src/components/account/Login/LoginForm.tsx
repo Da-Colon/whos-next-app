@@ -11,17 +11,12 @@ const LoginForm = () => {
   const userStore: IUserStore = useUserStore();
   const [serverError, setServerError] = useState<string | null>(null);
 
-  const setAuthTokenCookie = (token: string) => {
-    userStore.setCookie("token", token, { path: "/" });
-  };
-
   const handleSubmit = async (values: IFormProperties) => {
-    const token = await userStore.userSignin(values);
-    if (!token) {
+    const success = await userStore.userSignin(values);
+    if (!success) {
       setServerError("Please check your email and password and try again.");
       return;
     }
-    setAuthTokenCookie(token);
     userStore.updateLoginState(EAccountState.None);
   };
 

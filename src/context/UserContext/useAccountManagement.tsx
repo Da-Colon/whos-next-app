@@ -36,7 +36,7 @@ export interface IAccountStore {
   setCookie: (name: string, value: any, options?: any | undefined) => void;
   removeCookie: (name: string, options?: any | undefined) => void;
   authLogin: (removeCookie: any) => Promise<void>;
-  userSignin: (values: IFormProperties) => Promise<string>;
+  userSignin: (values: IFormProperties) => Promise<boolean>;
   userSignup: (values: IFormProperties) => Promise<IUserObject>;
   userLogout: (cookieHandler: TVoidFunction) => Promise<void>;
   clearError: () => void;
@@ -46,7 +46,7 @@ export interface IAccountStore {
 
 const useAccountManagement = (): IAccountStore => {
   const [cookies, setCookie, removeCookie] = useCookies(["token"]);
-  const [user, setUser] = useState<null | IUserObject>(null);
+  const [user, setUser] = useState<IUserObject | null>(null);
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [isUserLoaded, setUserLoaded] = useState(false);
   const [loginState, setLoginState] = useState(EAccountState.None);
@@ -75,7 +75,7 @@ const useAccountManagement = (): IAccountStore => {
     }
   }, [removeCookie]);
 
-  const userSignin = async (values: IFormProperties) => {
+  const userSignin = async (values: IFormProperties): Promise<boolean> => {
     try {
       setUserLoaded(false);
       const userResponse: any = await request(
@@ -84,13 +84,16 @@ const useAccountManagement = (): IAccountStore => {
         values
       );
       if (userResponse.message === "ok!") {
+        setCookie("token", userResponse.token, { path: "/" })
         setUser(userResponse.user);
         setLoggedIn(true);
         setUserLoaded(true);
-        return userResponse.token;
+        return true;
       }
+      return false
     } catch (e) {
       setError("There was an error with the request");
+      return false
     }
   };
 

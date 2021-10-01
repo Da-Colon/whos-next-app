@@ -21,9 +21,9 @@ const App = () => {
   }, [cookies, authLogin, removeCookie]);
 
   useEffect(() => {
-    if (!user) return;
+    if (!user && !cookies.token) return;
     loadUserPreferences();
-  }, [loadUserPreferences, user]);
+  }, [loadUserPreferences, user, cookies]);
 
   return (
     <Router>

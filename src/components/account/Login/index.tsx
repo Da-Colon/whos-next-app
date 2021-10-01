@@ -11,6 +11,7 @@ const LoginSteps = () => {
     userStore.updateSignupState(option);
     userStore.updateLoginState(EAccountState.None);
   };
+  
   switch (userStore.loginState) {
     case EAccountState.Choose:
       return (

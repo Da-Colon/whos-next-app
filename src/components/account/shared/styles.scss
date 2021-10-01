@@ -4,10 +4,10 @@
   border-radius: 8px;
   position: relative;
   .button-with-logo-container {
-    background-color: map-get($colors, bluegray);
     margin: 1rem 0;
     button.button-with-logo-primary {
       background-color: unset;
+      background-color: map-get($colors, bluegray);
       border-bottom: 4px solid map-get($colors, black);
       height: 100%;
       padding-bottom: 1rem;
@@ -15,11 +15,15 @@
       position: relative;
       width: 100%;
       &:hover {
-        border: 3px solid map-get($colors, white);
+        transform: scale(1.05);
       }
       &:disabled {
         cursor: default;
-        opacity: 0.25;
+        opacity: 0.55;
+      }
+      &:hover:disabled {
+        cursor: default;
+        transform: scale(1);
       }
       div.button-with-logo {
         align-items: center;
@@ -42,7 +46,7 @@
       }
     }
     button.button-with-logo-secondary {
-      background-color: unset;
+      background-color: map-get($colors, bluegray);
       border-bottom: 3px solid map-get($colors, black);
       letter-spacing: 0.1rem;
       padding-bottom: 1rem;
@@ -50,11 +54,16 @@
       width: 100%;
       &:hover {
         color: map-get($colors, white);
-        transform: none;
+        transform: scale(1.05);
       }
       &:disabled {
         color: map-get($colors, black);
+        opacity: 0.55;
         cursor: default;
+      }
+      &:hover:disabled {
+        color: map-get($colors, black);
+        transform: scale(1);
       }
     }
   }
