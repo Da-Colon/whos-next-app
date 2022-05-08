@@ -1,14 +1,15 @@
 import classnames from "classnames";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowCircleRight } from "@fortawesome/free-solid-svg-icons";
-import { IListStore, useListStore } from "../../../../context/ListContext";
+import { useListStore } from "../../../../context/ListContext";
 import TitleAndNavigation, { ENavigationType } from "../../shared/TitleAndNavigation";
-import { ECreateListSteps } from "../../../../context/ListContext/interfaces";
 import { IFormikProps } from "../../interfaces";
 import "./styles.scss";
+import { ListsStore } from "../../../../context/typescript/lists.types";
+import { ECreateListSteps } from "../../../../context/typescript/lists.enums";
 
 const NameAndSettings = ({ values, errors, handleChange, setFieldValue }: IFormikProps) => {
-  const listsStore: IListStore = useListStore();
+  const listsStore: ListsStore = useListStore();
 
   // update form state with privacy choice
   // @param (isPrivate: boolean)

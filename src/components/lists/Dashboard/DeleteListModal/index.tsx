@@ -1,9 +1,9 @@
-import { IListStore, useListStore } from "../../../../context/ListContext";
+import { useListStore } from "../../../../context/ListContext";
+import { ListsStore } from "../../../../context/typescript/lists.types";
 import "./styles.scss";
 
 const DeleteListModal = () => {
-  const listsStore: IListStore = useListStore();
-
+  const listsStore: ListsStore = useListStore();
 
   // deletes list out of database
   // closes modal

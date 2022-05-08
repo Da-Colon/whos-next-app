@@ -3,15 +3,16 @@ import { Route } from "react-router-dom";
 import Landing from "../pages/landing";
 import ListsPage from "../pages/lists";
 import PickersContainer from "../pages/pickers";
-import { IListStore, useListStore } from "../context/ListContext";
+import { useListStore } from "../context/ListContext";
 import { Routes } from "../config/client";
+import { ListsStore } from "../context/typescript/lists.types";
 
 interface IBodyProps {
   isLoggedIn: boolean;
 }
 
 const Body = ({ isLoggedIn }: IBodyProps) => {
-  const { loadLists }: IListStore = useListStore();
+  const { loadLists }: ListsStore = useListStore();
   useEffect(() => {
     if (isLoggedIn) {
       loadLists();

@@ -3,12 +3,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classnames from "classnames";
 import { IPickerTypesState, IUseRandomPickerProps } from "../../../components/picker/interfaces";
 import { Tooltip } from "../../../components/layout/UI/Tooltip";
-import { IList, IListDetails } from "../../../context/ListContext/interfaces";
 import "./styles.scss";
 import useCollapse, { IUseCollapseState } from "./useCollapse";
+import { ListDetails, ListProps } from "../../../context/typescript/lists.types";
 
 interface IPickerWrapperProps extends IUseRandomPickerProps {
-  list: IListDetails;
+  list: ListDetails;
   children: JSX.Element[];
 }
 
@@ -21,7 +21,7 @@ interface IIconAndTooltipProps {
 }
 
 interface IListMenu {
-  list: IList[];
+  list: ListProps[];
   hasLength: boolean;
   isVisible: boolean;
   moveToOtherList: (removeIndex: number) => void;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { IListStore, useListStore } from "../../../context/ListContext";
+import { useListStore } from "../../../context/ListContext";
 import FormikContainer from "../../../services/FormikContainer";
 import { listNewValidationSchema } from "../../../constants/validationSchemas";
 import { listNewInitialValues } from "../../../constants/initialValues";
@@ -8,9 +8,10 @@ import CreateListSteps from "./CreateListSteps";
 import { IFormikProps } from "../interfaces";
 import { Routes } from "../../../config/client";
 import "./styles.scss";
+import { ListsStore } from "../../../context/typescript/lists.types";
 
 const CreateNewList = () => {
-  const listsStore: IListStore = useListStore();
+  const listsStore: ListsStore = useListStore();
   const [loading, setLoading] = useState(false);
   const history = useHistory();
 

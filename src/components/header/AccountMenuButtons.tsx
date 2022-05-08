@@ -1,6 +1,7 @@
 import { useHistory } from "react-router-dom";
-import { IUserStore, useUserStore } from "../../context/UserContext";
-import { EAccountState } from "../../context/UserContext/useAccountManagement";
+import { AccountState } from "../../context/typescript/users.enums";
+import { UsersStore } from "../../context/typescript/users.types";
+import { useUserStore } from "../../context/UserContext";
 
 interface AccountMenuButtonsProps {
   isLoggedIn: boolean;
@@ -10,7 +11,7 @@ interface AccountMenuButtonsProps {
 const AccountMenuButtons = ({ isLoggedIn, cookieHandler }: AccountMenuButtonsProps) => {
 
   const history = useHistory();
-  const userStore: IUserStore = useUserStore();
+  const userStore: UsersStore = useUserStore();
 
   const logout = () => {
     userStore.userLogout(cookieHandler);
@@ -18,7 +19,7 @@ const AccountMenuButtons = ({ isLoggedIn, cookieHandler }: AccountMenuButtonsPro
   };
 
   const loginInit = () => {
-    userStore.updateLoginState(EAccountState.Choose)
+    userStore.updateLoginState(AccountState.Choose)
   }
   
   if (isLoggedIn) {

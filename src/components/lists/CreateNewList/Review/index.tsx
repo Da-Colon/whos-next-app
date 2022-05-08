@@ -1,11 +1,12 @@
-import { IListStore, useListStore } from "../../../../context/ListContext";
-import { ECreateListSteps } from "../../../../context/ListContext/interfaces";
+import { useListStore } from "../../../../context/ListContext";
+import { ECreateListSteps } from "../../../../context/typescript/lists.enums";
+import { ListsStore } from "../../../../context/typescript/lists.types";
 import { IFormikProps } from "../../interfaces";
 import TitleAndNavigation, { ENavigationType } from "../../shared/TitleAndNavigation";
 import "./styles.scss";
 
 const Review = ({ values }: IFormikProps) => {
-  const listsStore: IListStore = useListStore();
+  const listsStore: ListsStore = useListStore();
   return (
     <div className="review-list-container">
       <TitleAndNavigation

@@ -1,22 +1,22 @@
 import { useState } from "react";
-import { IList } from "../../context/ListContext/interfaces";
+import { ListProps } from "../../context/typescript/lists.types";
 import { IPickerTypesState, IPickerViewState, IUseRandomPickerProps } from "./interfaces";
 import { randomNumberPicker } from "./picker.utils";
 
-const useRandomPicker = (list: IList[]): IUseRandomPickerProps => {
+const useRandomPicker = (list: ListProps[]): IUseRandomPickerProps => {
   //  state that shows user current state of list (between picks)
-  const [currentItems, setCurrentItems] = useState<IList[]>(list);
-  const [removedItems, setRemovedItems] = useState<IList[]>([]);
-  const [pickedItem, setpickedItem] = useState<IList | null>(null);
+  const [currentItems, setCurrentItems] = useState<ListProps[]>(list);
+  const [removedItems, setRemovedItems] = useState<ListProps[]>([]);
+  const [pickedItem, setpickedItem] = useState<ListProps | null>(null);
 
   // state for storing versions of random picker
   const [pickerView, setPickerView] = useState(IPickerViewState.Scatter);
   const [pickerType, setPickerType] = useState(IPickerTypesState.One);
 
   // picker state for random picker
-  const [currentPickerItems, setCurrentPickerItems] = useState<IList[]>([]);
+  const [currentPickerItems, setCurrentPickerItems] = useState<ListProps[]>([]);
 
-  const getRandomItems = (items: IList[]) => {
+  const getRandomItems = (items: ListProps[]) => {
     const randomlyPickedIndex = randomNumberPicker(items?.length - 1);
     return {
       selectedItem: items?.find((_, index) => index === randomlyPickedIndex) || { name: "" },

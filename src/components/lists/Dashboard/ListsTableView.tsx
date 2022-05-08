@@ -1,7 +1,12 @@
-import { IListDetails } from "../../../context/ListContext/interfaces";
+import { ListDetails } from "../../../context/typescript/lists.types";
 import ListActionButtons from "./ListsActionButtons";
 
-const ListsTableRow = ({ list, isUserLists }: { list: IListDetails, isUserLists?: boolean }) => {
+interface ListsTableRowProps {
+  list: ListDetails;
+  isUserLists?: boolean;
+}
+
+const ListsTableRow = ({ list, isUserLists }: ListsTableRowProps) => {
   return (
     <div className="lists-table-row">
       <div>{list.name}</div>
@@ -9,26 +14,25 @@ const ListsTableRow = ({ list, isUserLists }: { list: IListDetails, isUserLists?
       <div>{list.likes}</div>
       <div>{list.list.length}</div>
       <div className="lists-table-actions">
-        <ListActionButtons list={list} isUserLists={isUserLists}/>
+        <ListActionButtons list={list} isUserLists={isUserLists} />
       </div>
     </div>
   );
 };
 
-const ListsTableBody = ({
-  lists,
-  isUserLists
-}: {
-  lists: IListDetails[];
+interface ListsTableBodyProps {
+  lists: ListDetails[];
   isUserLists?: boolean;
-}) => {
+}
+
+const ListsTableBody = ({ lists, isUserLists }: ListsTableBodyProps) => {
   if (!lists.length) {
     return <div className="lists-table-none">No lists to display...</div>;
   }
   return (
     <div className="lists-table-body">
       {lists.map((list, index) => (
-        <ListsTableRow key={`${list.id},${index}`} list={list} isUserLists={isUserLists}/>
+        <ListsTableRow key={`${list.id},${index}`} list={list} isUserLists={isUserLists} />
       ))}
     </div>
   );
@@ -46,13 +50,12 @@ const ListsTableHeader = () => {
   );
 };
 
-const ListsTableView = ({
-  lists,
-  ...rest
-}: {
-  lists: IListDetails[];
+interface ListsTableViewProps {
+  lists: ListDetails[];
   isUserLists?: boolean;
-}) => {
+}
+
+const ListsTableView = ({ lists, ...rest }: ListsTableViewProps) => {
   return (
     <div className="lists-table-view">
       <ListsTableHeader />

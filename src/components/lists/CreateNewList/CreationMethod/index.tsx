@@ -1,17 +1,18 @@
 import { faArrowCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IListStore, useListStore } from "../../../../context/ListContext";
-import { ECreateListSteps } from "../../../../context/ListContext/interfaces";
+import { useListStore } from "../../../../context/ListContext";
+import { ECreateListSteps } from "../../../../context/typescript/lists.enums";
+import { ListsStore } from "../../../../context/typescript/lists.types";
 import TitleAndNavigation, { ENavigationType } from "../../shared/TitleAndNavigation";
 import "./styles.scss";
 
-interface ICreationMethodProps {
+interface CreationMethodProps {
   manualListLength: number;
   updateManualListLength: (length: number) => void;
 }
 
-const CreationMethod = ({ manualListLength, updateManualListLength }: ICreationMethodProps) => {
-  const listsStore: IListStore = useListStore();
+const CreationMethod = ({ manualListLength, updateManualListLength }: CreationMethodProps) => {
+  const listsStore: ListsStore = useListStore();
   return (
     <div className="creation-method-container">
       <TitleAndNavigation

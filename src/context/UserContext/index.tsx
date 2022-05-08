@@ -1,18 +1,17 @@
 import { Context, createContext, useContext } from "react";
-import { IAccountStore, useAccountManagement } from "./useAccountManagement";
-import useUserPreferences, { IUserPreferencesStore } from "./useUserPreferences";
-let context: Context<IUserStore>;
-
-export interface IUserStore extends IAccountStore, IUserPreferencesStore {}
+import { AccountStore, UserPreferencesStore, UsersStore } from "../typescript/users.types";
+import { useAccountManagement } from "./useAccountManagement";
+import useUserPreferences from "./useUserPreferences";
+let context: Context<UsersStore>;
 
 const createDataRoot = () => {
-  context = createContext({} as IUserStore);
+  context = createContext({} as UsersStore);
   context.displayName = "Data Provider";
   const Provider = context.Provider;
 
   return ({ children }: {children: JSX.Element}) => {
-    const userStore: IAccountStore = useAccountManagement();
-    const userPreferencesStore: IUserPreferencesStore = useUserPreferences();
+    const userStore: AccountStore = useAccountManagement();
+    const userPreferencesStore: UserPreferencesStore = useUserPreferences();
 
     const dataContext = {
       ...userStore,

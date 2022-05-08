@@ -1,28 +1,20 @@
 import { useCallback, useState } from "react";
 import { ServerRoutes } from "../../config/server";
 import request from "../../request";
-import {
-  ECreateListSteps,
-  EListFilters,
-  EListViewStates,
-  IListDetails,
-  ISanitizeListProperties,
-  IUseLists,
-} from "./interfaces";
+import { ListDetails, SanitizedListProps, UseLists } from "../typescript/lists.types";
+import { ECreateListSteps, EListFilters, EListViewStates } from "../typescript/lists.enums";
 import { sanitizeListProperties } from "./listContext.utils";
 
-const useLists = (): IUseLists => {
+const useLists = (): UseLists => {
   // store lists
-  const [userLists, setUserLists] = useState<IListDetails[]>([]);
-  const [publicLists, setPublicLists] = useState<IListDetails[]>([]);
+  const [userLists, setUserLists] = useState<ListDetails[]>([]);
+  const [publicLists, setPublicLists] = useState<ListDetails[]>([]);
   // list screen views and filters
   const [listViewState, setListViewState] = useState(EListViewStates.Card);
   const [listFilter, setListFilter] = useState(EListFilters.None);
   const [deleteListId, setDeleteListId] = useState<null | string>(null);
   // create list states
-  const [createListState, setCreateListState] = useState(
-    ECreateListSteps.NameAndSettings
-  );
+  const [createListState, setCreateListState] = useState(ECreateListSteps.NameAndSettings);
   // store state vairables
   const [isListsLoaded, setLoaded] = useState(false);
 
@@ -53,7 +45,7 @@ const useLists = (): IUseLists => {
   };
 
   // save new list
-  const saveList = async (properties: IListDetails) => {
+  const saveList = async (properties: ListDetails) => {
     try {
       const body = {
         name: properties.name,
@@ -72,16 +64,9 @@ const useLists = (): IUseLists => {
     }
   };
   // update properties
-  const updateListProperties = async (
-    id: string,
-    properties: ISanitizeListProperties
-  ) => {
+  const updateListProperties = async (id: string, properties: SanitizedListProps) => {
     const sanitizedProperties = sanitizeListProperties(properties);
-    const response = await request(
-      ServerRoutes.updateList(id),
-      "PUT",
-      sanitizedProperties
-    );
+    const response = await request(ServerRoutes.updateList(id), "PUT", sanitizedProperties);
     console.log(response);
   };
 
@@ -92,7 +77,7 @@ const useLists = (): IUseLists => {
   };
   const deleteList = async (id: string) => {
     const response = await request(ServerRoutes.deleteList(id), "DELETE");
-    return response
+    return response;
   };
 
   // update UI view

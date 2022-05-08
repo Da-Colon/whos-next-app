@@ -1,18 +1,19 @@
 import { ClientRoutes } from "../../config/client";
-import { IUserStore, useUserStore } from "../../context/UserContext";
+import { UsersStore } from "../../context/typescript/users.types";
+import { useUserStore } from "../../context/UserContext";
 
 import Link from "../layout/UI/Link";
 import AccountMenuButtons from "./AccountMenuButtons";
 import PageLogo from "./PageLogo";
 import "./styles.scss";
 
-interface IHeaderProps {
+interface HeaderProps {
   isloggedIn: boolean;
   cookieHandler: () => void;
 }
 
-const Header = ({ isloggedIn, cookieHandler }: IHeaderProps) => {
-  const userStore: IUserStore = useUserStore();
+const Header = ({ isloggedIn, cookieHandler }: HeaderProps) => {
+  const userStore: UsersStore = useUserStore();
 
   // TODO re-add logout
   return (
@@ -28,14 +29,11 @@ const Header = ({ isloggedIn, cookieHandler }: IHeaderProps) => {
         <Link
           isVisible={!!isloggedIn}
           classNames="header-center-nav-link"
-          to={ClientRoutes.picker('standard', userStore.userPreferences?.selectedList || "")}
+          to={ClientRoutes.picker("standard", userStore.userPreferences?.selectedList || "")}
           text="Picker"
         />
       </div>
-      <AccountMenuButtons
-        isLoggedIn={!!isloggedIn}
-        cookieHandler={cookieHandler}
-      />
+      <AccountMenuButtons isLoggedIn={!!isloggedIn} cookieHandler={cookieHandler} />
     </div>
   );
 };

@@ -1,30 +1,30 @@
 @import "../../../styles/vars";
 
 .edit.list-form-container {
-  max-width: 1220px;
-  margin: 8rem auto;
   position: relative;
+  margin: 8rem auto;
+  max-width: 1220px;
   .list-form-header {
-    position: absolute;
-    width: 100%;
     color: map-get($colors, white);
-    top: -3.5rem;
-    left: 8rem;
     display: flex;
+    left: 8rem;
     justify-content: flex-start;
     padding: 0 1rem;
+    position: absolute;
+    top: -3.5rem;
+    width: 100%;
     .list-form-heading {
       font-size: map-get($font-size, large);
     }
   }
 
   .list-create-inputs-container {
+    border-top: 2px solid map-get($colors, offwhite);
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
     justify-content: space-between;
     padding: 1rem 0rem;
-    border-top: 2px solid map-get($colors, offwhite);
     .list-create-input {
       display: flex;
       flex: 1 0 250px;

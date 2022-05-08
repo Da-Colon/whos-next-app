@@ -1,38 +1,39 @@
-import { IUserStore, useUserStore } from "../../../context/UserContext";
-import { EAccountState } from "../../../context/UserContext/useAccountManagement";
+import { AccountState } from "../../../context/typescript/users.enums";
+import { UsersStore } from "../../../context/typescript/users.types";
+import { useUserStore } from "../../../context/UserContext";
 import LoginChoices from "../shared/AccountChoices";
 import LoginForm from "./LoginForm";
 import "./styles.scss";
 
 const LoginSteps = () => {
-  const userStore: IUserStore = useUserStore();
+  const userStore: UsersStore = useUserStore();
 
-  const redirectSignin = (option: EAccountState) => {
+  const redirectSignin = (option: AccountState) => {
     userStore.updateSignupState(option);
-    userStore.updateLoginState(EAccountState.None);
+    userStore.updateLoginState(AccountState.None);
   };
-  
+
   switch (userStore.loginState) {
-    case EAccountState.Choose:
+    case AccountState.Choose:
       return (
         <LoginChoices
           primaryPath="Login"
           secondaryPath="Sign up"
           primaryEmailAction={() =>
-            userStore.updateLoginState(EAccountState.AccountForm)
+            userStore.updateLoginState(AccountState.AccountForm)
           }
           primaryWeb3Action={() =>
-            userStore.updateLoginState(EAccountState.Web3)
+            userStore.updateLoginState(AccountState.Web3)
           }
-          secondaryEmailAction={() => redirectSignin(EAccountState.AccountForm)}
-          secondaryWeb3Action={() => redirectSignin(EAccountState.Web3)}
+          secondaryEmailAction={() => redirectSignin(AccountState.AccountForm)}
+          secondaryWeb3Action={() => redirectSignin(AccountState.Web3)}
         />
       );
-    case EAccountState.AccountForm:
+    case AccountState.AccountForm:
       return <LoginForm />;
-    case EAccountState.Web3:
+    case AccountState.Web3:
       return <div></div>;
-    case EAccountState.None:
+    case AccountState.None:
       return null;
   }
 };

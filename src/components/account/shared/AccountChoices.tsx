@@ -1,5 +1,6 @@
-import { IUserStore, useUserStore } from "../../../context/UserContext";
-import { EAccountState } from "../../../context/UserContext/useAccountManagement";
+import { AccountState } from "../../../context/typescript/users.enums";
+import { UsersStore } from "../../../context/typescript/users.types";
+import { useUserStore } from "../../../context/UserContext";
 import './styles.scss'
 
 interface IButtonWithChoices {
@@ -28,7 +29,7 @@ const LoginChoices = ({
   primaryPath,
   secondaryPath,
 }: AccountChoices) => {
-  const userStore: IUserStore = useUserStore();
+  const userStore: UsersStore = useUserStore();
   return (
     <div className="choices-container">
       <ButtonWithLogo
@@ -47,7 +48,7 @@ const LoginChoices = ({
       <button
         type="button"
         className="choices-close-button"
-        onClick={() => userStore.updateLoginState(EAccountState.None)}
+        onClick={() => userStore.updateLoginState(AccountState.None)}
       >
         Close
       </button>

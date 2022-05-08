@@ -1,12 +1,22 @@
 import { ReactElement } from "react";
 import { NavLink } from "react-router-dom";
-import { faCheck, faHandPointUp, faHeart, faLock, faLockOpen, faPencilAlt, faTrash, IconDefinition } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCheck,
+  faHandPointUp,
+  faHeart,
+  faLock,
+  faLockOpen,
+  faPencilAlt,
+  faTrash,
+  IconDefinition,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IListStore, useListStore } from "../../../../context/ListContext";
-import { IListDetails } from "../../../../context/ListContext/interfaces";
-import { IUserStore, useUserStore } from "../../../../context/UserContext";
+import { useListStore } from "../../../../context/ListContext";
+import { useUserStore } from "../../../../context/UserContext";
 import { Tooltip } from "../../../layout/UI/Tooltip";
 import { ClientRoutes } from "../../../../config/client";
+import { ListDetails, ListsStore } from "../../../../context/typescript/lists.types";
+import { UsersStore } from "../../../../context/typescript/users.types";
 
 interface IActionButtonProps {
   icon: IconDefinition;
@@ -50,9 +60,9 @@ const EditButton = ({ isVisible, altComponent, ...rest }: IActionButtonProps & {
   );
 };
 
-const ListActionButtons = ({ list, isUserLists }: { list: IListDetails; isUserLists?: boolean }) => {
-  const listsStore: IListStore = useListStore();
-  const userStore: IUserStore = useUserStore();
+const ListActionButtons = ({ list, isUserLists }: { list: ListDetails; isUserLists?: boolean }) => {
+  const listsStore: ListsStore = useListStore();
+  const userStore: UsersStore = useUserStore();
 
   // todo add heart icon around number of likes, may need to increase size.
 

@@ -1,4 +1,4 @@
-import { IList } from "../../context/ListContext/interfaces";
+import { ListProps } from "../../context/typescript/lists.types";
 
 export enum IPickerViewState {
   Scatter,
@@ -14,10 +14,10 @@ export enum IPickerTypesState {
 }
 
 export interface IUseRandomPickerProps {
-  currentItems: IList[];
-  removedItems: IList[];
-  pickedItem: IList | null;
-  currentPickerItems: IList[];
+  currentItems: ListProps[];
+  removedItems: ListProps[];
+  pickedItem: ListProps | null;
+  currentPickerItems: ListProps[];
   pickerType: IPickerTypesState;
   pickerView: IPickerViewState
   updatePickerType: (type: IPickerTypesState) => void;

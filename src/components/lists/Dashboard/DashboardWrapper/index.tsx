@@ -10,14 +10,15 @@ import { ReactNode } from "react";
 import classnames from "classnames";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IListStore, useListStore } from "../../../../context/ListContext";
-import { EListFilters, EListViewStates } from "../../../../context/ListContext/interfaces";
+import { useListStore } from "../../../../context/ListContext";
 import { Tooltip } from "../../../layout/UI/Tooltip";
 import DeleteListModal from "../DeleteListModal";
 import { ClientRoutes } from "../../../../config/client";
+import { ListsStore } from "../../../../context/typescript/lists.types";
+import { EListFilters, EListViewStates } from "../../../../context/typescript/lists.enums";
 
 const DashboardWrapper = ({ children }: { children?: ReactNode }) => {
-  const listsStore: IListStore = useListStore();
+  const listsStore: ListsStore = useListStore();
   return (
     <div>
       <div className="dashboard-header-container">

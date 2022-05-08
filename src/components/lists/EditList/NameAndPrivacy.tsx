@@ -1,23 +1,13 @@
 import classnames from "classnames";
 import { IFormikProps } from "../interfaces";
 
-const NameAndPrivacy = ({
-  handleChange,
-  setFieldValue,
-  values,
-}: IFormikProps) => {
+const NameAndPrivacy = ({ handleChange, setFieldValue, values }: IFormikProps) => {
   return (
     <div className="name-and-settings">
       <label htmlFor="isPrivate" className="heading-label">
         List name
       </label>
-      <input
-        type="text"
-        name="name"
-        placeholder="List Name..."
-        onChange={handleChange}
-        value={values.name}
-      />
+      <input type="text" name="name" placeholder="List Name..." onChange={handleChange} value={values.name} />
       {/* Privacy Buttons */}
       <div role="group" className="privacy">
         <label htmlFor="isPrivate" className="heading-label">

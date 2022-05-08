@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { ClientRoutes } from "../../../config/client";
-import { IListStore, useListStore } from "../../../context/ListContext";
-import { ECreateListSteps } from "../../../context/ListContext/interfaces";
+import { useListStore } from "../../../context/ListContext";
+import { ECreateListSteps } from "../../../context/typescript/lists.enums";
+import { ListsStore } from "../../../context/typescript/lists.types";
 import { IFormikProps } from "../interfaces";
 import CreationMethod from "./CreationMethod";
 import ListCreation from "./ListCreation";
@@ -10,7 +11,7 @@ import NameAndSettings from "./NameAndSettings";
 import Review from "./Review";
 
 const CreateListSteps = (props: IFormikProps) => {
-  const listsStore: IListStore = useListStore();
+  const listsStore: ListsStore = useListStore();
   const location = useLocation();
   const [manualListLength, setManualListLength] = useState<number>(0);
   // ! This will be used later for storing uploaded list data

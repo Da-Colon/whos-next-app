@@ -3,28 +3,29 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { loginInitialValues } from "../../../constants/initialValues";
 import { loginValidationSchema } from "../../../constants/validationSchemas";
-import { IUserStore, useUserStore } from "../../../context/UserContext";
-import { EAccountState, IFormProperties } from "../../../context/UserContext/useAccountManagement";
+import { AccountState } from "../../../context/typescript/users.enums";
+import { AccountFormProps, UsersStore } from "../../../context/typescript/users.types";
+import { useUserStore } from "../../../context/UserContext";
 import FormikContainer from "../../../services/FormikContainer";
 
 const LoginForm = () => {
-  const userStore: IUserStore = useUserStore();
+  const userStore: UsersStore = useUserStore();
   const [serverError, setServerError] = useState<string | null>(null);
 
-  const handleSubmit = async (values: IFormProperties) => {
+  const handleSubmit = async (values: AccountFormProps) => {
     const success = await userStore.userSignin(values);
     if (!success) {
       setServerError("Please check your email and password and try again.");
       return;
     }
-    userStore.updateLoginState(EAccountState.None);
+    userStore.updateLoginState(AccountState.None);
   };
 
   return (
     <div className="form-container">
       <div className="login-form-heading">Login</div>
       <FormikContainer
-        handleSubmit={(values: IFormProperties) => handleSubmit(values)}
+        handleSubmit={(values: AccountFormProps) => handleSubmit(values)}
         initialValues={loginInitialValues}
         validationSchema={loginValidationSchema}
       >
@@ -35,9 +36,9 @@ const LoginForm = () => {
           handleChange,
           touched,
         }: {
-          values: IFormProperties;
-          errors: IFormProperties;
-          touched: IFormProperties;
+          values: AccountFormProps;
+          errors: AccountFormProps;
+          touched: AccountFormProps;
           handleSubmit: () => void;
           handleChange: () => void;
         }) => (
@@ -48,12 +49,12 @@ const LoginForm = () => {
             <FontAwesomeIcon
               className="login-steps-close"
               icon={faTimes}
-              onClick={() => userStore.updateLoginState(EAccountState.None)}
+              onClick={() => userStore.updateLoginState(AccountState.None)}
             />
             <FontAwesomeIcon
               className="login-steps-back"
               icon={faChevronLeft}
-              onClick={() => userStore.updateLoginState(EAccountState.Choose)}
+              onClick={() => userStore.updateLoginState(AccountState.Choose)}
             />
             {/* Break out into components */}
             {serverError && <div className="form-errors">{serverError}</div>}

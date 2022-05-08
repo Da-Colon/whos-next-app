@@ -1,9 +1,9 @@
-import { IListDetails } from "../../context/ListContext/interfaces";
+import { ListDetails } from "../../context/typescript/lists.types";
 import { IPickerViewState, IUseRandomPickerProps } from "./interfaces";
 import ScatterTypePicker from "./Scatter";
 import "./styles.scss";
 
-const Picker = ({ RandomPicker, ...rest }: { list: IListDetails; RandomPicker: IUseRandomPickerProps }) => {
+const Picker = ({ RandomPicker, ...rest }: { list: ListDetails; RandomPicker: IUseRandomPickerProps }) => {
   switch (RandomPicker.pickerView) {
     case IPickerViewState.Scatter:
       return (

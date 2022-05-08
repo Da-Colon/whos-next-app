@@ -1,31 +1,29 @@
-import { IList } from "./interfaces";
+import { ListProps, SanitizeListProperties } from "../typescript/lists.types";
 
-type AllTypes = string | boolean | any[] | number;
-export const sanitizeListProperties = (properties: {
+export const sanitizeListProperties: SanitizeListProperties = (properties: {
   isPrivate?: boolean;
   name?: string;
-  list?: IList[];
+  list?: ListProps[];
   likes?: number;
 }) => {
-  console.log("🚀 ~ file: listContext.utils.ts ~ line 5 ~ properties", properties)
   const sanitizedProperties: {
-    isPrivate?: AllTypes;
-    name?: AllTypes;
-    list?: AllTypes;
-    likes?: AllTypes;
+    isPrivate?: boolean;
+    name?: string;
+    list?: ListProps[];
+    likes?: number;
   } = {};
   for (const [key, value] of Object.entries(properties)) {
     if (key === "isPrivate") {
-      sanitizedProperties[key] = value;
+      sanitizedProperties[key] = value as boolean;
     }
     if (key === "name") {
-      sanitizedProperties[key] = value;
+      sanitizedProperties[key] = value as string;
     }
     if (key === "list") {
-      sanitizedProperties[key] = value;
+      sanitizedProperties[key] = value as ListProps[];
     }
     if (key === "likes") {
-      sanitizedProperties[key] = value;
+      sanitizedProperties[key] = value as number;
     }
   }
 

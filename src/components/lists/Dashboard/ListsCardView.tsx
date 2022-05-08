@@ -1,4 +1,4 @@
-import { IListDetails } from "../../../context/ListContext/interfaces";
+import { ListDetails } from "../../../context/typescript/lists.types";
 import ListActionButtons from "./ListsActionButtons";
 
 const List = ({ name }: { name: string }) => {
@@ -9,7 +9,7 @@ const List = ({ name }: { name: string }) => {
   );
 };
 
-const ListCard = ({ list, isUserLists }: { list: IListDetails, isUserLists?: boolean }) => {
+const ListCard = ({ list, isUserLists }: { list: ListDetails, isUserLists?: boolean }) => {
   return (
     <div className="lists-card">
       <div className="lists-card-name">{list.name}</div>
@@ -27,7 +27,7 @@ const ListCard = ({ list, isUserLists }: { list: IListDetails, isUserLists?: boo
   );
 };
 
-const ListsCardView = ({ lists, ...rest }: { lists: IListDetails[], isUserLists?: boolean }) => {
+const ListsCardView = ({ lists, ...rest }: { lists: ListDetails[], isUserLists?: boolean }) => {
   return (
     <div className="lists-card-view">
       {lists.map((list) => (

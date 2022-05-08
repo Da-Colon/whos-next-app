@@ -1,36 +1,37 @@
 import { useState } from "react";
 import { faChevronLeft, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IUserStore, useUserStore } from '../../../context/UserContext'
+import { useUserStore } from '../../../context/UserContext'
 import FormikContainer from '../../../services/FormikContainer'
-import { EAccountState, IFormProperties } from "../../../context/UserContext/useAccountManagement";
 import { signupInitialValues } from "../../../constants/initialValues";
 import { signupValidationSchema } from "../../../constants/validationSchemas";
 import './styles.scss'
+import { AccountFormProps, UsersStore } from "../../../context/typescript/users.types";
+import { AccountState } from "../../../context/typescript/users.enums";
 
 const SignupForm = () => {
-  const userStore: IUserStore = useUserStore();
+  const userStore: UsersStore = useUserStore();
   const [serverError, setServerError] = useState<string | null>(null);
 
   const setAuthTokenCookie = (token: string) => {
     userStore.setCookie("token", token, { path: "/" });
   };
 
-  const handleSubmit = async (values: IFormProperties) => {
+  const handleSubmit = async (values: AccountFormProps) => {
     const user = await userStore.userSignup(values);
     if (!user.token) {
       setServerError("Please check your email and password and try again.");
       return;
     }
     setAuthTokenCookie(user.token);
-    userStore.updateSignupState(EAccountState.None);
+    userStore.updateSignupState(AccountState.None);
   };
 
   return (
     <div className="signup-form-container">
       <div className="signup-form-heading">Sign up</div>
       <FormikContainer
-        handleSubmit={(values: IFormProperties) => handleSubmit(values)}
+        handleSubmit={(values: AccountFormProps) => handleSubmit(values)}
         initialValues={signupInitialValues}
         validationSchema={signupValidationSchema}
       >
@@ -41,9 +42,9 @@ const SignupForm = () => {
           handleChange,
           touched,
         }: {
-          values: IFormProperties;
-          errors: IFormProperties;
-          touched: IFormProperties;
+          values: AccountFormProps;
+          errors: AccountFormProps;
+          touched: AccountFormProps;
           handleSubmit: () => void;
           handleChange: () => void;
         }) => (
@@ -54,12 +55,12 @@ const SignupForm = () => {
             <FontAwesomeIcon
               className="signup-steps-close"
               icon={faTimes}
-              onClick={() => userStore.updateSignupState(EAccountState.None)}
+              onClick={() => userStore.updateSignupState(AccountState.None)}
             />
             <FontAwesomeIcon
               className="signup-steps-back"
               icon={faChevronLeft}
-              onClick={() => userStore.updateSignupState(EAccountState.Choose)}
+              onClick={() => userStore.updateSignupState(AccountState.Choose)}
             />
             {/* Break out into components */}
             {serverError && <div className="form-errors">{serverError}</div>}

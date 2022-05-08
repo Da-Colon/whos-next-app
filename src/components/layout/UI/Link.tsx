@@ -1,13 +1,13 @@
 import { NavLink } from "react-router-dom";
 
-interface ILinkProps {
+interface LinkProps {
   isVisible?: boolean;
   classNames?: string;
   to: string;
   text: string;
 }
 
-const Link = ({ classNames, text, isVisible, ...rest }: ILinkProps) => {
+const Link = ({ classNames, text, isVisible, ...rest }: LinkProps) => {
   if (!isVisible) return null;
   return (
     <NavLink className={classNames} {...rest}>

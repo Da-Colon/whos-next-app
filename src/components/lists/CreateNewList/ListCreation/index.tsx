@@ -1,21 +1,22 @@
 import { faArrowCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import { IListStore, useListStore } from "../../../../context/ListContext";
-import { ECreateListSteps, IList } from "../../../../context/ListContext/interfaces";
+import { useListStore } from "../../../../context/ListContext";
+import { ECreateListSteps } from "../../../../context/typescript/lists.enums";
+import { ListProps, ListsStore } from "../../../../context/typescript/lists.types";
 import { IFormikProps } from "../../interfaces";
 import TitleAndNavigation, { ENavigationType } from "../../shared/TitleAndNavigation";
 import ListInputs from "./ListInputs";
 import "./styles.scss";
 
-interface IListCreationProps extends IFormikProps {
+interface ListCreationProps extends IFormikProps {
   listLength: number;
 }
 
-const ListCreation = ({ errors, listLength, values, setFieldValue }: IListCreationProps) => {
-  const listsStore: IListStore = useListStore();
+const ListCreation = ({ errors, listLength, values, setFieldValue }: ListCreationProps) => {
+  const listsStore: ListsStore = useListStore();
   // stores new list as it's being created
-  const [newList, setNewList] = useState<IList[]>(
+  const [newList, setNewList] = useState<ListProps[]>(
     values.list.length ? values.list : new Array(listLength).fill({ name: "" })
   );
 
@@ -28,19 +29,23 @@ const ListCreation = ({ errors, listLength, values, setFieldValue }: IListCreati
     listsStore.updateCreateListState(ECreateListSteps.Review);
   };
 
-  // change handler for list items
-  // @param (name: string) text of list item
-  // @param (index: number) index of list item to be updated
+  /**
+   * @description change handler for list items
+   * @param name text of list item
+   * @param index index of list item to be updated
+   */
   const updateIndexOnChange = (name: string, index: number) => {
-    const currentList: IList[] = [...newList];
+    const currentList: ListProps[] = [...newList];
     currentList[index] = { name: name };
     setNewList(currentList);
   };
 
-  // removes list item
-  // @param (index: number) index of list item to be removed
+  /**
+   * @description removes list item
+   * @param index index of list item to be removed
+   */
   const removeItemAtIndex = (index: number) => {
-    const currentList: IList[] = [...newList];
+    const currentList: ListProps[] = [...newList];
     const updatedList = currentList.filter((_, i) => index !== i);
     setNewList(updatedList);
   };

@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { IList } from '../../context/ListContext/interfaces';
+import { ListProps } from '../../context/typescript/lists.types';
 
-const Wheel = ({items, onSelectItem}: {items: IList[], onSelectItem?: (value: number | null) => void}) => {
+const Wheel = ({items, onSelectItem}: {items: ListProps[], onSelectItem?: (value: number | null) => void}) => {
   const [ selectedItem, setItem ] = useState<number | null>(null)
 
   const selectItem = () => {

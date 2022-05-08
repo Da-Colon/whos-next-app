@@ -1,5 +1,6 @@
+import { FormikErrors } from "formik";
 import { ChangeEvent } from "react";
-import { IListProperties, IListPropertiesError } from "../../context/ListContext/interfaces";
+import { ListFormProps } from "../../context/typescript/lists.types";
 
 export interface IListTableProps {
   length: number;
@@ -22,8 +23,8 @@ export interface ICreateListProperties {
 }
 
 export interface IFormikProps {
-  values: IListProperties;
-  errors: IListPropertiesError;
+  values: ListFormProps;
+  errors: FormikErrors<ListFormProps>;
   handleChange: () => void;
   handleSubmit?: () => void;
   setFieldValue: (field: string, value: Array<any> | number | boolean) => void;

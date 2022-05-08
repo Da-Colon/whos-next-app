@@ -1,9 +1,9 @@
-import { IList } from "../../../context/ListContext/interfaces";
 import { randomNumberPicker } from "../picker.utils";
 import { IUseRandomPickerProps } from "../interfaces";
 import "./styles.scss";
+import { ListProps } from "../../../context/typescript/lists.types";
 
-const ScatterObject = ({ listItem }: { listItem: IList; index: number }) => {
+const ScatterObject = ({ listItem }: { listItem: ListProps; index: number }) => {
   const textStyles = {
     left: randomNumberPicker(window.innerWidth).toString() + "px",
     top: randomNumberPicker(window.innerHeight).toString() + "px",

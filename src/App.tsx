@@ -5,9 +5,9 @@ import Body from "./components/Body";
 import Footer from "./components/Footer";
 import { useUserStore } from "./context/UserContext";
 import Modal from "./components/layout/Modal";
-import { EAccountState } from "./context/UserContext/useAccountManagement";
 import Login from "./components/account/Login";
 import SignupSteps from "./components/account/Signup";
+import { AccountState } from "./context/typescript/users.enums";
 import "./styles/_core.scss";
 
 const App = () => {
@@ -27,10 +27,10 @@ const App = () => {
 
   return (
     <Router>
-      <Modal isVisible={loginState !== EAccountState.None}>
+      <Modal isVisible={loginState !== AccountState.None}>
         <Login />
       </Modal>
-      <Modal isVisible={signupState !== EAccountState.None}>
+      <Modal isVisible={signupState !== AccountState.None}>
         <SignupSteps />
       </Modal>
       <div className="app-wrapper">

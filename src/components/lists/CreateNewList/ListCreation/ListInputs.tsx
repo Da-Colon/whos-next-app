@@ -1,17 +1,17 @@
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IList } from "../../../../context/ListContext/interfaces";
+import { ListProps } from "../../../../context/typescript/lists.types";
 
-interface IListInputs {
-  list: IList[];
+interface ListInputsProps {
+  list: ListProps[];
   updateIndexOnChange: (name: string, index: number) => void;
   removeItemAtIndex: (index: number) => void;
 }
 
-const ListInputs = ({ list, updateIndexOnChange, removeItemAtIndex }: IListInputs) => {
+const ListInputs = ({ list, updateIndexOnChange, removeItemAtIndex }: ListInputsProps) => {
   return (
     <div className="list-create-inputs-container">
-      {list.map((listItem: IList, index: number) => (
+      {list.map((listItem: ListProps, index: number) => (
         <div key={"_" + index} className="list-create-input">
           <input
             type="text"

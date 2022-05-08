@@ -1,6 +1,6 @@
 import { useHistory, useParams } from "react-router-dom";
 import { listNewValidationSchema } from "../../../constants/validationSchemas";
-import { IListStore, useListStore } from "../../../context/ListContext";
+import { useListStore } from "../../../context/ListContext";
 import FormikContainer from "../../../services/FormikContainer";
 import { IFormikProps } from "../interfaces";
 import "./styles.scss";
@@ -8,11 +8,12 @@ import ListInputs from "./ListInputs";
 import NameAndPrivacy from "./NameAndPrivacy";
 import TitleAndNavigation, { ENavigationType } from "../shared/TitleAndNavigation";
 import { ClientRoutes } from "../../../config/client";
+import { ListsStore } from "../../../context/typescript/lists.types";
 
 const EditList = () => {
   const { listId } = useParams<{ listId: string }>();
   const history = useHistory();
-  const listsStore: IListStore = useListStore();
+  const listsStore: ListsStore = useListStore();
 
   const list = listsStore.userLists?.find((list) => list.id === listId);
 
@@ -34,7 +35,7 @@ const EditList = () => {
     >
       {({ handleSubmit, ...rest }: IFormikProps) => (
         <div className="edit list-form-container">
-          <TitleAndNavigation  variant={ENavigationType.Nav} pageTitle="Edit Lists" />
+          <TitleAndNavigation variant={ENavigationType.Nav} pageTitle="Edit Lists" />
           <form onSubmit={handleSubmit} className="form-container">
             <NameAndPrivacy {...rest} />
             <ListInputs {...rest} />
